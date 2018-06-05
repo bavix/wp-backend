@@ -12,6 +12,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
+        "rinvex/attributes": "^0.0.4",
         "spatie/eloquent-sortable": "^3.4",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^7.0",
         "zizaco/entrust": "^1.9"

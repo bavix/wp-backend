@@ -2,6 +2,9 @@
 
 namespace App\Models\User;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
@@ -18,9 +21,13 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @property string $remember_token
  * @property string $createdAt
  * @property string $updatedAt
+ *
+ * @property Collection $contacts
  */
 class User extends Authenticatable
 {
+
+    public const REL_CONTACTS = 'contacts';
 
     use EntrustUserTrait;
     use Notifiable;
@@ -31,7 +38,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'email', 'password',
+        'login', 'password',
     ];
 
     /**
@@ -49,6 +56,22 @@ class User extends Authenticatable
     public function setPasswordAttribute(string $password): void
     {
         $this->attributes['password'] = \bcrypt($password);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function info(): BelongsTo
+    {
+        return $this->belongsTo(Info::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function contacts(): HasMany
+    {
+        return $this->hasMany(Contact::class);
     }
 
 }

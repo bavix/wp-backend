@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\StoreRequest;
+use Illuminate\Support\Facades\DB;
+use App\Models\User\Contact;
 use App\Models\User\User;
 
 class UserController extends Controller
@@ -22,12 +24,22 @@ class UserController extends Controller
      * @throws
      */
     public function store(StoreRequest $request) {
+        $email = $request->input(Contact::TYPE_EMAIL);
         $user = new User();
         $user->fill($request->validated());
-        $user->saveOrFail();
+
+        DB::transaction(function () use ($email, $user) {
+            $user->saveOrFail();
+
+            $contact = new Contact();
+            $contact->type = Contact::TYPE_EMAIL;
+            $contact->value = $email;
+            $contact->user()->associate($user);
+            $contact->saveOrFail();
+        });
 
         return response()
-            ->json($user)
+            ->json($user->load(User::REL_CONTACTS))
             ->setStatusCode(201);
     }
 

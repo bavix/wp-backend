@@ -23,8 +23,8 @@ class StoreRequest extends UpdateRequest
     public function rules(): array
     {
         return \array_merge_recursive(parent::rules(), [
-            'login' => ['required', 'string', 'min:3', 'max:32'],
-            'email' => ['required', 'email'],
+            'login' => ['required', 'unique:users', 'string', 'min:3', 'max:32'],
+            'email' => ['required', 'email', new EmailRule()],
             'password' => ['required', 'min:5', new PasswordRule()],
         ]);
     }
