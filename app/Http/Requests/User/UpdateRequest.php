@@ -3,6 +3,8 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\User\Permission;
+use App\Models\User\User;
 
 class UpdateRequest extends FormRequest
 {

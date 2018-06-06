@@ -12,7 +12,7 @@ class StoreRequest extends UpdateRequest
      */
     public function authorize(): bool
     {
-        return !parent::authorize();
+        return !$this->user();
     }
 
     /**
