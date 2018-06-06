@@ -3,8 +3,6 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\User\Permission;
-use App\Models\User\User;
 
 class UpdateRequest extends FormRequest
 {
@@ -16,7 +14,8 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return (bool)$this->user();
+        return $this->user() &&
+            $this->attributes->getInt('id') === $this->user()->id;
     }
 
     /**
