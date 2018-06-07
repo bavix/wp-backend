@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\TestMail;
 use Illuminate\Console\Command;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Log;
@@ -31,11 +32,10 @@ class MailerCommand extends Command
      */
     public function handle()
     {
-        Mail::send('emails.test', ['title' => __CLASS__], function (Message $message) {
-            $message->to('info@babichev.net');
-            $message->subject('Testing');
-            // Log::channel('slack')->critical($message->toString());
-        });
+        $message = new TestMail(__CLASS__);
+        $message->subject('Testing');
+        Mail::to('info@babichev.net')
+            ->queue($message);
 
         return 'success!';
     }
