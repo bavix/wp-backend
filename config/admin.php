@@ -21,11 +21,8 @@ return [
      * Route configuration.
      */
     'route' => [
-
         'prefix' => 'admin',
-
         'namespace' => 'App\\Admin\\Controllers',
-
         'middleware' => ['web', 'admin'],
     ],
 

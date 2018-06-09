@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User\Contact;
 use App\Models\User\User;
@@ -11,10 +13,19 @@ class UserController extends Controller
 {
 
     /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api')
+            ->except(['store']);
+    }
+
+    /**
      * @return User[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function index() {
-        return User::all();
+    public function index(Request $request) {
+        return User::with($request->query('relations'))->get();
     }
 
     /**
@@ -34,6 +45,7 @@ class UserController extends Controller
             $contact = new Contact();
             $contact->type = Contact::TYPE_EMAIL;
             $contact->value = $email;
+            $contact->notify = 1;
             $contact->user()->associate($user);
             $contact->saveOrFail();
         });

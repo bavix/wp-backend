@@ -19,7 +19,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => App\Models\Role::class,
+    'role' => App\Models\User\Role::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => App\Models\Permission::class,
+    'permission' => App\Models\User\Permission::class,
 
     /*
     |--------------------------------------------------------------------------

@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->enum('type', ['email', 'phone']);
             $table->string('value');
+            $table->boolean('notify')->default(0);
             $table->boolean('confirmed')->default(0);
             $table->integer('user_id');
             $table->unique(['type', 'value']);
