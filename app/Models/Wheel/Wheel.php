@@ -45,6 +45,8 @@ use Rinvex\Attributes\Traits\Attributable;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Social\Favorite[] $favorites
  * @property-read \App\Models\Social\Like $liked
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Social\Like[] $likes
+ * @property-read \App\Models\Social\Comment $commented
+ * @property-read \App\Models\Social\Favorite $favored
  */
 class Wheel extends Model
 {
