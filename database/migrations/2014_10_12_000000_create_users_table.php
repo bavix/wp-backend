@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('login')->unique();
             $table->string('password');
+            $table->float('experience')->default(0);
             $table->boolean('verified')->default(0);
             $table->boolean('activated')->default(0);
             $table->rememberToken();

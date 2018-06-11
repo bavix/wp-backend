@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereValue($value)
  * @mixin \Eloquent
+ * @property int $notify
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereNotify($value)
  */
 class Contact extends Model
 {

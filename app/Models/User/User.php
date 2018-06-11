@@ -40,6 +40,10 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereVerified($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User withRole($role)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property float $experience
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereExperience($value)
  */
 class User extends Authenticatable
 {
