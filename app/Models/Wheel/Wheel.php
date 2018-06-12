@@ -4,11 +4,16 @@ namespace App\Models\Wheel;
 
 use App\Http\Controllers\HomeController;
 use App\Models\Social\Comment;
+use App\Models\Social\Commentable;
+use App\Models\Social\Favorable;
 use App\Models\Social\Favorite;
 use App\Models\Social\Like;
+use App\Models\Social\Likeable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Rinvex\Attributes\Traits\Attributable;
 
 /**
@@ -55,6 +60,9 @@ class Wheel extends Model
      */
 
     use Attributable;
+    use Commentable;
+    use Favorable;
+    use Likeable;
 
     protected $fillable = [
         'brand_id',
@@ -63,72 +71,5 @@ class Wheel extends Model
         'image_id',
         'name',
     ];
-
-    /**
-     * @return MorphMany
-     */
-    public function comments(): MorphMany
-    {
-        return $this->morphMany(Comment::class, 'object')
-            ->where('activated', 1);
-    }
-
-    /**
-     * Wheel::query()
-     *   ->withCount('commented as commented')
-     *   ->get();
-     *
-     * @return MorphOne
-     */
-    public function commented(): MorphOne
-    {
-        return $this
-            ->morphOne(Comment::class, 'object')
-            ->where('user_id', \Auth::id());
-    }
-
-    /**
-     * @return MorphMany
-     */
-    public function favorites(): MorphMany
-    {
-        return $this->morphMany(Favorite::class, 'object');
-    }
-
-    /**
-     * Wheel::query()
-     *   ->withCount('favored as favored')
-     *   ->get();
-     *
-     * @return MorphOne
-     */
-    public function favored(): MorphOne
-    {
-        return $this
-            ->morphOne(Favorite::class, 'object')
-            ->where('user_id', \Auth::id());
-    }
-
-    /**
-     * @return MorphMany
-     */
-    public function likes(): MorphMany
-    {
-        return $this->morphMany(Like::class, 'object');
-    }
-
-    /**
-     * Wheel::query()
-     *   ->withCount('liked as liked')
-     *   ->get();
-     *
-     * @return MorphOne
-     */
-    public function liked(): MorphOne
-    {
-        return $this
-            ->morphOne(Like::class, 'object')
-            ->where('user_id', \Auth::id());
-    }
 
 }
