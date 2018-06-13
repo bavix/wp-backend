@@ -32,4 +32,19 @@ trait Commentable
             ->where('user_id', Auth::id());
     }
 
+    /**
+     * @param string $text
+     *
+     * @return Comment
+     */
+    public function comment(string $text): Comment
+    {
+        $comment = new Comment();
+        $comment->text = $text;
+        $comment->user_id = Auth::id();
+        $comment->object()->associate($this);
+        $comment->save();
+        return $comment;
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\Models\Social\Followable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -52,6 +53,7 @@ class User extends Authenticatable
 
     use EntrustUserTrait;
     use HasApiTokens;
+    use Followable;
     use Notifiable;
 
     /**

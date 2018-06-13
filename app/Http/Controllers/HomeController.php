@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Social\Comment;
-use App\Models\Social\Favorite;
-use App\Models\Social\Like;
-use App\Models\Wheel\Wheel;
+use App\Models\User\User;
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
 
 class HomeController extends Controller
 {
@@ -24,13 +20,16 @@ class HomeController extends Controller
 
     public function show(Request $request)
     {
-        return Wheel::query()
-            ->withCount([
-                'commented as commented',
-                'favored as favored',
-                'liked as liked',
-            ])
-            ->get();
+        /**
+         * @var $first User
+         * @var $second User
+         */
+        $first = User::query()->first();
+        $second = User::query()->offset(1)->first();
+
+        $first->follow($second);
+
+        return $first->load('followers');
     }
 
 }
