@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use App\Mail\TestMail;
 use Illuminate\Console\Command;
-use Illuminate\Mail\Message;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class MailerCommand extends Command

@@ -20,16 +20,7 @@ class HomeController extends Controller
 
     public function show(Request $request)
     {
-        /**
-         * @var $first User
-         * @var $second User
-         */
-        $first = User::query()->first();
-        $second = User::query()->offset(1)->first();
-
-        $first->follow($second);
-
-        return $first->load('followers');
+        // todo
     }
 
 }

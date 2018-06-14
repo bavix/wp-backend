@@ -20,6 +20,7 @@ class PasswordRule implements Rule
     protected function lowercase(string $value): bool
     {
         $this->message = \trans('validation.password.lowercase');
+
         return \preg_match('~[a-z]~', $value);
     }
 
@@ -31,6 +32,7 @@ class PasswordRule implements Rule
     protected function uppercase(string $value): bool
     {
         $this->message = \trans('validation.password.uppercase');
+
         return \preg_match('~[A-Z]~', $value);
     }
 
@@ -42,6 +44,7 @@ class PasswordRule implements Rule
     protected function digits(string $value): bool
     {
         $this->message = \trans('validation.password.digits');
+
         return \preg_match('~\d~', $value);
     }
 
@@ -55,7 +58,7 @@ class PasswordRule implements Rule
     {
         $lowercase = $this->lowercase($value);
         $uppercase = $this->uppercase($value);
-        $digits = $this->digits($value);
+        $digits    = $this->digits($value);
 
         return
             ($lowercase && $uppercase) ||

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\User\StoreRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\User\StoreRequest;
 use App\Models\User\Contact;
 use App\Models\User\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -24,7 +24,8 @@ class UserController extends Controller
     /**
      * @return User[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         return User::with($request->query('relations'))->get();
     }
 
@@ -34,17 +35,18 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws
      */
-    public function store(StoreRequest $request) {
+    public function store(StoreRequest $request)
+    {
         $email = $request->input(Contact::TYPE_EMAIL);
-        $user = new User();
+        $user  = new User();
         $user->fill($request->validated());
 
         DB::transaction(function () use ($email, $user) {
             $user->saveOrFail();
 
-            $contact = new Contact();
-            $contact->type = Contact::TYPE_EMAIL;
-            $contact->value = $email;
+            $contact         = new Contact();
+            $contact->type   = Contact::TYPE_EMAIL;
+            $contact->value  = $email;
             $contact->notify = 1;
             $contact->user()->associate($user);
             $contact->saveOrFail();

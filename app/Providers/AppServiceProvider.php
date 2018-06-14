@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\Wheel\Wheel;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Attributes\Models\Attribute;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -42,13 +42,15 @@ trait Likeable
      */
     public function like(): bool
     {
-        if ($this->liked) {
+        if ($this->liked)
+        {
             throw new \InvalidArgumentException('You put me like this record');
         }
 
-        $like = new Like();
+        $like          = new Like();
         $like->user_id = Auth::id();
         $like->object()->associate($this);
+
         return $like->save();
     }
 
@@ -58,7 +60,8 @@ trait Likeable
      */
     public function dislike(): bool
     {
-        if (!$this->liked) {
+        if (!$this->liked)
+        {
             throw new \InvalidArgumentException('This entry does not have your likes');
         }
 

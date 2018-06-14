@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * App\Models\User\Info
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\User[] $users
- * @mixin \Eloquent
  * @property int $id
  * @property string|null $last_name
  * @property string|null $first_name
@@ -18,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $user_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\User[] $users
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Info whereAbout($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Info whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Info whereFirstName($value)
@@ -26,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Info whereMiddleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Info whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Info whereUserId($value)
+ * @mixin \Eloquent
  */
 class Info extends Model
 {

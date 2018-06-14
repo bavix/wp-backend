@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property string $type
  * @property string $value
+ * @property int $notify
  * @property int $confirmed
  * @property int $user_id
  * @property \Carbon\Carbon|null $created_at
@@ -19,13 +20,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereConfirmed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereNotify($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereValue($value)
  * @mixin \Eloquent
- * @property int $notify
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Contact whereNotify($value)
  */
 class Contact extends Model
 {

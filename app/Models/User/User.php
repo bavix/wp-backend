@@ -2,37 +2,35 @@
 
 namespace App\Models\User;
 
-use App\Models\Social\Followable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 /**
- * Class User
+ * App\Models\User\User
  *
- * @package App\Models
  * @property int $id
  * @property string $login
- * @property string $email
  * @property string $password
- * @property string $remember_token
- * @property string $createdAt
- * @property string $updatedAt
- * @property Collection $contacts
+ * @property float $experience
  * @property int $verified
  * @property int $activated
+ * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Contact[] $contacts
  * @property-read \App\Models\User\Info $info
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereActivated($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereExperience($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereLogin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User wherePassword($value)
@@ -41,10 +39,6 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereVerified($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User withRole($role)
  * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
- * @property float $experience
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\User whereExperience($value)
  */
 class User extends Authenticatable
 {
@@ -53,7 +47,6 @@ class User extends Authenticatable
 
     use EntrustUserTrait;
     use HasApiTokens;
-    use Followable;
     use Notifiable;
 
     /**
@@ -82,10 +75,10 @@ class User extends Authenticatable
     public function findForPassport(string $identifier)
     {
         return static::orWhereHas('contacts', function (Builder $query) use ($identifier) {
-                return $query
-                    ->where('type', Contact::TYPE_EMAIL)
-                    ->where('value', $identifier);
-            })
+            return $query
+                ->where('type', Contact::TYPE_EMAIL)
+                ->where('value', $identifier);
+        })
             ->orWhere('login', $identifier)
             ->first();
     }

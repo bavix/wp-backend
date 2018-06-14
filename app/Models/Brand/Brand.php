@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 /**
  * App\Models\Brand\Brand
  *
- * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Social\Comment[] $comments
+ * @mixin \Eloquent
  */
 class Brand extends Model
 {
