@@ -27,9 +27,7 @@ services:
   php_build:
     image: composer
     volumes:
-      - ./composer.json:/app/composer.json
-      - ./composer.lock:/app/composer.lock
-      - ./vendor:/app/vendor
+      - ./:/app
     command: composer install --ignore-platform-reqs
     networks:
       static_wbs:
