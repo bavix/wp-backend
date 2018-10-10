@@ -29,6 +29,11 @@ class CreateBrandsTable extends Migration
             $table->foreign('parent_id')
                 ->references('id')->on('brands')
                 ->onDelete('cascade');
+
+            $table->foreign('image_id')
+                ->references('id')->on('images')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

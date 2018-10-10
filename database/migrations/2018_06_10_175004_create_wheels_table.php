@@ -56,6 +56,11 @@ class CreateWheelsTable extends Migration
                 ->references('id')->on('styles')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->foreign('image_id')
+                ->references('id')->on('images')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
