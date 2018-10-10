@@ -19,8 +19,13 @@ class AlterUsersLoginBlockedTable extends Migration
                 ->after('id')
                 ->unique();
 
-            $table->string('name')->nullable();
-            $table->string('email')->nullable();
+            $table->string('name')
+                ->nullable()
+                ->change();
+
+            $table->string('email')
+                ->nullable()
+                ->change();
 
             $table->boolean('blocked')
                 ->default(0);
@@ -36,6 +41,14 @@ class AlterUsersLoginBlockedTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['login', 'blocked']);
+
+            $table->string('email')
+                ->nullable(false)
+                ->change();
+
+            $table->string('name')
+                ->nullable(false)
+                ->change();
         });
     }
 
