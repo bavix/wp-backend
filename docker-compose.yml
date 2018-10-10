@@ -4,14 +4,14 @@ services:
   memcached:
     image: memcached
     networks:
-      static:
-        ipv4_address: 172.16.239.2
+      static_wbs:
+        ipv4_address: 172.18.239.2
 
   redis:
     image: redis
     networks:
-      static:
-        ipv4_address: 172.16.239.3
+      static_wbs:
+        ipv4_address: 172.18.239.3
 
   nginx:
     build:
@@ -21,8 +21,8 @@ services:
     volumes:
       - ./:/var/www/html
     networks:
-      static:
-        ipv4_address: 172.16.239.4
+      static_wbs:
+        ipv4_address: 172.18.239.4
 
   php_build:
     image: composer
@@ -32,8 +32,8 @@ services:
       - ./vendor:/app/vendor
     command: composer install --ignore-platform-reqs
     networks:
-      static:
-        ipv4_address: 172.16.239.240
+      static_wbs:
+        ipv4_address: 172.18.239.240
 
   php:
     depends_on:
@@ -44,8 +44,8 @@ services:
     volumes:
       - ./:/var/www/html
     networks:
-      static:
-        ipv4_address: 172.16.239.5
+      static_wbs:
+        ipv4_address: 172.18.239.5
 
   mysql:
     image: mysql:5.7
@@ -58,8 +58,8 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: root
     networks:
-      static:
-        ipv4_address: 172.16.239.6
+      static_wbs:
+        ipv4_address: 172.18.239.6
 
   rabbitmq:
     image: rabbitmq:3.7-management
@@ -67,15 +67,15 @@ services:
       - RABBITMQ_DEFAULT_USER=${DB_USERNAME}
       - RABBITMQ_DEFAULT_PASS=${DB_PASSWORD}
     networks:
-      static:
-        ipv4_address: 172.16.239.7
+      static_wbs:
+        ipv4_address: 172.18.239.7
 
 volumes:
   dbdata:
 
 networks:
-  static:
+  static_wbs:
     ipam:
       config:
       -
-        subnet: 172.16.239.0/24
+        subnet: 172.18.239.0/24
