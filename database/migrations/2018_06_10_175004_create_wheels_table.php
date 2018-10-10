@@ -15,20 +15,47 @@ class CreateWheelsTable extends Migration
     {
         Schema::create('wheels', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('brand_id');
-            $table->integer('collection_id')->nullable();
-            $table->integer('style_id')->nullable();
-            $table->integer('image_id')->nullable();
+
             $table->string('name');
+
+            $table->integer('brand_id')
+                ->unsigned();
+
+            $table->integer('collection_id')
+                ->unsigned()
+                ->nullable();
+
+            $table->integer('style_id')
+                ->unsigned()
+                ->nullable();
+
+            $table->integer('image_id')
+                ->unsigned()
+                ->nullable();
 
             // stat (favoriteCount, likeCount, commentCount)
 
             $table->integer('popular')->default(0);
 
-            $table->integer('customized')->default(0);
-            $table->integer('activated')->default(1);
-            $table->integer('retired')->default(0);
+            $table->boolean('customized')->default(0);
+            $table->boolean('activated')->default(1);
+            $table->boolean('retired')->default(0);
             $table->timestamps();
+
+            $table->foreign('brand_id')
+                ->references('id')->on('brands')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('collection_id')
+                ->references('id')->on('collections')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('style_id')
+                ->references('id')->on('styles')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
