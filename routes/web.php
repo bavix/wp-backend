@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,5 +11,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@show');
-Route::get('/home/callback', 'App\Http\Controllers\HomeController@callback');
+Route::get('/', function () {
+    return view('welcome');
+});

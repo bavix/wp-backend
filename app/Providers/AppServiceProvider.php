@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Wheel\Wheel;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,12 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        Attribute::typeMap([
-//            'weight' => \Rinvex\Attributes\Models\Type\Integer::class
-//        ]);
-
-        app('rinvex.attributes.entities')
-            ->push(Wheel::class);
+        //
     }
 
     /**

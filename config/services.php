@@ -30,15 +30,9 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\Models\User\User::class,
+        'model' => App\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
-    ],
-
-    'github' => [
-        'client_id' => 'fd222b223df84f130c9d', // env('GITHUB_CLIENT_ID'),
-        'client_secret' => '603b4318d0a62f63a62158dc8f77439079bd0816', // env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://wheelpro.local/home/callback',
     ],
 
 ];

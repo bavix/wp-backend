@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Wheel;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

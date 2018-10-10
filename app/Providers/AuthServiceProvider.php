@@ -7,7 +7,6 @@ use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
-
     /**
      * The policy mappings for the application.
      *
@@ -29,5 +28,4 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensExpireIn(now()->addDays(60));
         Passport::refreshTokensExpireIn(now()->addDays(90));
     }
-
 }

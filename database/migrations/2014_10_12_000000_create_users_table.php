@@ -15,33 +15,11 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('login')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->float('experience')->default(0);
-            $table->boolean('verified')->default(0);
-            $table->boolean('activated')->default(0);
             $table->rememberToken();
-            $table->timestamps();
-        });
-
-        Schema::create('contacts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->enum('type', ['email', 'phone']);
-            $table->string('value');
-            $table->boolean('notify')->default(0);
-            $table->boolean('confirmed')->default(0);
-            $table->integer('user_id');
-            $table->unique(['type', 'value']);
-            $table->timestamps();
-        });
-
-        Schema::create('user_info', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('last_name')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('middle_name')->nullable();
-            $table->string('about')->nullable();
-            $table->integer('user_id')->unique();
             $table->timestamps();
         });
     }
@@ -54,8 +32,5 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('roles');
-        Schema::dropIfExists('contacts');
-        Schema::dropIfExists('user_info');
     }
 }

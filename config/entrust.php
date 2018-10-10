@@ -19,7 +19,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => App\Models\User\Role::class,
+    'role' => App\Models\User::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     | Update the User if it is in a different namespace.
     |
     */
-    'user' => App\Models\User\User::class,
+    'user' => App\Models\User::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => App\Models\User\Permission::class,
+    'permission' => \Encore\Admin\Auth\Database\Permission::class,
 
     /*
     |--------------------------------------------------------------------------

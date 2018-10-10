@@ -10,18 +10,18 @@ return [
     /*
      * Logo in admin panel header.
      */
-    'logo' => '<b>Laravel</b> admin',
+    'logo' => 'Wheel<b>Pro</b>',
 
     /*
      * Mini-logo in admin panel header.
      */
-    'logo-mini' => '<b>La</b>',
+    'logo-mini' => '<b>WP</b>',
 
     /*
      * Route configuration.
      */
     'route' => [
-        'prefix' => 'admin',
+        'prefix' => 'cp',
         'namespace' => 'App\\Admin\\Controllers',
         'middleware' => ['web', 'admin'],
     ],

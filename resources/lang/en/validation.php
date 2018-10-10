@@ -18,7 +18,7 @@ return [
     'after'                => 'The :attribute must be a date after :date.',
     'after_or_equal'       => 'The :attribute must be a date after or equal to :date.',
     'alpha'                => 'The :attribute may only contain letters.',
-    'alpha_dash'           => 'The :attribute may only contain letters, numbers, and dashes.',
+    'alpha_dash'           => 'The :attribute may only contain letters, numbers, dashes and underscores.',
     'alpha_num'            => 'The :attribute may only contain letters and numbers.',
     'array'                => 'The :attribute must be an array.',
     'before'               => 'The :attribute must be a date before :date.',
@@ -123,12 +123,6 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-
-    'password' => [
-        'lowercase' => 'The :attribute may contain lowercase letters.',
-        'uppercase' => 'The :attribute may contain uppercase letters.',
-        'digits' => 'The :attribute may contain digits.'
-    ],
 
     'custom' => [
         'attribute-name' => [

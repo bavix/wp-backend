@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('users', \App\Http\Controllers\API\UserController::class);
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
