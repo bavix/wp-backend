@@ -4,8 +4,16 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class WheelCollection extends ResourceCollection
+class Users extends ResourceCollection
 {
+
+    /**
+     * The resource that this resource collects.
+     *
+     * @var string
+     */
+    public $collects = UserResource::class;
+
     /**
      * Transform the resource collection into an array.
      *
@@ -16,4 +24,5 @@ class WheelCollection extends ResourceCollection
     {
         return parent::toArray($request);
     }
+
 }

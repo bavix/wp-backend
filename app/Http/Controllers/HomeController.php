@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BrandCollection;
+use App\Http\Resources\Brands;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -26,11 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $brands = Brand::query()
+        $resource = Brand::query()
             ->withCount('likes', 'favorites')
             ->paginate();
 
-        return new BrandCollection($brands);
+        return new Brands($resource);
 
 //        return view('home');
     }

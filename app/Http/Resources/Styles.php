@@ -4,8 +4,16 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ImageCollection extends ResourceCollection
+class Styles extends ResourceCollection
 {
+
+    /**
+     * The resource that this resource collects.
+     *
+     * @var string
+     */
+    public $collects = StyleResource::class;
+
     /**
      * Transform the resource collection into an array.
      *
@@ -16,4 +24,5 @@ class ImageCollection extends ResourceCollection
     {
         return parent::toArray($request);
     }
+
 }
