@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Rennokki\Befriended\Contracts\Follower;
+use Rennokki\Befriended\Traits\CanFollow;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Follower
 {
 
-    use HasApiTokens, Notifiable;
+    use HasApiTokens;
+    use Notifiable;
+    use CanFollow;
 
     /**
      * The attributes that are mass assignable.
