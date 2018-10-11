@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -25,4 +26,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * @return \OpenApi\Annotations\OpenApi
+     */
+    public function swagger(): \OpenApi\Annotations\OpenApi
+    {
+        return \OpenApi\scan(__DIR__);
+    }
+
 }

@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/docs/swagger.json', 'HomeController@swagger')
+    ->name('swagger');
