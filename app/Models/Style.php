@@ -9,6 +9,16 @@ class Style extends Model
 {
 
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'type',
+        'number',
+        'spoke',
+        'rotated',
+    ];
+
+    /**
      * @return HasMany
      */
     public function wheels(): HasMany

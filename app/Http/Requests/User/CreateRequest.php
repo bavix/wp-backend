@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\User;
 
-class StoreRequest extends UpdateRequest
+use App\Http\Rules\PasswordRule;
+
+class CreateRequest extends UpdateRequest
 {
 
     /**

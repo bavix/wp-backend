@@ -10,6 +10,15 @@ class Collection extends Model
 {
 
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'brand_id',
+        'name',
+        'activated',
+    ];
+
+    /**
      * @return BelongsTo
      */
     public function brand(): BelongsTo

@@ -6,10 +6,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Rennokki\Befriended\Contracts\Follower;
+use Rennokki\Befriended\Contracts\Liker;
 use Rennokki\Befriended\Traits\CanFollow;
 use Rennokki\Befriended\Traits\CanLike;
 
-class User extends Authenticatable implements Follower
+class User extends Authenticatable implements Follower, Liker
 {
 
     use HasApiTokens;
@@ -23,7 +24,9 @@ class User extends Authenticatable implements Follower
      * @var array
      */
     protected $fillable = [
-        'login', 'password',
+        'login',
+        'email',
+        'password',
     ];
 
     /**
@@ -32,7 +35,8 @@ class User extends Authenticatable implements Follower
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
 }
