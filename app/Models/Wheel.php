@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Traits\CanBeFollowed;
+use Rennokki\Befriended\Traits\CanBeLiked;
 use Rinvex\Attributes\Traits\Attributable;
 
 class Wheel extends Model implements Followable
@@ -13,6 +14,7 @@ class Wheel extends Model implements Followable
 
     use Attributable;
     use CanBeFollowed;
+    use CanBeLiked;
 
     /**
      * @return BelongsTo
