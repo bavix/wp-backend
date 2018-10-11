@@ -23,7 +23,7 @@ class CreateBrandsTable extends Migration
             // is_multiple
             // is_off_road
 
-            $table->boolean('activated')->default(1);
+            $table->boolean('enabled')->default(1);
             $table->timestamps();
 
             $table->foreign('parent_id')

@@ -21,7 +21,7 @@ class CreateStylesTable extends Migration
             $table->integer('spoke');
 
             $table->boolean('rotated')->default(0);
-            $table->boolean('activated')->default(1);
+            $table->boolean('enabled')->default(1);
             $table->timestamps();
         });
     }

@@ -27,7 +27,7 @@ class Wheel extends Model implements Followable, Likeable
         'style_id',
         'image_id',
         'customized',
-        'activated',
+        'enabled',
         'retired',
     ];
 

@@ -2782,16 +2782,16 @@
         },
         {
             "name": "rennokki/befriended",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rennokki/befriended.git",
-                "reference": "8da9f63059afed9907a8104441ac14a208656ee8"
+                "reference": "d73a19c3f919974b5329657208b63b63e6760bd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rennokki/befriended/zipball/8da9f63059afed9907a8104441ac14a208656ee8",
-                "reference": "8da9f63059afed9907a8104441ac14a208656ee8",
+                "url": "https://api.github.com/repos/rennokki/befriended/zipball/d73a19c3f919974b5329657208b63b63e6760bd4",
+                "reference": "d73a19c3f919974b5329657208b63b63e6760bd4",
                 "shasum": ""
             },
             "require": {
@@ -2845,7 +2845,7 @@
                 "model",
                 "social"
             ],
-            "time": "2018-09-16T19:38:21+00:00"
+            "time": "2018-10-11T13:44:46+00:00"
         },
         {
             "name": "rinvex/countries",

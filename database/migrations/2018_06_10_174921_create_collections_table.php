@@ -19,7 +19,7 @@ class CreateCollectionsTable extends Migration
             $table->integer('brand_id')->unsigned();
             $table->string('name');
 
-            $table->boolean('activated')->default(1);
+            $table->boolean('enabled')->default(1);
             $table->timestamps();
 
             $table->unique(['brand_id', 'name']);

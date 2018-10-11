@@ -15,7 +15,7 @@ class Collection extends Model
     protected $fillable = [
         'brand_id',
         'name',
-        'activated',
+        'enabled',
     ];
 
     /**

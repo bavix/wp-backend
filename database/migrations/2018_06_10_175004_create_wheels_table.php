@@ -38,7 +38,7 @@ class CreateWheelsTable extends Migration
             $table->integer('popular')->default(0);
 
             $table->boolean('customized')->default(0);
-            $table->boolean('activated')->default(1);
+            $table->boolean('enabled')->default(1);
             $table->boolean('retired')->default(0);
             $table->timestamps();
 

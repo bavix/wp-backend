@@ -24,7 +24,7 @@ class Brand extends Model implements Followable, Likeable
         'parent_id',
         'image_id',
         'name',
-        'activated',
+        'enabled',
     ];
 
     /**
