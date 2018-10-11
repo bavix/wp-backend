@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CollectionResource extends JsonResource
+class CollectionCollection extends ResourceCollection
 {
     /**
      * Transform the resource into an array.
