@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\User;
 
-class UpdateRequest extends ViewRequest
+class DeleteRequest extends ViewRequest
 {
 
     /**

@@ -7,22 +7,6 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-/**
- * @OA\Info(title="WheelPro API", version="0.1")
- * @OA\PathItem(path="/api/")
- *
- * @OA\Server(
- *     url="https://wheelpro.ru",
- *     description="Production"
- * )
- * @OA\Server(
- *     url="https://dev.wheelpro.ru",
- *     description="Test"
- * )
- *
- * Class Controller
- * @package App\Http\Controllers
- */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\BrandCollection;
-use App\Http\Resources\Brands;
-use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,23 +14,20 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('auth')
+            ->except(['swagger']);
     }
 
     /**
      * Show the application dashboard.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $resource = Brand::query()
-            ->withCount('likes', 'favorites')
-            ->paginate();
-
-        return new Brands($resource);
-
-//        return view('home');
+        return view('home');
     }
 
     /**
@@ -41,7 +35,7 @@ class HomeController extends Controller
      */
     public function swagger(): \OpenApi\Annotations\OpenApi
     {
-        return \OpenApi\scan(__DIR__);
+        return \OpenApi\scan(\dirname(__DIR__) . '/Api');
     }
 
 }
