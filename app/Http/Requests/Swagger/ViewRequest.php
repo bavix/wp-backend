@@ -23,4 +23,14 @@ class ViewRequest extends FormRequest
         return $user && $user->can('swagger.view');
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules(): array
+    {
+        return [];
+    }
+
 }
