@@ -12,11 +12,16 @@ class FollowersTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::query()->each(function (\App\Models\User $user) {
+        $output = $this->command->getOutput();
+        $progressBar = $output->createProgressBar(
+            \App\Models\User::query()->count()
+        );
+
+        \App\Models\User::query()->each(function (\App\Models\User $user) use ($progressBar) {
 
             $wheels = \App\Models\Wheel::query()
                 ->inRandomOrder()
-                ->limit(10)
+                ->limit(random_int(1, 100))
                 ->get();
 
             foreach ($wheels as $wheel) {
@@ -25,14 +30,18 @@ class FollowersTableSeeder extends Seeder
 
             $brands = \App\Models\Brand::query()
                 ->inRandomOrder()
-                ->limit(10)
+                ->limit(random_int(1, 100))
                 ->get();
 
             foreach ($brands as $brand) {
                 $user->follow($brand);
             }
 
+            $progressBar->advance();
+
         });
+
+        $output->newLine();
     }
 
 }

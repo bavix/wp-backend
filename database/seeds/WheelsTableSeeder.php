@@ -120,7 +120,13 @@ class WheelsTableSeeder extends Seeder
         $path = resource_path('data/wheels.json');
         $wheels = \json_decode(\file_get_contents($path), true);
 
+        $output = $this->command->getOutput();
+        $progressBar = $output->createProgressBar(
+            \count($wheels)
+        );
+
         foreach ($wheels as $wheelData) {
+
             $style = $this->style($wheelData['style']);
             $brand = $this->brand($wheelData['brand']);
             $collection = $this->collection(
@@ -154,8 +160,11 @@ class WheelsTableSeeder extends Seeder
                     $wheel->save();
                 }
             }
+
+            $progressBar->advance();
         }
 
+        $output->newLine();
     }
 
 }

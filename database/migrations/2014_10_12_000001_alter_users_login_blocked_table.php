@@ -27,7 +27,9 @@ class AlterUsersLoginBlockedTable extends Migration
                 ->nullable()
                 ->change();
 
-            $table->boolean('enabled')->default(1);
+            $table->boolean('enabled')
+                ->default(1)
+                ->after('password');
         });
     }
 
