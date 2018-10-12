@@ -9,6 +9,7 @@ use Rennokki\Befriended\Contracts\Follower;
 use Rennokki\Befriended\Contracts\Liker;
 use Rennokki\Befriended\Traits\CanFollow;
 use Rennokki\Befriended\Traits\CanLike;
+use Yajra\Acl\Traits\HasRole;
 
 class User extends Authenticatable implements Follower, Liker
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable implements Follower, Liker
     use Notifiable;
     use CanFollow;
     use CanLike;
+    use HasRole;
 
     /**
      * The attributes that are mass assignable.

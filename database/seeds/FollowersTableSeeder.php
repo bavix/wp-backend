@@ -21,7 +21,7 @@ class FollowersTableSeeder extends Seeder
 
             $wheels = \App\Models\Wheel::query()
                 ->inRandomOrder()
-                ->limit(random_int(1, 100))
+                ->limit(random_int(1, 10))
                 ->get();
 
             foreach ($wheels as $wheel) {
@@ -30,7 +30,7 @@ class FollowersTableSeeder extends Seeder
 
             $brands = \App\Models\Brand::query()
                 ->inRandomOrder()
-                ->limit(random_int(1, 100))
+                ->limit(random_int(1, 10))
                 ->get();
 
             foreach ($brands as $brand) {
