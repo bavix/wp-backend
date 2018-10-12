@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\User::class, 100)->create();
+        factory(\App\Models\User::class, 250)->create();
 
         $output = $this->command->getOutput();
         $progressBar = $output->createProgressBar(
