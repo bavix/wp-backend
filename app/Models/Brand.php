@@ -5,11 +5,32 @@ namespace App\Models;
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Contracts\Likeable;
 use Rinvex\Addresses\Traits\Addressable;
 
+/**
+ * @OA\Schema(schema="brands")
+ * @OA\Property(
+ *     property="parent_id",
+ *     type="int"
+ * )
+ * @OA\Property(
+ *     property="image_id",
+ *     type="int"
+ * )
+ * @OA\Property(
+ *     property="name",
+ *     type="string"
+ * )
+ * @OA\Property(
+ *     property="enabled",
+ *     type="bool"
+ * )
+ *
+ */
 class Brand extends Model implements Followable, Likeable
 {
 
@@ -41,6 +62,14 @@ class Brand extends Model implements Followable, Likeable
     public function wheels(): HasMany
     {
         return $this->hasMany(Wheel::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(Image::class);
     }
 
 }

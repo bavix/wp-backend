@@ -11,6 +11,9 @@ use Rennokki\Befriended\Traits\CanFollow;
 use Rennokki\Befriended\Traits\CanLike;
 use Yajra\Acl\Traits\HasRole;
 
+/**
+ * @OA\Schema(schema="users")
+ */
 class User extends Authenticatable implements Follower, Liker
 {
 

@@ -10,14 +10,19 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 /**
  * @OA\Info(title="WheelPro API", version="0.1")
  * @OA\PathItem(path="/api/")
- *
  * @OA\Server(
  *     url="https://wheelpro.ru",
- *     description="Production"
+ *     description="production"
  * )
  * @OA\Server(
  *     url="https://dev.wheelpro.ru",
- *     description="Test"
+ *     description="development"
+ * )
+ * @OA\Header(
+ *     header="Accept",
+ *     required=true,
+ *     @OA\Schema(type="string"),
+ *     description="the value 'application/json' should be sent"
  * )
  *
  * Class Controller

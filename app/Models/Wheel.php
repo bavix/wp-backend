@@ -10,6 +10,9 @@ use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Contracts\Likeable;
 use Rinvex\Attributes\Traits\Attributable;
 
+/**
+ * @OA\Schema(schema="wheels")
+ */
 class Wheel extends Model implements Followable, Likeable
 {
 

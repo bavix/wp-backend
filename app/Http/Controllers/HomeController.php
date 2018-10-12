@@ -35,7 +35,7 @@ class HomeController extends Controller
      */
     public function swagger(): \OpenApi\Annotations\OpenApi
     {
-        return \OpenApi\scan(\dirname(__DIR__) . '/Api');
+        return \OpenApi\scan(\dirname(__DIR__, 2));
     }
 
 }
