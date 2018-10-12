@@ -21,8 +21,10 @@ Route::view('/', 'welcome');
 Route::get('/home', 'HomeController@index')
     ->name('home');
 
+// swagger
 Route::middleware('auth')
-    ->get('docs', 'SwaggerController@index');
+    ->get('docs', 'SwaggerController@index')
+    ->name('swagger');
 
 Route::middleware('auth')
     ->get('docs.json', 'SwaggerController@show')
