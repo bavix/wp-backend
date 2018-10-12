@@ -21,5 +21,12 @@ Route::view('/', 'welcome');
 Route::get('/home', 'HomeController@index')
     ->name('home');
 
+//Route::resource('docs', 'SwaggerController')
+//    ->only(['index', 'show'])
+
+// swagger
+Route::view('/docs', 'swagger')
+    ->name('swagger.view');
+
 Route::get('/docs/swagger.json', 'HomeController@swagger')
     ->name('swagger');

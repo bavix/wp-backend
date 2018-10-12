@@ -11,12 +11,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
  * @OA\Info(title="WheelPro API", version="0.1")
  * @OA\PathItem(path="/api/")
  * @OA\Server(
- *     url="https://wheelpro.ru",
- *     description="production"
- * )
- * @OA\Server(
  *     url="https://dev.wheelpro.ru",
  *     description="development"
+ * )
+ * @OA\Server(
+ *     url="https://wheelpro.ru",
+ *     description="production"
  * )
  * @OA\Header(
  *     header="Accept",
