@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
     <title>Swagger UI</title>
@@ -13,7 +13,7 @@
     <script>
         window.onload = function() {
             window.ui = SwaggerUIBundle({
-                url: '{{ route('swagger') }}',
+                url: '{{ route('swagger.json') }}',
                 dom_id: '#swagger-ui',
                 deepLinking: true,
                 presets: [

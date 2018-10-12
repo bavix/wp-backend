@@ -3,27 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use OpenApi\Annotations\OpenApi;
 
 class SwaggerController extends Controller
 {
 
     /**
-     * Show the application docs.
-     *
      * @param Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         return view('swagger');
     }
 
     /**
-     * @return \OpenApi\Annotations\OpenApi
+     * @return OpenApi
      */
-    public function show(): \OpenApi\Annotations\OpenApi
+    public function show(): OpenApi
     {
         return \OpenApi\scan(\dirname(__DIR__, 2));
     }
