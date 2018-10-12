@@ -109,6 +109,21 @@ class InitRoles extends Migration
     }
 
     /**
+     * @param Role $role
+     */
+    protected function developer(Role $role): void
+    {
+        $swagger = Permission::query()->create([
+            'slug'     => 'swagger.view',
+            'resource' => 'swagger',
+            'name'     => 'View swagger',
+            'system'   => false,
+        ]);
+
+        $role->assignPermission($swagger->getKey());
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -124,6 +139,7 @@ class InitRoles extends Migration
         /**
          * @var Role $user
          * @var Role $blocked
+         * @var Role $developer
          * @var Role $registered
          */
         $blocked = Role::query()->create([
@@ -154,6 +170,16 @@ class InitRoles extends Migration
 
         $this->syncPermissions($registered, $user);
         $this->user($user);
+
+        $developer = Role::query()->create([
+            'name' => \Illuminate\Support\Str::title('developer'),
+            'slug' => str_slug('developer'),
+            'system' => true,
+            'description' => 'Developer role.',
+        ]);
+
+        $this->syncPermissions($user, $developer);
+        $this->developer($developer);
     }
 
     /**
@@ -166,8 +192,13 @@ class InitRoles extends Migration
         /**
          * @var Role $user
          * @var Role $blocked
+         * @var Role $developer
          * @var Role $registered
          */
+        $developer = Role::query()
+            ->where('slug', 'developer')
+            ->firstOrFail();
+
         $user = Role::query()
             ->where('slug', 'user')
             ->firstOrFail();
@@ -181,11 +212,13 @@ class InitRoles extends Migration
             ->firstOrFail();
 
         $registered->syncPermissions();
+        $developer->syncPermissions();
         $blocked->syncPermissions();
         $user->syncPermissions();
 
         $user->forceDelete();
         $blocked->forceDelete();
+        $developer->forceDelete();
         $registered->forceDelete();
 
         Permission::query()->forceDelete();
