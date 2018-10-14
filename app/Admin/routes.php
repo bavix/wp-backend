@@ -11,5 +11,6 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'DashController@index');
+    $router->resource('brands', 'BrandController');
 
 });

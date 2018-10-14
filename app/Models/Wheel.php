@@ -11,7 +11,36 @@ use Rennokki\Befriended\Contracts\Likeable;
 use Rinvex\Attributes\Traits\Attributable;
 
 /**
- * @OA\Schema(schema="wheels")
+ * App\Models\Wheel
+ *
+ * @OA\Schema (schema="wheels")
+ * @property int $id
+ * @property string $name
+ * @property int $brand_id
+ * @property int|null $collection_id
+ * @property int|null $style_id
+ * @property int|null $image_id
+ * @property int $popular
+ * @property int $customized
+ * @property int $enabled
+ * @property int $retired
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Brand $brand
+ * @property-read \App\Models\Collection|null $collection
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereBrandId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereCollectionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereCustomized($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereEnabled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereImageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel wherePopular($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereRetired($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereStyleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Wheel extends Model implements Followable, Likeable
 {

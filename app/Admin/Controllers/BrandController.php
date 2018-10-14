@@ -3,13 +3,14 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class ExampleController extends Controller
+class BrandController extends Controller
 {
     use HasResourceActions;
 
@@ -19,7 +20,7 @@ class ExampleController extends Controller
      * @param Content $content
      * @return Content
      */
-    public function index(Content $content)
+    public function index(Content $content): Content
     {
         return $content
             ->header('Index')
@@ -34,7 +35,7 @@ class ExampleController extends Controller
      * @param Content $content
      * @return Content
      */
-    public function show($id, Content $content)
+    public function show($id, Content $content): Content
     {
         return $content
             ->header('Detail')
@@ -49,7 +50,7 @@ class ExampleController extends Controller
      * @param Content $content
      * @return Content
      */
-    public function edit($id, Content $content)
+    public function edit($id, Content $content): Content
     {
         return $content
             ->header('Edit')
@@ -63,7 +64,7 @@ class ExampleController extends Controller
      * @param Content $content
      * @return Content
      */
-    public function create(Content $content)
+    public function create(Content $content): Content
     {
         return $content
             ->header('Create')
@@ -76,13 +77,16 @@ class ExampleController extends Controller
      *
      * @return Grid
      */
-    protected function grid()
+    protected function grid(): Grid
     {
-        $grid = new Grid(new YourModel);
+        $grid = new Grid(new Brand());
 
-        $grid->id('ID')->sortable();
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->column('id', 'ID')
+            ->sortable();
+
+        $grid->column('name', 'Name');
+        $grid->column('created_at', 'Created at');
+        $grid->column('updated_at', 'Updated at');
 
         return $grid;
     }
@@ -93,13 +97,14 @@ class ExampleController extends Controller
      * @param mixed   $id
      * @return Show
      */
-    protected function detail($id)
+    protected function detail($id): Show
     {
-        $show = new Show(YourModel::findOrFail($id));
+        $show = new Show(Brand::findOrFail($id));
 
-        $show->id('ID');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+        $show->field('id', 'ID');
+        $show->field('name', 'Name');
+        $show->field('created_at', 'Created at');
+        $show->field('updated_at', 'Updated at');
 
         return $show;
     }
@@ -109,9 +114,9 @@ class ExampleController extends Controller
      *
      * @return Form
      */
-    protected function form()
+    protected function form(): Form
     {
-        $form = new Form(new YourModel);
+        $form = new Form(new Brand());
 
         $form->display('id', 'ID');
         $form->display('created_at', 'Created At');
