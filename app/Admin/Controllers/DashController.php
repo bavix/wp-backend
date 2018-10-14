@@ -8,7 +8,7 @@ use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
 
-class HomeController extends Controller
+class DashController extends Controller
 {
     public function index(Content $content)
     {

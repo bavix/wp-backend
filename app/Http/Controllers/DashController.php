@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class HomeController extends Controller
+class DashController extends Controller
 {
 
     /**
@@ -12,11 +13,11 @@ class HomeController extends Controller
      *
      * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
-        return view('home');
+        return view('dash');
     }
 
 }
