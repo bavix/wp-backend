@@ -8,7 +8,7 @@
         <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" />
 
         <!-- Styles -->
         <style>
@@ -69,7 +69,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ route('dash') }}">Dashboard</a>
+                        {{--<a href="{{ route('dash') }}">Dashboard</a>--}}
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
