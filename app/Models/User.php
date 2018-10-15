@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Rennokki\Befriended\Contracts\Follower;
 use Rennokki\Befriended\Contracts\Liker;
@@ -53,6 +54,7 @@ class User extends Authenticatable implements Follower, Liker
      * @var array
      */
     protected $fillable = [
+        'name',
         'login',
         'email',
         'password',
@@ -67,5 +69,13 @@ class User extends Authenticatable implements Follower, Liker
         'password',
         'remember_token',
     ];
+
+    /**
+     * @param string $password
+     */
+    public function setPasswordAttribute(string $password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
 
 }

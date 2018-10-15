@@ -16,11 +16,17 @@ Route::group([
     $router->resource('brands', 'BrandController')
         ->names('cp.brands');
 
+    $router->resource('collections', 'CollectionController')
+        ->names('cp.collections');
+
     $router->resource('wheels', 'WheelController')
         ->names('cp.wheels');
 
     $router->resource('styles', 'StyleController')
         ->names('cp.styles');
+
+    $router->resource('users', 'UserController')
+        ->names('cp.users');
 
     // api
     $router->get('api/brands', 'ApiController@brands')

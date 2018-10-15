@@ -27,7 +27,7 @@ class DashController extends Controller
                     'Users',
                     'users',
                     'aqua',
-                    'users',
+                    route('cp.users.index'),
                     User::count()
                 )
             );
@@ -60,7 +60,7 @@ class DashController extends Controller
                     'Collections',
                     'object-group',
                     'blue',
-                    'collections',
+                    route('cp.collections.index'),
                     Collection::count()
                 )
             );
