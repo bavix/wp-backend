@@ -7,6 +7,7 @@ use App\Traits\UserCanBeLiked;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Contracts\Likeable;
 use Rinvex\Addresses\Traits\Addressable;
@@ -72,6 +73,14 @@ class Brand extends Model implements Followable, Likeable
     public function collections(): HasMany
     {
         return $this->hasMany(Collection::class);
+    }
+
+    /**
+     * @return MorphMany
+     */
+    public function links(): MorphMany
+    {
+        return $this->morphMany(Link::class, 'linkable');
     }
 
     /**
