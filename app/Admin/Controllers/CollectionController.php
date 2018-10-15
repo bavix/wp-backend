@@ -5,7 +5,6 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Collection;
-use App\Models\Style;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -125,7 +124,6 @@ class CollectionController extends Controller
         $show->getModel()->load('brand');
 
         $show->field('id', 'ID');
-        $show->field('brand.name', 'Brand');
         $show->field('name', 'Name');
         $show->field('created_at', 'Created at');
         $show->field('updated_at', 'Updated at');
