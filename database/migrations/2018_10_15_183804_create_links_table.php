@@ -15,15 +15,15 @@ class CreateLinksTable extends Migration
     {
         Schema::create('links', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
+
+            $table->string('url')
+                ->unique();
 
             $table->boolean('enabled')
                 ->default(1);
 
             $table->morphs('linkable');
             $table->timestamps();
-
-            $table->unique(['type', 'url']);
         });
     }
 
