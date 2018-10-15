@@ -28,6 +28,12 @@ Route::group([
     $router->resource('users', 'UserController')
         ->names('cp.users');
 
+    $router->resource('roles', 'RoleController')
+        ->names('cp.roles');
+
+    $router->resource('permissions', 'PermissionController')
+        ->names('cp.permissions');
+
     // api
     $router->get('api/brands', 'ApiController@brands')
         ->name('cp.api.brands');

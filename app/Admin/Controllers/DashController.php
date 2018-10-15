@@ -75,17 +75,17 @@ class DashController extends Controller
                     Style::count()
                 )
             );
-
-            $row->column(
-                3,
-                new InfoBox(
-                    'Images',
-                    'image',
-                    'gray',
-                    'images',
-                    Image::count()
-                )
-            );
+//
+//            $row->column(
+//                3,
+//                new InfoBox(
+//                    'Images',
+//                    'image',
+//                    'gray',
+//                    'images',
+//                    Image::count()
+//                )
+//            );
 
             $row->column(
                 3,
@@ -93,7 +93,7 @@ class DashController extends Controller
                     'Roles',
                     'unlock-alt',
                     'info',
-                    'roles',
+                    route('cp.roles.index'),
                     Role::count()
                 )
             );
@@ -104,7 +104,7 @@ class DashController extends Controller
                     'Permissions',
                     'lock',
                     'aqua',
-                    'permissions',
+                    route('cp.permissions.index'),
                     Permission::count()
                 )
             );
