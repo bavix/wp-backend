@@ -4,13 +4,16 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Collection;
+use App\Models\Style;
+use App\Models\Wheel;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class BrandController extends Controller
+class WheelController extends Controller
 {
     use HasResourceActions;
 
@@ -79,13 +82,39 @@ class BrandController extends Controller
      */
     protected function grid(): Grid
     {
-        $grid = new Grid(new Brand());
+        $grid = new Grid(new Wheel());
+
+        $grid->model()->with([
+            'brand',
+            'collection',
+            'style'
+        ]);
 
         $grid->filter(function (Grid\Filter $filter) {
+            $filter->equal('brand_id', 'Brand')
+                ->select()
+                ->ajax(route('cp.api.brands'));
+
+            $filter->equal('collection_id', 'Collection')
+                ->select()
+                ->ajax(route('cp.api.collections'));
+
+            $filter->equal('style_id', 'Style')
+                ->select(Style::options());
+
             $filter->like('name');
         });
 
         $grid->column('id', 'ID')
+            ->sortable();
+
+        $grid->column('brand.name', 'Brand')
+            ->sortable();
+
+        $grid->column('collection.name', 'Collection')
+            ->sortable();
+
+        $grid->column('style.name', 'Style')
             ->sortable();
 
         $grid->column('name')
@@ -107,7 +136,7 @@ class BrandController extends Controller
      */
     protected function detail($id): Show
     {
-        $show = new Show(Brand::findOrFail($id));
+        $show = new Show(Wheel::findOrFail($id));
 
         $show->field('id', 'ID');
         $show->field('name');
@@ -124,9 +153,30 @@ class BrandController extends Controller
      */
     protected function form(): Form
     {
-        $form = new Form(new Brand());
+        $form = new Form(new Wheel());
 
         $form->display('id', 'ID');
+
+        $form->select('brand_id', 'Brand')
+            ->options(function ($id) {
+                return Brand::find($id)
+                    ->pluck('name', 'id')
+                    ->toArray();
+            })
+            ->ajax(route('cp.api.brands'));
+
+        $form->select('collection_id', 'Collection')
+            ->options(function ($id) {
+                $model = Collection::find($id);
+
+                if ($model) {
+                    return $model->pluck('name', 'id')->toArray();
+                }
+            })
+            ->ajax(route('cp.api.collections'));
+
+        $form->select('style_id', 'Style')
+            ->options(Style::options());
 
         $form->text('name');
         $form->switch('enabled');
