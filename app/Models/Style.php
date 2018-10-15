@@ -87,11 +87,11 @@ class Style extends Model
     public static function types(): array
     {
         return [
-            self::TYPE_I,
-            self::TYPE_X,
-            self::TYPE_Y,
-            self::TYPE_V,
-            self::TYPE_O,
+            self::TYPE_I => self::TYPE_I,
+            self::TYPE_X => self::TYPE_X,
+            self::TYPE_Y => self::TYPE_Y,
+            self::TYPE_V => self::TYPE_V,
+            self::TYPE_O => self::TYPE_O,
         ];
     }
 
@@ -101,9 +101,9 @@ class Style extends Model
     public static function numbers(): array
     {
         return [
-            self::NUMBER_SIMPLE,
-            self::NUMBER_DOUBLE,
-            self::NUMBER_TRIPLE,
+            self::NUMBER_SIMPLE => self::NUMBER_SIMPLE,
+            self::NUMBER_DOUBLE => self::NUMBER_DOUBLE,
+            self::NUMBER_TRIPLE => self::NUMBER_TRIPLE,
         ];
     }
 

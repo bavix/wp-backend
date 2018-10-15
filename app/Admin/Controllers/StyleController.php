@@ -85,6 +85,11 @@ class StyleController extends Controller
             $filter->equal('type')->select(Style::types());
             $filter->equal('number')->select(Style::numbers());
             $filter->equal('spoke')->integer();
+            $filter->equal('rotated')->radio([
+                '' => 'All',
+                0 => 'Not rotated',
+                1 => 'Rotated',
+            ]);
         });
 
         $grid->column('id', 'ID')

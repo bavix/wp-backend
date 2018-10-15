@@ -23,6 +23,13 @@ class CreateStylesTable extends Migration
             $table->boolean('rotated')->default(0);
             $table->boolean('enabled')->default(1);
             $table->timestamps();
+
+            $table->unique([
+                'type',
+                'number',
+                'spoke',
+                'rotated'
+            ]);
         });
     }
 

@@ -18,7 +18,7 @@ class BrandsController extends Controller
     public function index(ViewRequest $request): Brands
     {
         $resource = Brand::query()
-            ->withCount('likes', 'favorites')
+//            ->withCount('likes', 'favorites')
             ->with('image')
             ->paginate();
 

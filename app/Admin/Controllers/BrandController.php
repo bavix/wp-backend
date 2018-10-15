@@ -129,6 +129,15 @@ class BrandController extends Controller
 
         $form->display('id', 'ID');
 
+        $form->select('parent_id', 'Parent')
+            ->options(function (?int $id) {
+                if ($id) {
+                    $brand = Brand::findOrFail($id);
+                    return [$brand->id => $brand->name];
+                }
+            })
+            ->ajax(route('cp.api.brands'));
+
         $form->text('name');
         $form->switch('enabled');
 

@@ -84,7 +84,11 @@ class PermissionController extends Controller
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('name');
             $filter->equal('slug');
-            $filter->equal('system');
+            $filter->equal('system')->radio([
+                '' => 'All',
+                0 => 'Disabled',
+                1 => 'Enabled',
+            ]);
         });
 
         $grid->column('id', 'ID')
