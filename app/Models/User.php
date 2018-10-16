@@ -79,6 +79,18 @@ class User extends Authenticatable implements Follower, Liker
     }
 
     /**
+     * @param string $username
+     * @return User|null
+     */
+    public function findForPassport(string $username): ?self
+    {
+        return User::query()
+            ->where('login', $username)
+            ->orWhere('email', $username)
+            ->first();
+    }
+
+    /**
      * @param $password
      * @return bool
      */
