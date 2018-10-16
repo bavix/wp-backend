@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AdminTableSeeder::class);
 
-        if (app()->environment('local')) {
+        if (app()->isLocal()) {
             $this->call(UsersTableSeeder::class);
             $this->call(WheelsTableSeeder::class);
             $this->call(LikesTableSeeder::class);

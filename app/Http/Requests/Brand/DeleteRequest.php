@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Brand;
 
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -20,7 +21,7 @@ class DeleteRequest extends FormRequest
          */
         $user = $this->user();
 
-        return $user && $user->can('brands.delete');
+        return $user && $user->can(Permission::BRANDS_DELETE);
     }
 
     /**

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Yajra\Acl\Models\Permission;
-use Yajra\Acl\Models\Role;
+use App\Models\Permission;
+use App\Models\Role;
 
 class InitRoles extends Migration
 {
@@ -26,15 +26,15 @@ class InitRoles extends Migration
      */
     protected function blocked(Role $role): void
     {
-        Permission::createResource('profile');
+        Permission::createResource(Permission::RESOURCE_PROFILE);
 
         $permissions = Permission::query()
-            ->where('resource', 'profile')
+            ->where('resource', Permission::RESOURCE_PROFILE)
             ->orWhereIn('slug', [
-                'collections.view',
-                'addresses.view',
-                'brands.view',
-                'wheels.view',
+                Permission::COLLECTIONS_VIEW,
+                Permission::ADDRESSES_VIEW,
+                Permission::BRANDS_VIEW,
+                Permission::WHEELS_VIEW,
             ])
             ->get();
 
@@ -53,8 +53,8 @@ class InitRoles extends Migration
     {
         // like
         $like = Permission::query()->create([
-            'slug'     => 'wheels.like',
-            'resource' => 'wheels',
+            'slug'     => Permission::WHEELS_LIKE,
+            'resource' => Permission::RESOURCE_WHEELS,
             'name'     => 'Like wheels',
             'system'   => false,
         ]);
@@ -62,8 +62,8 @@ class InitRoles extends Migration
         $role->assignPermission($like->getKey());
 
         $unlike = Permission::query()->create([
-            'slug'     => 'wheels.unlike',
-            'resource' => 'wheels',
+            'slug'     => Permission::WHEELS_UNLIKE,
+            'resource' => Permission::RESOURCE_WHEELS,
             'name'     => 'UnLike wheels',
             'system'   => false,
         ]);
@@ -72,8 +72,8 @@ class InitRoles extends Migration
 
         // follow
         $follow = Permission::query()->create([
-            'slug'     => 'wheels.follow',
-            'resource' => 'wheels',
+            'slug'     => Permission::WHEELS_FOLLOW,
+            'resource' => Permission::RESOURCE_WHEELS,
             'name'     => 'Follow wheels',
             'system'   => false,
         ]);
@@ -81,8 +81,8 @@ class InitRoles extends Migration
         $role->assignPermission($follow->getKey());
 
         $unfollow = Permission::query()->create([
-            'slug'     => 'wheels.unfollow',
-            'resource' => 'wheels',
+            'slug'     => Permission::WHEELS_UNFOLLOW,
+            'resource' => Permission::RESOURCE_WHEELS,
             'name'     => 'UnFollow wheels',
             'system'   => false,
         ]);
@@ -91,8 +91,8 @@ class InitRoles extends Migration
 
         // profile
         $photo = Permission::query()->create([
-            'slug'     => 'profile.photo',
-            'resource' => 'profile',
+            'slug'     => Permission::PROFILE_PHOTO,
+            'resource' => Permission::RESOURCE_PROFILE,
             'name'     => 'Upload a photo to your profile',
             'system'   => false,
         ]);
@@ -114,8 +114,8 @@ class InitRoles extends Migration
     protected function developer(Role $role): void
     {
         $swagger = Permission::query()->create([
-            'slug'     => 'swagger.view',
-            'resource' => 'swagger',
+            'slug'     => Permission::SWAGGER_VIEW,
+            'resource' => Permission::RESOURCE_SWAGGER,
             'name'     => 'View swagger',
             'system'   => false,
         ]);
@@ -130,11 +130,11 @@ class InitRoles extends Migration
      */
     public function up()
     {
-        Permission::createResource('collections');
-        Permission::createResource('addresses');
-        Permission::createResource('brands');
-        Permission::createResource('wheels');
-        Permission::createResource('styles');
+        Permission::createResource(Permission::RESOURCE_COLLECTIONS);
+        Permission::createResource(Permission::RESOURCE_ADDRESSES);
+        Permission::createResource(Permission::RESOURCE_BRANDS);
+        Permission::createResource(Permission::RESOURCE_WHEELS);
+        Permission::createResource(Permission::RESOURCE_STYLES);
 
         /**
          * @var Role $user
@@ -143,8 +143,8 @@ class InitRoles extends Migration
          * @var Role $registered
          */
         $blocked = Role::query()->create([
-            'name' => \Illuminate\Support\Str::title('blocked'),
-            'slug' => str_slug('blocked'),
+            'name' => \Illuminate\Support\Str::title(Role::BLOCKED),
+            'slug' => str_slug(Role::BLOCKED),
             'system' => true,
             'description' => 'Blocked role.',
         ]);
@@ -152,8 +152,8 @@ class InitRoles extends Migration
         $this->blocked($blocked);
 
         $registered = Role::query()->create([
-            'name' => \Illuminate\Support\Str::title('registered'),
-            'slug' => str_slug('registered'),
+            'name' => \Illuminate\Support\Str::title(Role::REGISTERED),
+            'slug' => str_slug(Role::REGISTERED),
             'system' => true,
             'description' => 'Registered role.',
         ]);
@@ -162,8 +162,8 @@ class InitRoles extends Migration
         $this->registered($registered);
 
         $user = Role::query()->create([
-            'name' => \Illuminate\Support\Str::title('user'),
-            'slug' => str_slug('user'),
+            'name' => \Illuminate\Support\Str::title(Role::USER),
+            'slug' => str_slug(Role::USER),
             'system' => true,
             'description' => 'User role.',
         ]);
@@ -172,8 +172,8 @@ class InitRoles extends Migration
         $this->user($user);
 
         $developer = Role::query()->create([
-            'name' => \Illuminate\Support\Str::title('developer'),
-            'slug' => str_slug('developer'),
+            'name' => \Illuminate\Support\Str::title(Role::DEVELOPER),
+            'slug' => str_slug(Role::DEVELOPER),
             'system' => true,
             'description' => 'Developer role.',
         ]);
@@ -196,19 +196,19 @@ class InitRoles extends Migration
          * @var Role $registered
          */
         $developer = Role::query()
-            ->where('slug', 'developer')
+            ->where('slug', Role::DEVELOPER)
             ->firstOrFail();
 
         $user = Role::query()
-            ->where('slug', 'user')
+            ->where('slug', Role::USER)
             ->firstOrFail();
 
         $blocked = Role::query()
-            ->where('slug', 'blocked')
+            ->where('slug', Role::BLOCKED)
             ->firstOrFail();
 
         $registered = Role::query()
-            ->where('slug', 'registered')
+            ->where('slug', Role::REGISTERED)
             ->firstOrFail();
 
         $registered->syncPermissions();

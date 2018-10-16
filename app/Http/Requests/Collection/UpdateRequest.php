@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Collection;
 
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -20,7 +21,7 @@ class UpdateRequest extends FormRequest
          */
         $user = $this->user();
 
-        return $user && $user->can('collections.update');
+        return $user && $user->can(Permission::COLLECTIONS_UPDATE);
     }
 
     /**

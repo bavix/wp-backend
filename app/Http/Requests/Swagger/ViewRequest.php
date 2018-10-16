@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Swagger;
 
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -20,7 +21,7 @@ class ViewRequest extends FormRequest
          */
         $user = $this->user();
 
-        return $user && $user->can('swagger.view');
+        return $user && $user->can(Permission::SWAGGER_VIEW);
     }
 
     /**

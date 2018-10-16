@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Wheel;
 
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -20,7 +21,7 @@ class UpdateRequest extends FormRequest
          */
         $user = $this->user();
 
-        return $user && $user->can('wheels.update');
+        return $user && $user->can(Permission::WHEELS_UPDATE);
     }
 
     /**
