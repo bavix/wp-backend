@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Collection;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ViewRequest extends FormRequest
