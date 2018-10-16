@@ -182,9 +182,17 @@ class AdminTableSeeder extends Seeder
                 'icon' => 'fa-history',
                 'uri' => 'auth/logs',
             ],
+            [
+                'parent_id' => 10,
+                'order' => 16,
+                'title' => 'Config',
+                'icon' => 'fa-cog',
+                'uri' => 'config',
+            ],
         ]);
 
         // add role to menu.
         Menu::find(2)->roles()->save(Role::first());
+        \Encore\Admin\Helpers\Helpers::import();
     }
 }

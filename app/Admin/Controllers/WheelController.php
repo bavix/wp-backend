@@ -2,6 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Extensions\Tools\WheelSimilarAction;
+use App\Admin\Extensions\Tools\WheelSimilarTool;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Collection;
@@ -90,6 +92,10 @@ class WheelController extends Controller
             'style'
         ]);
 
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            $actions->prepend(new WheelSimilarAction($actions->row));
+        });
+
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('brand_id', 'Brand')
                 ->select()
@@ -136,7 +142,12 @@ class WheelController extends Controller
      */
     protected function detail($id): Show
     {
-        $show = new Show(Wheel::findOrFail($id));
+        $model = Wheel::findOrFail($id);
+        $show = new Show($model);
+
+        $show->panel()->tools(function (Show\Tools $tools) use ($model) {
+            $tools->append(new WheelSimilarTool($model));
+        });
 
         $show->field('id', 'ID');
         $show->field('name');
