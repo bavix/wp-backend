@@ -87,4 +87,12 @@ class Wheel extends Model implements Followable, Likeable
         return $this->belongsTo(Collection::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(Image::class);
+    }
+
 }

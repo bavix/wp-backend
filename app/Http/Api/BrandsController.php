@@ -18,7 +18,7 @@ class BrandsController extends Controller
     public function index(ViewRequest $request): Brands
     {
         $resource = Brand::query()
-//            ->withCount('likes', 'favorites')
+            ->withCount('likes', 'favorites')
             ->with('image')
             ->paginate();
 
@@ -32,7 +32,7 @@ class BrandsController extends Controller
      */
     public function show(ViewRequest $request, int $id): BrandResource
     {
-        return new BrandResource(Brand::query()->find($id));
+        return new BrandResource(Brand::findOrFail($id));
     }
 
 }

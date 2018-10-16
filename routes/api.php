@@ -13,4 +13,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// brands
 Route::apiResource('brands', 'BrandsController');
+
+// wheels
+Route::apiResource('wheels', 'WheelsController');
+Route::get('wheels/{id}/similar', 'WheelsController@similar');
