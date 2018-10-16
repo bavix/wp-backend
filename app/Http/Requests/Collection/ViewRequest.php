@@ -15,12 +15,7 @@ class ViewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        /**
-         * @var $user User
-         */
-        $user = $this->user();
-        
-        return $user && $user->can('collections.view');
+        return true;
     }
 
     /**

@@ -15,12 +15,7 @@ class ViewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        /**
-         * @var $user User
-         */
-        $user = $this->user();
-        
-        return $user && $user->can('wheels.view');
+        return true;
     }
 
     /**

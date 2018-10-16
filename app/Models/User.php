@@ -78,4 +78,13 @@ class User extends Authenticatable implements Follower, Liker
         $this->attributes['password'] = Hash::make($password);
     }
 
+    /**
+     * @param $password
+     * @return bool
+     */
+    public function validateForPassportPasswordGrant($password)
+    {
+        return $this->enabled && Hash::check($password, $this->getAuthPassword());
+    }
+
 }
