@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\User;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Rules\PasswordRule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest
 {
@@ -26,8 +26,8 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'login'    => ['required', 'unique:users', 'string', 'min:3', 'max:32'],
-            'email'    => ['required', 'email', 'unique:users'],
+            'login' => ['required', 'unique:users', 'string', 'min:3', 'max:32'],
+            'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:5', new PasswordRule()],
         ];
     }

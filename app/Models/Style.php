@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Style
@@ -60,28 +59,6 @@ class Style extends Model
     ];
 
     /**
-     * @return HasMany
-     */
-    public function wheels(): HasMany
-    {
-        return $this->hasMany(Wheel::class);
-    }
-
-    /**
-     * @return string
-     */
-    public function getNameAttribute(): string
-    {
-        return \sprintf(
-            '%s %s %s%s',
-            $this->type,
-            $this->number,
-            $this->spoke,
-            $this->rotated ? ' Rotated' : ''
-        );
-    }
-
-    /**
      * @return array
      */
     public static function types(): array
@@ -120,6 +97,28 @@ class Style extends Model
         }
 
         return $items;
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function wheels(): HasMany
+    {
+        return $this->hasMany(Wheel::class);
+    }
+
+    /**
+     * @return string
+     */
+    public function getNameAttribute(): string
+    {
+        return \sprintf(
+            '%s %s %s%s',
+            $this->type,
+            $this->number,
+            $this->spoke,
+            $this->rotated ? ' Rotated' : ''
+        );
     }
 
 }

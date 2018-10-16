@@ -9,7 +9,7 @@ class StyleObserver
     /**
      * Handle the style "created" event.
      *
-     * @param  \App\Models\Style  $style
+     * @param  \App\Models\Style $style
      * @return void
      */
     public function created(Style $style)
@@ -20,7 +20,7 @@ class StyleObserver
     /**
      * Handle the style "updated" event.
      *
-     * @param  \App\Models\Style  $style
+     * @param  \App\Models\Style $style
      * @return void
      */
     public function updated(Style $style)
@@ -31,7 +31,7 @@ class StyleObserver
     /**
      * Handle the style "deleted" event.
      *
-     * @param  \App\Models\Style  $style
+     * @param  \App\Models\Style $style
      * @return void
      */
     public function deleted(Style $style)
@@ -42,7 +42,7 @@ class StyleObserver
     /**
      * Handle the style "restored" event.
      *
-     * @param  \App\Models\Style  $style
+     * @param  \App\Models\Style $style
      * @return void
      */
     public function restored(Style $style)
@@ -53,7 +53,7 @@ class StyleObserver
     /**
      * Handle the style "force deleted" event.
      *
-     * @param  \App\Models\Style  $style
+     * @param  \App\Models\Style $style
      * @return void
      */
     public function forceDeleted(Style $style)

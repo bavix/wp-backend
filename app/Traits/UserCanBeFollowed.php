@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait UserCanBeFollowed
 {
-    
+
     use \Rennokki\Befriended\Traits\CanBeFollowed;
 
     /**

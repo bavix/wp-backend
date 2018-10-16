@@ -2,9 +2,6 @@
 
 namespace App\Admin\Extensions\Tools;
 
-use App\Models\Wheel;
-use Encore\Admin\Grid\Tools\AbstractTool;
-
 class WheelSimilarTool extends WheelSimilarAction
 {
 

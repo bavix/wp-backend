@@ -5,11 +5,9 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Collection;
-use App\Models\Style;
 use App\Models\Wheel;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {

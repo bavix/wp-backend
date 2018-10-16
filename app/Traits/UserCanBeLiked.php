@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait UserCanBeLiked
 {
-    
+
     use \Rennokki\Befriended\Traits\CanBeLiked;
-    
+
     /**
      * @return MorphToMany
      */

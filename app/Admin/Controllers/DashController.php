@@ -5,7 +5,6 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Collection;
-use App\Models\Image;
 use App\Models\Style;
 use App\Models\User;
 use App\Models\Wheel;
