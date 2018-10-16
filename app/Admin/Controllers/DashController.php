@@ -91,7 +91,7 @@ class DashController extends Controller
                 3,
                 new InfoBox(
                     'Roles',
-                    'unlock-alt',
+                    'user',
                     'info',
                     route('cp.roles.index'),
                     Role::count()
@@ -102,7 +102,7 @@ class DashController extends Controller
                 3,
                 new InfoBox(
                     'Permissions',
-                    'lock',
+                    'ban',
                     'aqua',
                     route('cp.permissions.index'),
                     Permission::count()
