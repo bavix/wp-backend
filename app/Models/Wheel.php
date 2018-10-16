@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Rennokki\Befriended\Contracts\Followable;

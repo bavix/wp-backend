@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -94,7 +95,7 @@ class User extends Authenticatable implements Follower, Liker
      * @param $password
      * @return bool
      */
-    public function validateForPassportPasswordGrant($password)
+    public function validateForPassportPasswordGrant($password): bool
     {
         return $this->enabled && Hash::check($password, $this->getAuthPassword());
     }
