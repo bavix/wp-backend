@@ -20,6 +20,7 @@ class BrandsController extends Controller
         $resource = Brand::query()
             ->withCount('likes', 'favorites')
             ->with('image')
+            ->where('enabled', true)
             ->paginate();
 
         return new Brands($resource);

@@ -21,6 +21,7 @@ class WheelsController extends Controller
         $resource = Wheel::query()
             ->withCount('likes', 'favorites')
             ->with('image')
+            ->where('enabled', true)
             ->paginate();
 
         return new Wheels($resource);
@@ -39,6 +40,7 @@ class WheelsController extends Controller
             ->with('image')
             ->whereNotNull('style_id')
             ->where('style_id', $wheel->style_id)
+            ->where('enabled', true)
             ->paginate();
 
         return new Wheels($resource);
