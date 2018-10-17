@@ -89,6 +89,7 @@ class WheelsController extends Controller
         return new Wheels(
             $this->resource()
                 ->where('style_id', $wheel->style_id)
+                ->where('id', '!=', $id)
                 ->paginate()
         );
     }
