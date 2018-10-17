@@ -2,10 +2,12 @@
 
 namespace App\Http\Api;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * @OA\Info(title="WheelPro API", version="0.1")
@@ -63,5 +65,26 @@ use Illuminate\Routing\Controller as BaseController;
  */
 abstract class Controller extends BaseController
 {
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * @var string
+     */
+    protected $defaultSort;
+
+    /**
+     * @return Model
+     */
+    abstract protected function query(): Model;
+
+    /**
+     * @return QueryBuilder
+     */
+    protected function queryBuilder(): QueryBuilder
+    {
+        return QueryBuilder::for($this->query())
+            ->defaultSort($this->defaultSort);
+    }
+
 }

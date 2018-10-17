@@ -6,6 +6,9 @@ use App\Http\Requests\Brand\ViewRequest;
 use App\Http\Resources\WheelResource;
 use App\Http\Resources\Wheels;
 use App\Models\Wheel;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\QueryBuilder\Filter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class WheelsController extends Controller
 {
@@ -38,13 +41,7 @@ class WheelsController extends Controller
      */
     public function index(ViewRequest $request): Wheels
     {
-        $resource = Wheel::query()
-            ->withCount('likes', 'favorites')
-            ->with('image')
-            ->where('enabled', true)
-            ->paginate();
-
-        return new Wheels($resource);
+        return new Wheels($this->resource()->paginate());
     }
 
     /**
@@ -87,16 +84,13 @@ class WheelsController extends Controller
      */
     public function similar(ViewRequest $request, int $id): Wheels
     {
-        $wheel = Wheel::findOrFail($id);
-        $resource = Wheel::query()
-            ->withCount('likes', 'favorites')
-            ->with('image')
-            ->whereNotNull('style_id')
-            ->where('style_id', $wheel->style_id)
-            ->where('enabled', true)
-            ->paginate();
+        $wheel = $this->query()->findOrFail($id);
 
-        return new Wheels($resource);
+        return new Wheels(
+            $this->resource()
+                ->where('style_id', $wheel->style_id)
+                ->paginate()
+        );
     }
 
     /**
@@ -106,7 +100,29 @@ class WheelsController extends Controller
      */
     public function show(ViewRequest $request, int $id): WheelResource
     {
-        return new WheelResource(Wheel::findOrFail($id));
+        return new WheelResource(
+            $this->queryBuilder()
+                ->allowedIncludes('image', 'images', 'brand')
+                ->findOrFail($id)
+        );
+    }
+
+    /**
+     * @return Wheel
+     */
+    protected function query(): Model
+    {
+        return Wheel::whereEnabled(true);
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    protected function resource(): QueryBuilder
+    {
+        return $this->queryBuilder()
+            ->allowedFilters(Filter::exact('brand_id'))
+            ->allowedIncludes('image', 'brand');
     }
 
 }
