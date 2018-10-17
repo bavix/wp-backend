@@ -189,6 +189,13 @@ class AdminTableSeeder extends Seeder
                 'icon' => 'fa-cog',
                 'uri' => 'config',
             ],
+            [
+                'parent_id' => 10,
+                'order' => 17,
+                'title' => 'OAuth Client',
+                'icon' => 'fa-sign-in',
+                'uri' => 'oauth-client',
+            ],
         ]);
 
         // add role to menu.
