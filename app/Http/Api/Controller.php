@@ -27,22 +27,29 @@ use Illuminate\Routing\Controller as BaseController;
  *     description="Backend Local"
  * )
  *
- * @OA\Header(
- *     header="Accept",
- *     required=true,
- *     @OA\Schema(type="string"),
- *     description="the value 'application/json' should be sent"
+ * @OA\SecurityScheme(
+ *   securityScheme="Bearer",
+ *   type="http",
+ *   scheme="bearer",
+ *   name="Authorization"
  * )
  *
  * @OA\SecurityScheme(
- *     type="apiKey",
- *     securityScheme="bearer"
+ *     type="oauth2",
+ *     name="password",
+ *     securityScheme="Client Credentials",
+ *     @OA\Flow(
+ *         flow="clientCredentials",
+ *         tokenUrl="/oauth/token",
+ *         refreshUrl="/oauth/token",
+ *         scopes={}
+ *     )
  * )
- * 
+ *
  * @OA\SecurityScheme(
  *     type="oauth2",
  *     name="password",
- *     securityScheme="password",
+ *     securityScheme="Password",
  *     @OA\Flow(
  *         flow="password",
  *         tokenUrl="/oauth/token",

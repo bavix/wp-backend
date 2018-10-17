@@ -13,7 +13,11 @@ class WheelsController extends Controller
     /**
      * @OA\Get(
      *     security={
-     *      {"bearer": {}, "password": {}}
+     *      {
+     *          "Bearer": {},
+     *          "Client Credentials": {},
+     *          "Password": {}
+     *      }
      *     },
      *     path="/api/wheels",
      *     tags={"wheels"},
@@ -30,6 +34,7 @@ class WheelsController extends Controller
      * @param ViewRequest $request
      *
      * @return Wheels
+     * @version 0.1
      */
     public function index(ViewRequest $request): Wheels
     {
@@ -45,7 +50,11 @@ class WheelsController extends Controller
     /**
      * @OA\Get(
      *     security={
-     *      {"bearer": {}, "password": {}}
+     *      {
+     *          "Bearer": {},
+     *          "Client Credentials": {},
+     *          "Password": {}
+     *      }
      *     },
      *     path="/api/wheels/{id}/similar",
      *     tags={"wheels"},
@@ -74,6 +83,7 @@ class WheelsController extends Controller
      * @param ViewRequest $request
      * @param int $id
      * @return Wheels
+     * @version 0.1
      */
     public function similar(ViewRequest $request, int $id): Wheels
     {
