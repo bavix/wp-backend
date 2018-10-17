@@ -13,6 +13,9 @@ Route::group([
     $router->get('/', 'DashController@index')
         ->name('cp.dashboard');
 
+    $router->resource('oauth-client', 'OAuthClientController')
+        ->names('cp.oauth');
+
     $router->resource('brands', 'BrandController')
         ->names('cp.brands');
 
