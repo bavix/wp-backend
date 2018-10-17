@@ -2,7 +2,7 @@
 
 namespace App\Http\Api;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -74,9 +74,9 @@ abstract class Controller extends BaseController
     protected $defaultSort;
 
     /**
-     * @return Model
+     * @return Builder
      */
-    abstract protected function query(): Model;
+    abstract protected function query(): Builder;
 
     /**
      * @return QueryBuilder

@@ -6,7 +6,7 @@ use App\Http\Requests\Brand\ViewRequest;
 use App\Http\Resources\WheelResource;
 use App\Http\Resources\Wheels;
 use App\Models\Wheel;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\QueryBuilder\Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -110,7 +110,7 @@ class WheelsController extends Controller
     /**
      * @return Wheel
      */
-    protected function query(): Model
+    protected function query(): Builder
     {
         return Wheel::whereEnabled(true);
     }
