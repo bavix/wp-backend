@@ -15,7 +15,7 @@ use Rinvex\Addresses\Traits\Addressable;
 /**
  * App\Models\Brand
  *
- * @OA\Schema (schema="brands")
+ * @OA\Schema (schema="Brand")
  * @OA\Property (
  *     property="parent_id",
  *     type="int"

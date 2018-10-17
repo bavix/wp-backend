@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * App\Models\Collection
  *
- * @OA\Schema (schema="collections")
+ * @OA\Schema (schema="Collection")
  * @property int $id
  * @property int $brand_id
  * @property string $name

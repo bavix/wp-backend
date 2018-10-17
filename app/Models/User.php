@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +15,7 @@ use Yajra\Acl\Traits\HasRole;
 /**
  * App\Models\User
  *
- * @OA\Schema (schema="users")
+ * @OA\Schema (schema="User")
  * @property int $id
  * @property string $login
  * @property string|null $name

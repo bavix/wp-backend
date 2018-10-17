@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\Link
  *
+ * @OA\Schema (schema="Link")
  * @property int $id
  * @property string $url
  * @property int $enabled

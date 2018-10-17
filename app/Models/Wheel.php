@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Rennokki\Befriended\Contracts\Followable;
@@ -14,7 +13,7 @@ use Rinvex\Attributes\Traits\Attributable;
 /**
  * App\Models\Wheel
  *
- * @OA\Schema (schema="wheels")
+ * @OA\Schema (schema="Wheel")
  * @property int $id
  * @property string $name
  * @property int $brand_id

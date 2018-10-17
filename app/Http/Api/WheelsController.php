@@ -6,12 +6,27 @@ use App\Http\Requests\Brand\ViewRequest;
 use App\Http\Resources\WheelResource;
 use App\Http\Resources\Wheels;
 use App\Models\Wheel;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class WheelsController extends Controller
 {
 
     /**
+     * @OA\Get(
+     *     security={
+     *      {"bearer": {}, "password": {}}
+     *     },
+     *     path="/api/wheels",
+     *     tags={"wheels"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Returns a list of wheels",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Wheel")
+     *         )
+     *     ),
+     * )
+     *
      * @param ViewRequest $request
      *
      * @return Wheels
@@ -28,6 +43,34 @@ class WheelsController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     security={
+     *      {"bearer": {}, "password": {}}
+     *     },
+     *     path="/api/wheels/{id}/similar",
+     *     tags={"wheels"},
+     *
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="ID of wheels that needs to be fetched",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="Returns a list of wheels",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Wheel")
+     *         )
+     *     ),
+     * )
+     *
      * @param ViewRequest $request
      * @param int $id
      * @return Wheels

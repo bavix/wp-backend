@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Style
  *
- * @OA\Schema (schema="styles")
+ * @OA\Schema (schema="Style")
  * @property int $id
  * @property string $type
  * @property string $number

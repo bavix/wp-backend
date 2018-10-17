@@ -7,6 +7,10 @@ use App\Http\Resources\BrandResource;
 use App\Http\Resources\Brands;
 use App\Models\Brand;
 
+/**
+ * Class BrandsController
+ * @package App\Http\Api
+ */
 class BrandsController extends Controller
 {
 

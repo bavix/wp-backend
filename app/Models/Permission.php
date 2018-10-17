@@ -2,6 +2,28 @@
 
 namespace App\Models;
 
+/**
+ * App\Models\Permission
+ *
+ * @OA\Schema (schema="Permission")
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property string $resource
+ * @property int $system
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Yajra\Acl\Models\Role[] $roles
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yajra\Acl\Models\Permission havingRoles($roles)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereResource($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereSystem($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Permission extends \Yajra\Acl\Models\Permission
 {
     // resources

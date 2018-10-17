@@ -11,8 +11,8 @@ use App\Models\Wheel;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
 use Encore\Admin\Widgets\InfoBox;
-use Yajra\Acl\Models\Permission;
-use Yajra\Acl\Models\Role;
+use App\Models\Permission;
+use App\Models\Role;
 
 class DashController extends Controller
 {

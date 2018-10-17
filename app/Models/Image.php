@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\Image
  *
- * @OA\Schema (schema="images")
+ * @OA\Schema (schema="Image")
  * @property int $id
  * @property string $uuid
  * @property string|null $imageable_type
