@@ -109,7 +109,7 @@ class WheelsController extends Controller
     }
 
     /**
-     * @return Wheel
+     * @return Builder
      */
     protected function query(): Builder
     {

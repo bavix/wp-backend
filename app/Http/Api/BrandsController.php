@@ -6,6 +6,8 @@ use App\Http\Requests\Brand\ViewRequest;
 use App\Http\Resources\BrandResource;
 use App\Http\Resources\Brands;
 use App\Models\Brand;
+use Illuminate\Database\Eloquent\Builder;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class BrandsController
@@ -21,13 +23,10 @@ class BrandsController extends Controller
      */
     public function index(ViewRequest $request): Brands
     {
-        $resource = Brand::query()
-            ->withCount('likes', 'favorites')
-            ->with('image')
-            ->where('enabled', true)
-            ->paginate();
-
-        return new Brands($resource);
+        return new Brands(
+            $this->resource()
+                ->paginate()
+        );
     }
 
     /**
@@ -37,7 +36,27 @@ class BrandsController extends Controller
      */
     public function show(ViewRequest $request, int $id): BrandResource
     {
-        return new BrandResource(Brand::findOrFail($id));
+        return new BrandResource(
+            $this->query()
+                ->findOrFail($id)
+        );
+    }
+
+    /**
+     * @return Builder
+     */
+    protected function query(): Builder
+    {
+        return Brand::whereEnabled(true);
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    protected function resource(): QueryBuilder
+    {
+        return $this->queryBuilder()
+            ->allowedIncludes('image');
     }
 
 }
