@@ -3,8 +3,12 @@
 namespace App\Console\Commands;
 
 use App\Mail\TestMail;
+use App\Models\User;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\Notifications\Dispatcher;
+use Illuminate\Support\Str;
 
 class MailerCommand extends Command
 {
@@ -30,10 +34,15 @@ class MailerCommand extends Command
      */
     public function handle()
     {
-        $message = new TestMail(__CLASS__);
-        $message->subject('Testing');
-        Mail::to('info@babichev.net')
-            ->queue($message);
+//        $message = new TestMail(__CLASS__);
+//        $message->subject('Testing');
+//        Mail::to('info@babichev.net')
+//            ->queue($message);
+
+        $user = User::whereEmail('info@babichev.net')
+            ->firstOrFail();
+
+        $user->notify(new ResetPassword(Str::random(64)));
 
         return 'success!';
     }

@@ -18,4 +18,5 @@ Route::apiResource('brands', 'BrandsController');
 
 // wheels
 Route::apiResource('wheels', 'WheelsController');
-Route::get('wheels/{id}/similar', 'WheelsController@similar');
+Route::get('wheels/{id}/similar', 'WheelsController@similar')
+    ->name('wheels.similar');

@@ -71,7 +71,7 @@ class User extends Authenticatable implements Follower, Liker
         'password' => 'string',
         'enabled' => 'boolean',
         'remember_token' => 'string',
-        'email_verified_at' => 'string',
+        'email_verified_at' => 'datetime',
     ];
 
     /**
