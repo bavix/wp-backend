@@ -3,10 +3,6 @@
 namespace App\Http\Api;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
 use Spatie\QueryBuilder\QueryBuilder;
 
 /**
@@ -65,8 +61,6 @@ use Spatie\QueryBuilder\QueryBuilder;
  */
 abstract class Controller extends BaseController
 {
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
      * @var string
