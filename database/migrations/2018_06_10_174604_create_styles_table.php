@@ -17,7 +17,7 @@ class CreateStylesTable extends Migration
             $table->increments('id');
 
             $table->enum('type', ['I', 'X', 'Y', 'V', 'O']);
-            $table->enum('number', ['Simple', 'Double', 'Triple']);
+            $table->enum('tuple', ['Single', 'Double', 'Triple']);
             $table->integer('spoke');
 
             $table->boolean('rotated')->default(0);
@@ -26,7 +26,7 @@ class CreateStylesTable extends Migration
 
             $table->unique([
                 'type',
-                'number',
+                'tuple',
                 'spoke',
                 'rotated'
             ]);

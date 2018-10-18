@@ -68,6 +68,16 @@ class Brand extends Model implements Followable, Likeable
     ];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'parent_id' => 'integer',
+        'name' => 'string',
+        'enabled' => 'boolean',
+    ];
+
+    /**
      * @return HasMany
      */
     public function collections(): HasMany

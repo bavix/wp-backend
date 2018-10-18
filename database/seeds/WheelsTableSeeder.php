@@ -36,9 +36,10 @@ class WheelsTableSeeder extends Seeder
     protected function style(?array $data): ?\App\Models\Style
     {
         if ($data) {
+            $tuple = ($data['number'] === 'Simple' ? 'Single' : $data['number']);
             $style = \App\Models\Style::query()
                 ->where('type', $data['type'])
-                ->where('number', $data['number'])
+                ->where('tuple', $tuple)
                 ->where('spoke', $data['spoke'])
                 ->where('rotated', $data['isTurned'])
                 ->first();
@@ -46,7 +47,7 @@ class WheelsTableSeeder extends Seeder
             if (!$style) {
                 $style = new \App\Models\Style();
                 $style->type = $data['type'];
-                $style->number = $data['number'];
+                $style->tuple = $tuple;
                 $style->spoke = $data['spoke'];
                 $style->rotated = $data['isTurned'];
                 $style->save();

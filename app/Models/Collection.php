@@ -39,6 +39,16 @@ class Collection extends Model
     ];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'brand_id' => 'integer',
+        'name' => 'string',
+        'enabled' => 'boolean',
+    ];
+
+    /**
      * @return BelongsTo
      */
     public function brand(): BelongsTo

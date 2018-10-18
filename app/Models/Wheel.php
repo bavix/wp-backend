@@ -49,6 +49,9 @@ class Wheel extends Model implements Followable, Likeable
     use UserCanBeLiked;
     use Attributable;
 
+    /**
+     * @var array
+     */
     protected $withCount = ['likes', 'favorites'];
 
     /**
@@ -63,6 +66,22 @@ class Wheel extends Model implements Followable, Likeable
         'customized',
         'enabled',
         'retired',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'name' => 'string',
+        'brand_id' => 'integer',
+        'collection_id' => 'integer',
+        'style_id' => 'integer',
+        'image_id' => 'integer',
+        'popular' => 'integer',
+        'customized' => 'boolean',
+        'enabled' => 'boolean',
+        'retired' => 'boolean',
     ];
 
     /**

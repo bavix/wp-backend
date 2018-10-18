@@ -61,6 +61,20 @@ class User extends Authenticatable implements Follower, Liker
     ];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'login' => 'string',
+        'email' => 'string',
+        'name' => 'string',
+        'password' => 'string',
+        'enabled' => 'boolean',
+        'remember_token' => 'string',
+        'email_verified_at' => 'string',
+    ];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array

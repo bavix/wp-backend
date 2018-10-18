@@ -39,7 +39,7 @@ class StyleController extends Controller
 
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('type')->select(Style::types());
-            $filter->equal('number')->select(Style::numbers());
+            $filter->equal('tuple')->select(Style::tuples());
             $filter->equal('spoke')->integer();
             $filter->equal('rotated')->radio([
                 '' => 'All',
@@ -136,7 +136,7 @@ class StyleController extends Controller
         $form->display('id', 'ID');
 
         $form->select('type')->options(Style::types());
-        $form->select('number')->options(Style::numbers());
+        $form->select('tuple')->options(Style::tuples());
         $form->number('spoke');
 
         $form->switch('rotated');

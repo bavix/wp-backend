@@ -25,8 +25,21 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'uuid',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'uuid' => 'string',
+        'imageable_type' => 'string',
+        'imageable_id' => 'integer',
     ];
 
 }

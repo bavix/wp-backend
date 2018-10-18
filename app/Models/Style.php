@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @OA\Schema (schema="Style")
  * @property int $id
  * @property string $type
- * @property string $number
+ * @property string $tuple
  * @property int $spoke
  * @property int $rotated
  * @property int $enabled
@@ -38,9 +38,9 @@ class Style extends Model
     public const TYPE_V = 'V';
     public const TYPE_O = 'O';
 
-    public const NUMBER_SIMPLE = 'Simple';
-    public const NUMBER_DOUBLE = 'Double';
-    public const NUMBER_TRIPLE = 'Triple';
+    public const TUPLE_SINGLE = 'Single';
+    public const TUPLE_DOUBLE = 'Double';
+    public const TUPLE_TRIPLE = 'Triple';
 
     /**
      * @var array
@@ -50,6 +50,18 @@ class Style extends Model
         'number',
         'spoke',
         'rotated',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'type' => 'string',
+        'tuple' => 'string',
+        'spoke' => 'integer',
+        'rotated' => 'boolean',
+        'enabled' => 'boolean',
     ];
 
     /**
@@ -76,12 +88,12 @@ class Style extends Model
     /**
      * @return array
      */
-    public static function numbers(): array
+    public static function tuples(): array
     {
         return [
-            self::NUMBER_SIMPLE => self::NUMBER_SIMPLE,
-            self::NUMBER_DOUBLE => self::NUMBER_DOUBLE,
-            self::NUMBER_TRIPLE => self::NUMBER_TRIPLE,
+            self::TUPLE_SINGLE => self::TUPLE_SINGLE,
+            self::TUPLE_DOUBLE => self::TUPLE_DOUBLE,
+            self::TUPLE_TRIPLE => self::TUPLE_TRIPLE,
         ];
     }
 
@@ -116,7 +128,7 @@ class Style extends Model
         return \sprintf(
             '%s %s %s%s',
             $this->type,
-            $this->number,
+            $this->tuple,
             $this->spoke,
             $this->rotated ? ' Rotated' : ''
         );

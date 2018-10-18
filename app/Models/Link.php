@@ -35,4 +35,15 @@ class Link extends Model
         'enabled',
     ];
 
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'url' => 'string',
+        'linkable_type' => 'string',
+        'linkable_id' => 'integer',
+        'enabled' => 'boolean',
+    ];
+
 }
