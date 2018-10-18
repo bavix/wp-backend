@@ -16,6 +16,11 @@ use App\Models\Role;
 
 class DashController extends Controller
 {
+
+    /**
+     * @param Content $content
+     * @return Content
+     */
     public function index(Content $content)
     {
         $content->row(function (Row $row) {
@@ -27,7 +32,7 @@ class DashController extends Controller
                     'users',
                     'aqua',
                     route('cp.users.index'),
-                    User::count()
+                    $this->info(User::class)
                 )
             );
 
@@ -38,7 +43,7 @@ class DashController extends Controller
                     'circle-thin',
                     'green',
                     route('cp.wheels.index'),
-                    Wheel::count()
+                    $this->info(Wheel::class)
                 )
             );
 
@@ -49,7 +54,7 @@ class DashController extends Controller
                     'building-o',
                     'red',
                     route('cp.brands.index'),
-                    Brand::count()
+                    $this->info(Brand::class)
                 )
             );
 
@@ -60,7 +65,7 @@ class DashController extends Controller
                     'object-group',
                     'blue',
                     route('cp.collections.index'),
-                    Collection::count()
+                    $this->info(Collection::class)
                 )
             );
 
@@ -71,20 +76,9 @@ class DashController extends Controller
                     'star-o',
                     'yellow',
                     route('cp.styles.index'),
-                    Style::count()
+                    $this->info(Style::class)
                 )
             );
-//
-//            $row->column(
-//                3,
-//                new InfoBox(
-//                    'Images',
-//                    'image',
-//                    'gray',
-//                    'images',
-//                    Image::count()
-//                )
-//            );
 
             $row->column(
                 3,
@@ -93,7 +87,7 @@ class DashController extends Controller
                     'user',
                     'info',
                     route('cp.roles.index'),
-                    Role::count()
+                    $this->info(Role::class)
                 )
             );
 
@@ -104,7 +98,7 @@ class DashController extends Controller
                     'ban',
                     'aqua',
                     route('cp.permissions.index'),
-                    Permission::count()
+                    $this->info(Permission::class)
                 )
             );
         });
@@ -113,4 +107,18 @@ class DashController extends Controller
             ->header('Dashboard')
             ->description('description');
     }
+
+    /**
+     * @param string $class
+     * @return string
+     */
+    protected function info(string $class): string
+    {
+        try {
+            return $class::whereEnabled(true)->count() . '/' . $class::count();
+        } catch (\Throwable $throwable) {
+            return $class::count();
+        }
+    }
+
 }
