@@ -16,6 +16,7 @@ class CreateStylesTable extends Migration
         Schema::create('styles', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('name')->nullable();
             $table->enum('type', ['I', 'X', 'Y', 'V', 'O']);
             $table->enum('tuple', ['Single', 'Double', 'Triple']);
             $table->integer('spoke');

@@ -6,58 +6,32 @@ use App\Models\Style;
 
 class StyleObserver
 {
+
+    /**
+     * @param Style $style
+     *
+     * @return string
+     */
+    protected function buildName(Style $style): string
+    {
+        return \sprintf(
+            '%s %s %s%s',
+            $style->type,
+            $style->tuple,
+            $style->spoke,
+            $style->rotated ? ' Rotated' : ''
+        );
+    }
+
     /**
      * Handle the style "created" event.
      *
      * @param  \App\Models\Style $style
      * @return void
      */
-    public function created(Style $style)
+    public function saving(Style $style): void
     {
-        //
+        $style->name = $this->buildName($style);
     }
 
-    /**
-     * Handle the style "updated" event.
-     *
-     * @param  \App\Models\Style $style
-     * @return void
-     */
-    public function updated(Style $style)
-    {
-        //
-    }
-
-    /**
-     * Handle the style "deleted" event.
-     *
-     * @param  \App\Models\Style $style
-     * @return void
-     */
-    public function deleted(Style $style)
-    {
-        //
-    }
-
-    /**
-     * Handle the style "restored" event.
-     *
-     * @param  \App\Models\Style $style
-     * @return void
-     */
-    public function restored(Style $style)
-    {
-        //
-    }
-
-    /**
-     * Handle the style "force deleted" event.
-     *
-     * @param  \App\Models\Style $style
-     * @return void
-     */
-    public function forceDeleted(Style $style)
-    {
-        //
-    }
 }

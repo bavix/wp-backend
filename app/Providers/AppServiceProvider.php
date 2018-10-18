@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Style;
+use App\Observers\StyleObserver;
 use Encore\Admin\Config\Config;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Style::observe(StyleObserver::class);
+
         try {
             Config::load();
         } catch (\Throwable $throwable) {

@@ -54,7 +54,7 @@ class StyleController extends Controller
         $grid->column('type')
             ->sortable();
 
-        $grid->column('number')
+        $grid->column('tuple')
             ->sortable();
 
         $grid->column('spoke')
@@ -97,7 +97,7 @@ class StyleController extends Controller
         $show->field('id', 'ID');
 
         $show->field('type');
-        $show->field('number');
+        $show->field('tuple');
         $show->field('spoke');
 
         $show->field('rotated');

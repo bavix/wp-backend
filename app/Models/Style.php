@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $enabled
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read string $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wheel[] $wheels
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style whereEnabled($value)
@@ -62,13 +61,6 @@ class Style extends Model
         'spoke' => 'integer',
         'rotated' => 'boolean',
         'enabled' => 'boolean',
-    ];
-
-    /**
-     * @var array
-     */
-    protected $appends = [
-        'name'
     ];
 
     /**
@@ -118,20 +110,6 @@ class Style extends Model
     public function wheels(): HasMany
     {
         return $this->hasMany(Wheel::class);
-    }
-
-    /**
-     * @return string
-     */
-    public function getNameAttribute(): string
-    {
-        return \sprintf(
-            '%s %s %s%s',
-            $this->type,
-            $this->tuple,
-            $this->spoke,
-            $this->rotated ? ' Rotated' : ''
-        );
     }
 
 }
