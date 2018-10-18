@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -36,6 +37,7 @@ class UserController extends Controller
     protected function grid(): Grid
     {
         $grid = new Grid(new User());
+        $grid->with(['roles']);
 
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('login');
@@ -54,6 +56,29 @@ class UserController extends Controller
 
         $grid->column('email')
             ->sortable();
+
+        $grid->column('roles')
+            ->display(function () {
+                $colors = [
+                    Role::BLOCKED => 'danger',
+                    Role::REGISTERED => 'primary',
+                    Role::USER => 'success',
+                    Role::DEVELOPER => 'warning'
+                ];
+
+                $label = [];
+
+                /**
+                 * @var Role $role
+                 */
+                foreach ($this->roles as $role) {
+                    $label[$role->id] = "<label class='label label-{$colors[$role->slug]}'>" .
+                        $role->name . '</label>';
+                }
+
+                \ksort($label);
+                return \end($label);
+            });
 
         $grid->column('enabled')->switch();
 

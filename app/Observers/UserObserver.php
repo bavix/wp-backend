@@ -15,15 +15,19 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $slug = Role::REGISTERED;
-        if ($user->email_verified_at) {
-            $slug = Role::USER;
+        $roles = Role::query()
+            ->whereIn('slug', [
+                Role::BLOCKED,
+                Role::REGISTERED
+            ])
+            ->when($user->email_verified_at, function ($query) {
+                return $query->orWhere('slug', Role::USER);
+            })
+            ->get();
+
+        foreach ($roles as $role) {
+            $user->assignRole($role);
         }
-
-        $role = Role::whereSlug($slug)
-            ->firstOrFail();
-
-        $user->assignRole($role);
     }
 
     /**

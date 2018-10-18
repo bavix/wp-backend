@@ -8,20 +8,6 @@ class InitRoles extends Migration
 {
 
     /**
-     * @param Role $from
-     * @param Role $to
-     */
-    protected function syncPermissions(Role $from, Role $to): void
-    {
-        $permissions = $from->permissions()
-            ->get()
-            ->pluck('id')
-            ->toArray();
-
-        $to->syncPermissions($permissions);
-    }
-
-    /**
      * @param Role $role
      */
     protected function blocked(Role $role): void
@@ -158,7 +144,6 @@ class InitRoles extends Migration
             'description' => 'Registered role.',
         ]);
 
-        $this->syncPermissions($blocked, $registered);
         $this->registered($registered);
 
         $user = Role::query()->create([
@@ -168,7 +153,6 @@ class InitRoles extends Migration
             'description' => 'User role.',
         ]);
 
-        $this->syncPermissions($registered, $user);
         $this->user($user);
 
         $developer = Role::query()->create([
@@ -178,7 +162,6 @@ class InitRoles extends Migration
             'description' => 'Developer role.',
         ]);
 
-        $this->syncPermissions($user, $developer);
         $this->developer($developer);
     }
 
