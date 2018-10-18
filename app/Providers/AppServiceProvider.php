@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Style;
+use App\Models\User;
 use App\Observers\StyleObserver;
+use App\Observers\UserObserver;
 use Encore\Admin\Config\Config;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        User::observe(UserObserver::class);
         Style::observe(StyleObserver::class);
 
         try {

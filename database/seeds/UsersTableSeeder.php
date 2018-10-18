@@ -12,23 +12,25 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\User::class, 250)->create();
-
+        $batchSize = 250;
         $output = $this->command->getOutput();
-        $progressBar = $output->createProgressBar(
-            \App\Models\User::query()->count()
-        );
+        $progressBar = $output->createProgressBar($batchSize);
 
-        \App\Models\User::query()->each(function (\App\Models\User $user) use ($progressBar) {
+        factory(\App\Models\User::class, $batchSize)
+            ->create()
+            ->each(function (\App\Models\User $user) use ($progressBar) {
 
             /**
-             * @var $role \Yajra\Acl\Models\Role
+             * @var $role \App\Models\Role
              */
-            $role = \Yajra\Acl\Models\Role::query()
+            $role = \App\Models\Role::query()
                 ->inRandomOrder()
                 ->first();
 
-            $user->attachRole($role);
+            if (!$user->hasRole(collect($role))) {
+                $user->attachRole($role);
+            }
+
             $progressBar->advance();
         });
 

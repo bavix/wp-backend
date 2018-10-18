@@ -15,7 +15,15 @@ class UserObserver
      */
     public function created(User $user)
     {
-        //
+        $slug = Role::REGISTERED;
+        if ($user->email_verified_at) {
+            $slug = Role::USER;
+        }
+
+        $role = Role::whereSlug($slug)
+            ->firstOrFail();
+
+        $user->assignRole($role);
     }
 
     /**
