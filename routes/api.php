@@ -13,6 +13,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+// auth
+Route::post('auth/register', 'AuthController@register')
+    ->name('api.auth.register');
+
+Route::post('auth/forgot', 'AuthController@forgot')
+    ->name('api.auth.forgot');
+
 // brands
 Route::apiResource('brands', 'BrandsController');
 
