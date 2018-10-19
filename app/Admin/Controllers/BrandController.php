@@ -37,6 +37,9 @@ class BrandController extends Controller
     {
         $grid = new Grid(new Brand());
 
+        $grid->model()
+            ->withCount(['collections', 'wheels']);
+
         $grid->filter(function (Grid\Filter $filter) {
             $filter->like('name');
         });
@@ -45,6 +48,12 @@ class BrandController extends Controller
             ->sortable();
 
         $grid->column('name')
+            ->sortable();
+
+        $grid->column('collections_count')
+            ->sortable();
+
+        $grid->column('wheels_count')
             ->sortable();
 
         $grid->column('enabled')->switch();

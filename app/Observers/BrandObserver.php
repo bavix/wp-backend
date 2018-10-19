@@ -3,19 +3,10 @@
 namespace App\Observers;
 
 use App\Models\Brand;
+use App\Models\Wheel;
 
 class BrandObserver
 {
-    /**
-     * Handle the brand "created" event.
-     *
-     * @param  \App\Models\Brand $brand
-     * @return void
-     */
-    public function created(Brand $brand)
-    {
-        //
-    }
 
     /**
      * Handle the brand "updated" event.
@@ -23,41 +14,16 @@ class BrandObserver
      * @param  \App\Models\Brand $brand
      * @return void
      */
-    public function updated(Brand $brand)
+    public function saving(Brand $brand): void
     {
-        //
+        /**
+         * Если мы выключили бренд, то отключаем и его диски
+         */
+        if (!$brand->enabled && $brand->enabled !== $brand->getOriginal('enabled')) {
+            Wheel::whereEnabled(true)
+                ->where('brand_id', $brand->id)
+                ->update(['enabled' => false]);
+        }
     }
 
-    /**
-     * Handle the brand "deleted" event.
-     *
-     * @param  \App\Models\Brand $brand
-     * @return void
-     */
-    public function deleted(Brand $brand)
-    {
-        //
-    }
-
-    /**
-     * Handle the brand "restored" event.
-     *
-     * @param  \App\Models\Brand $brand
-     * @return void
-     */
-    public function restored(Brand $brand)
-    {
-        //
-    }
-
-    /**
-     * Handle the brand "force deleted" event.
-     *
-     * @param  \App\Models\Brand $brand
-     * @return void
-     */
-    public function forceDeleted(Brand $brand)
-    {
-        //
-    }
 }

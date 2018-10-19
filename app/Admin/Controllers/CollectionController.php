@@ -38,9 +38,9 @@ class CollectionController extends Controller
     {
         $grid = new Grid(new Collection());
 
-        $grid->model()->with([
-            'brand'
-        ]);
+        $grid->model()
+            ->with(['brand'])
+            ->withCount(['wheels']);
 
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('brand_id', 'Brand')
@@ -57,6 +57,9 @@ class CollectionController extends Controller
             ->sortable();
 
         $grid->column('name')
+            ->sortable();
+
+        $grid->column('wheels_count')
             ->sortable();
 
         $grid->column('enabled')->switch();

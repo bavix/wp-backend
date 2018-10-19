@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Brand;
 use App\Models\Style;
 use App\Models\User;
+use App\Observers\BrandObserver;
 use App\Observers\StyleObserver;
 use App\Observers\UserObserver;
 use Encore\Admin\Config\Config;
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Brand::observe(BrandObserver::class);
         User::observe(UserObserver::class);
         Style::observe(StyleObserver::class);
 

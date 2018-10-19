@@ -37,6 +37,9 @@ class StyleController extends Controller
     {
         $grid = new Grid(new Style());
 
+        $grid->model()
+            ->withCount(['wheels']);
+
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('type')->select(Style::types());
             $filter->equal('tuple')->select(Style::tuples());
@@ -61,6 +64,10 @@ class StyleController extends Controller
             ->sortable();
 
         $grid->column('rotated')->switch();
+
+        $grid->column('wheels_count')
+            ->sortable();
+
         $grid->column('enabled')->switch();
 
         $grid->column('created_at', 'Created at');
