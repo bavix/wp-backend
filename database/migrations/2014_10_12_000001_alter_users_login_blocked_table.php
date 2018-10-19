@@ -30,10 +30,6 @@ class AlterUsersLoginBlockedTable extends Migration
             $table->boolean('enabled')
                 ->default(1)
                 ->after('password');
-
-            $table->boolean('blocked')
-                ->default(0)
-                ->after('enabled');
         });
     }
 
@@ -45,7 +41,7 @@ class AlterUsersLoginBlockedTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['login', 'enabled', 'blocked']);
+            $table->dropColumn(['login', 'enabled']);
 
             $table->string('email')
                 ->nullable(false)
