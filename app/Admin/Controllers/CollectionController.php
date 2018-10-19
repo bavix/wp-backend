@@ -44,7 +44,7 @@ class CollectionController extends Controller
 
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('brand_id', 'Brand')
-                ->select()
+                ->select($this->ajaxSelect(Brand::class))
                 ->ajax(route('cp.api.brands'));
 
             $filter->like('name');

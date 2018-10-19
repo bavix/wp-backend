@@ -54,11 +54,11 @@ class WheelController extends Controller
 
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('brand_id', 'Brand')
-                ->select()
+                ->select($this->ajaxSelect(Brand::class))
                 ->ajax(route('cp.api.brands'));
 
             $filter->equal('collection_id', 'Collection')
-                ->select()
+                ->select($this->ajaxSelect(Collection::class))
                 ->ajax(route('cp.api.collections'));
 
             $filter->equal('style_id', 'Style')
