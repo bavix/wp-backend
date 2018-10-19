@@ -16,10 +16,7 @@ class UserObserver
     public function created(User $user)
     {
         $roles = Role::query()
-            ->whereIn('slug', [
-                Role::BLOCKED,
-                Role::REGISTERED
-            ])
+            ->whereIn('slug', [Role::REGISTERED])
             ->when($user->email_verified_at, function ($query) {
                 return $query->orWhere('slug', Role::USER);
             })

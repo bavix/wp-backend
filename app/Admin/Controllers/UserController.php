@@ -60,7 +60,6 @@ class UserController extends Controller
         $grid->column('roles')
             ->display(function () {
                 $colors = [
-                    Role::BLOCKED => 'danger',
                     Role::REGISTERED => 'primary',
                     Role::USER => 'success',
                     Role::DEVELOPER => 'warning'

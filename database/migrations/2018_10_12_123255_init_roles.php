@@ -10,7 +10,7 @@ class InitRoles extends Migration
     /**
      * @param Role $role
      */
-    protected function blocked(Role $role): void
+    protected function registered(Role $role): void
     {
         Permission::createResource(Permission::RESOURCE_PROFILE);
 
@@ -30,13 +30,7 @@ class InitRoles extends Migration
         foreach ($permissions as $permission) {
             $role->assignPermission($permission->getKey());
         }
-    }
 
-    /**
-     * @param Role $role
-     */
-    protected function registered(Role $role): void
-    {
         // like
         $like = Permission::query()->create([
             'slug'     => Permission::WHEELS_LIKE,
@@ -124,19 +118,9 @@ class InitRoles extends Migration
 
         /**
          * @var Role $user
-         * @var Role $blocked
          * @var Role $developer
          * @var Role $registered
          */
-        $blocked = Role::query()->create([
-            'name' => \Illuminate\Support\Str::title(Role::BLOCKED),
-            'slug' => str_slug(Role::BLOCKED),
-            'system' => true,
-            'description' => 'Blocked role.',
-        ]);
-
-        $this->blocked($blocked);
-
         $registered = Role::query()->create([
             'name' => \Illuminate\Support\Str::title(Role::REGISTERED),
             'slug' => str_slug(Role::REGISTERED),
@@ -174,7 +158,6 @@ class InitRoles extends Migration
     {
         /**
          * @var Role $user
-         * @var Role $blocked
          * @var Role $developer
          * @var Role $registered
          */
@@ -186,21 +169,15 @@ class InitRoles extends Migration
             ->where('slug', Role::USER)
             ->firstOrFail();
 
-        $blocked = Role::query()
-            ->where('slug', Role::BLOCKED)
-            ->firstOrFail();
-
         $registered = Role::query()
             ->where('slug', Role::REGISTERED)
             ->firstOrFail();
 
         $registered->syncPermissions();
         $developer->syncPermissions();
-        $blocked->syncPermissions();
         $user->syncPermissions();
 
         $user->forceDelete();
-        $blocked->forceDelete();
         $developer->forceDelete();
         $registered->forceDelete();
 
