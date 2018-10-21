@@ -15,17 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 // auth
 Route::post('auth/register', 'AuthController@register')
-    ->name('api.auth.register');
+    ->name('auth.register');
 
 Route::post('auth/forgot', 'AuthController@forgot')
-    ->name('api.auth.forgot');
+    ->name('auth.forgot');
 
 Route::post('auth/social/{provider}', 'AuthController@social')
-    ->name('api.auth.social');
+    ->name('auth.social');
 
 Route::middleware('auth:api')
     ->post('auth/verified-email', 'AuthController@verifiedEmail')
-    ->name('api.auth.verified_email');
+    ->name('auth.verified_email');
 
 // brands
 Route::apiResource('brands', 'BrandsController');
