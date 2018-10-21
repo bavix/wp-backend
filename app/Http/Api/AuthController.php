@@ -138,28 +138,6 @@ class AuthController extends BaseController
     }
 
     /**
-     * @param Request $request
-     * @return array|null
-     */
-    public function verifiedEmail(Request $request)
-    {
-        /**
-         * @var $user User
-         */
-        $user = $request->user();
-        $code = 409;
-        $content = ['message' => trans('verify.verified')];
-
-        if (!$user->hasVerifiedEmail()) {
-            $user->sendEmailVerificationNotification();
-            $content['message'] = trans('verify.notify');
-            $code = 202;
-        }
-
-        return response($content, $code);
-    }
-
-    /**
      * @param ForgetRequest $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */

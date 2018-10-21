@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * App\Models\Image
@@ -41,5 +42,13 @@ class Image extends Model
         'imageable_type' => 'string',
         'imageable_id' => 'integer',
     ];
+
+    /**
+     * @return MorphTo
+     */
+    public function imageable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 
 }

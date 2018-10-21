@@ -81,6 +81,7 @@
                 <div class="title m-b-md">{{ config('app.name') }}</div>
 
                 <div class="links">
+                    <a href="https://ln4.ru/hlz2o" title="Download on the AppStore">App Store</a>
                     @can('swagger.view')
                         <a href="{{ route('swagger') }}">Documentation</a>
                     @endcan

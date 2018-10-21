@@ -6,6 +6,7 @@ use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Contracts\Likeable;
 use Rinvex\Attributes\Traits\Attributable;
@@ -114,6 +115,22 @@ class Wheel extends Model implements Followable, Likeable
     public function image(): BelongsTo
     {
         return $this->belongsTo(Image::class);
+    }
+
+    /**
+     * @return MorphMany
+     */
+    public function images(): MorphMany
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    /**
+     * @return MorphMany
+     */
+    public function videos(): MorphMany
+    {
+        return $this->morphMany(Video::class, 'videoable');
     }
 
 }

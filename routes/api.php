@@ -23,13 +23,18 @@ Route::post('auth/forgot', 'AuthController@forgot')
 Route::post('auth/social/{provider}', 'AuthController@social')
     ->name('auth.social');
 
+// profile
 Route::middleware('auth:api')
-    ->post('auth/verified-email', 'AuthController@verifiedEmail')
+    ->get('profile', 'ProfileController@show')
+    ->name('profile');
+
+Route::middleware('auth:api')
+    ->post('profile/verified-email', 'ProfileController@verifiedEmail')
     ->name('auth.verified_email');
 
-// profile
-Route::get('profile', 'ProfileController@show')
-    ->middleware('auth:api');
+Route::middleware('auth:api')
+    ->post('profile/change-password', 'ProfileController@changePassword')
+    ->name('profile.change_password');
 
 // brands
 Route::apiResource('brands', 'BrandsController');

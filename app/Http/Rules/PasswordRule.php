@@ -20,14 +20,10 @@ class PasswordRule implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        $lowercase = $this->lowercase($value);
-        $uppercase = $this->uppercase($value);
-        $digits = $this->digits($value);
-
         return
-            ($lowercase && $uppercase) ||
-            ($lowercase && $digits) ||
-            ($uppercase && $digits);
+            ($this->lowercase($value) && $this->uppercase($value)) ||
+            ($this->lowercase($value) && $this->digits($value)) ||
+            ($this->uppercase($value) && $this->digits($value));
     }
 
     /**
@@ -37,7 +33,7 @@ class PasswordRule implements Rule
      */
     protected function lowercase(string $value): bool
     {
-        $this->message = \trans('validation.password.lowercase');
+        $this->message = \trans('whlpro.password.lowercase');
 
         return \preg_match('~[a-z]~', $value);
     }
@@ -49,7 +45,7 @@ class PasswordRule implements Rule
      */
     protected function uppercase(string $value): bool
     {
-        $this->message = \trans('validation.password.uppercase');
+        $this->message = \trans('whlpro.password.uppercase');
 
         return \preg_match('~[A-Z]~', $value);
     }
@@ -61,7 +57,7 @@ class PasswordRule implements Rule
      */
     protected function digits(string $value): bool
     {
-        $this->message = \trans('validation.password.digits');
+        $this->message = \trans('whlpro.password.digits');
 
         return \preg_match('~\d~', $value);
     }
