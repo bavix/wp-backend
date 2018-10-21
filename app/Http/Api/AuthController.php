@@ -89,14 +89,19 @@ class AuthController extends BaseController
 
         } catch (\Throwable $throwable) {
 
-            $user = User::firstOrCreate([
-                'email' => $providerUser->email
-            ], [
+            $data = [
                 'login' => $this->loginUnique($providerUser),
                 'name' => $providerUser->name,
                 'password' => Str::random(),
-                'email_verified_at' => Carbon::now(),
-            ]);
+                'email_verified_at' => $providerUser->email ?
+                    Carbon::now() : null,
+            ];
+
+            if ($providerUser->email) {
+                $user = User::firstOrCreate(['email' => $providerUser->email], $data);
+            } else {
+                $user = User::create($data);
+            }
 
             // auto-verified email
             if ($user->email && !$user->email_verified_at) {
