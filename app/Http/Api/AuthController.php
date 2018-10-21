@@ -3,11 +3,18 @@
 namespace App\Http\Api;
 
 use App\Http\Requests\User\ForgetRequest;
+use App\Models\Social;
+use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use App\Http\Requests\User\CreateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
+use Laravel\Passport\PersonalAccessTokenResult;
+use Laravel\Socialite\AbstractUser;
+use Laravel\Socialite\Facades\Socialite;
 
 /**
  * Class AuthController
@@ -25,18 +32,108 @@ class AuthController extends BaseController
     public function register(CreateRequest $request): Response
     {
         $user = User::create($request->validated());
-        $response = response($user);
-
-        if ($user) {
-            $response->setStatusCode(201);
-        }
-
-        return $response;
+        event(new Registered($user));
+        return response($user, 201);
     }
 
-    public function social()
+    /**
+     * @param Request $request
+     * @param string $provider
+     * @return PersonalAccessTokenResult
+     */
+    public function social(Request $request, string $provider): PersonalAccessTokenResult
     {
-        // todo: socialite
+        // github 0b65bba5eaeba0acbf7c7de9d21064648cd35557
+        $driver = Socialite::driver($provider);
+        $token = $request->input('token');
+        $secret = $request->input('secret');
+        $scopes = $request->input('scopes', []);
+
+        try {
+            if ($secret) {
+                $providerUser = $driver->userFromTokenAndSecret($token, $secret);
+            } else {
+                $providerUser = $driver->userFromToken($token);
+            }
+        } catch (\Throwable $throwable) {
+            abort(401, $throwable->getMessage());
+        }
+
+        return $this->registred($provider, $providerUser)
+            ->createToken($provider, $scopes);
+    }
+
+    /**
+     * @param AbstractUser $user
+     * @return string
+     */
+    protected function loginUnique(AbstractUser $user): string
+    {
+        return User::whereLogin($user->nickname)->first() ?
+            Str::random() : $user->nickname;
+    }
+
+    /**
+     * @param string $provider
+     * @param AbstractUser $providerUser
+     * @return User
+     */
+    protected function registred(string $provider, AbstractUser $providerUser): User
+    {
+        try {
+            return Social::query()
+                ->where('provider', $provider)
+                ->where('provider_id', $providerUser->id)
+                ->firstOrFail()
+                ->user;
+
+        } catch (\Throwable $throwable) {
+
+            $user = User::firstOrCreate([
+                'email' => $providerUser->email
+            ], [
+                'login' => $this->loginUnique($providerUser),
+                'name' => $providerUser->name,
+                'password' => Str::random(),
+                'email_verified_at' => Carbon::now(),
+            ]);
+
+            // auto-verified email
+            if ($user->email && !$user->email_verified_at) {
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+            }
+
+            Social::create([
+                'provider' => $provider,
+                'provider_id' => $providerUser->id,
+                'user_id' => $user->id,
+            ]);
+
+            return $user;
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return array|null
+     */
+    public function verifiedEmail(Request $request)
+    {
+        /**
+         * @var $user User
+         */
+        $user = $request->user();
+        $code = 409;
+        $content = ['message' => trans('verify.verified')];
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->sendEmailVerificationNotification();
+            $content['message'] = trans('verify.notify');
+            $code = 202;
+        }
+
+        return response($content, $code);
     }
 
     /**
@@ -57,7 +154,7 @@ class AuthController extends BaseController
      */
     protected function sendResetLinkResponse(Request $request, $response)
     {
-        return response(['message' => trans($response), 'error' => []], 202);
+        return response(['message' => trans($response)], 202);
     }
 
     /**
@@ -69,19 +166,7 @@ class AuthController extends BaseController
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        return response(['message' => trans($response), 'error' => []], 422);
-    }
-
-    /**
-     * The user has been registered.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function registered(Request $request, $user)
-    {
-        // todo
+        return response(['message' => trans($response)], 422);
     }
 
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -39,7 +41,7 @@ use Yajra\Acl\Traits\HasRole;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable implements Follower, Liker
+class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
 {
 
     use HasApiTokens;
@@ -58,6 +60,7 @@ class User extends Authenticatable implements Follower, Liker
         'login',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     /**
@@ -111,6 +114,14 @@ class User extends Authenticatable implements Follower, Liker
     public function validateForPassportPasswordGrant($password): bool
     {
         return $this->enabled && Hash::check($password, $this->getAuthPassword());
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function socials(): HasMany
+    {
+        return $this->hasMany(Social::class);
     }
 
 }

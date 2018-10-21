@@ -14,12 +14,15 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+Auth::routes([
+    'verify' => true
+]);
 
 Route::get('/', 'HomeController@index')
     ->name('home.index');
 
-Route::get('/dash', 'DashController@index')
+Route::middleware('auth')
+    ->get('/dash', 'DashController@index')
     ->name('dash');
 
 // swagger
@@ -30,3 +33,8 @@ Route::middleware('auth')
 Route::middleware('auth')
     ->get('docs.json', 'SwaggerController@show')
     ->name('swagger.json');
+
+
+// temp
+Route::get('/login', 'HomeController@login');
+Route::get('/handleProviderCallback', 'HomeController@handleProviderCallback');
