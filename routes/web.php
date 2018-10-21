@@ -33,8 +33,3 @@ Route::middleware('auth')
 Route::middleware('auth')
     ->get('docs.json', 'SwaggerController@show')
     ->name('swagger.json');
-
-
-// temp
-Route::get('/login', 'HomeController@login');
-Route::get('/handleProviderCallback', 'HomeController@handleProviderCallback');
