@@ -5,6 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * App\Models\Social
+ *
+ * @property int $id
+ * @property string $provider
+ * @property string $provider_id
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social whereProvider($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social whereProviderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Social extends Model
 {
 

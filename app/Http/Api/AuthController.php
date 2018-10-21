@@ -74,6 +74,35 @@ class AuthController extends BaseController
     }
 
     /**
+     * @param AbstractUser $providerUser
+     * @return array
+     */
+    protected function providerData(AbstractUser $providerUser): array
+    {
+        return [
+            'login' => $this->loginUnique($providerUser),
+            'name' => $providerUser->name,
+            'password' => Str::random(),
+            'email_verified_at' => $providerUser->email ?
+                Carbon::now() : null,
+        ];
+    }
+
+    /**
+     * @param User $user
+     * @return User
+     */
+    protected function autoVerified(User $user): User
+    {
+        if ($user->email && !$user->email_verified_at) {
+            $user->email_verified_at = Carbon::now();
+            $user->save();
+        }
+
+        return $user;
+    }
+
+    /**
      * @param string $provider
      * @param AbstractUser $providerUser
      * @return User
@@ -89,33 +118,22 @@ class AuthController extends BaseController
 
         } catch (\Throwable $throwable) {
 
-            $data = [
-                'login' => $this->loginUnique($providerUser),
-                'name' => $providerUser->name,
-                'password' => Str::random(),
-                'email_verified_at' => $providerUser->email ?
-                    Carbon::now() : null,
-            ];
-
             if ($providerUser->email) {
-                $user = User::firstOrCreate(['email' => $providerUser->email], $data);
+                $user = User::firstOrCreate(
+                    ['email' => $providerUser->email],
+                    $this->providerData($providerUser)
+                );
             } else {
-                $user = User::create($data);
+                $user = User::create($this->providerData($providerUser));
             }
-
-            // auto-verified email
-            if ($user->email && !$user->email_verified_at) {
-                $user->email_verified_at = Carbon::now();
-                $user->save();
-            }
-
+            
             Social::create([
                 'provider' => $provider,
                 'provider_id' => $providerUser->id,
                 'user_id' => $user->id,
             ]);
 
-            return $user;
+            return $this->autoVerified($user);
         }
     }
 

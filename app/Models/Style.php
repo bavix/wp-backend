@@ -27,6 +27,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style whereTuple($value)
  */
 class Style extends Model
 {
