@@ -65,7 +65,7 @@ abstract class Controller extends BaseController
     /**
      * @var string
      */
-    protected $defaultSort;
+    protected $defaultSort = 'id';
 
     /**
      * @return Builder

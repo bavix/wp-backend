@@ -14,8 +14,7 @@ class ViewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user() &&
-            $this->attributes->getInt('id') === $this->user()->id;
+        return $this->attributes->getInt('id') === $this->user()->id;
     }
 
     /**

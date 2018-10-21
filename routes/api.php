@@ -27,6 +27,10 @@ Route::middleware('auth:api')
     ->post('auth/verified-email', 'AuthController@verifiedEmail')
     ->name('auth.verified_email');
 
+// profile
+Route::get('profile', 'ProfileController@show')
+    ->middleware('auth:api');
+
 // brands
 Route::apiResource('brands', 'BrandsController');
 

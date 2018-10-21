@@ -69,7 +69,7 @@ class AuthController extends BaseController
      */
     protected function loginUnique(AbstractUser $user): string
     {
-        return User::whereLogin($user->nickname)->first() ?
+        return !$user->nickname || User::whereLogin($user->nickname)->first() ?
             Str::random() : $user->nickname;
     }
 
