@@ -271,9 +271,15 @@ class TransferTableSeeder extends Seeder
                     'name' => $datum['name'],
                     'passwordHash' => $datum['passwordHash'],
                     'enabled' => $datum['active'],
+                    'email_verified_at' => $datum['roleId'] !== 3 ?
+                        \Carbon\Carbon::now() : null,
                 ]);
 
                 $this->users[$datum['id']] = $user->id;
+
+                if ($datum['roleId'] === 1) {
+                    $user->assignRole(3); // developer
+                }
 
                 if (!$user->image_id && $datum['image']) {
                     $image = $this->image('avatar', $datum['image']);
@@ -328,6 +334,8 @@ class TransferTableSeeder extends Seeder
                     'enabled' => $datum['active'] && \App\Models\Brand::whereEnabled(true)
                         ->find($this->brands[$datum['brandId']]),
 
+                    'popular' => $datum['popular'] * 10000,
+
                     'style_id' => $datum['styleId'] ?
                         $this->styles[$datum['styleId']] : null,
                 ]);
@@ -338,13 +346,15 @@ class TransferTableSeeder extends Seeder
                     $wheel->save();
                 }
 
-                $wheel->likes()->sync(array_map(function ($data) {
-                    return $this->users[$data['id']];
-                }, $datum['likes']));
+                foreach ($datum['likes'] as $data) {
+                    \App\Models\User::find($this->users[$data['id']])
+                        ->like($wheel);
+                }
 
-                $wheel->favorites()->sync(array_map(function ($data) {
-                    return $this->users[$data['id']];
-                }, $datum['favourites']));
+                foreach ($datum['favourites'] as $data) {
+                    \App\Models\User::find($this->users[$data['id']])
+                        ->follow($wheel);
+                }
 
                 // todo images, videos, comments
 

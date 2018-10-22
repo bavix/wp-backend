@@ -3,15 +3,25 @@
 namespace App\Http\Api;
 
 use App\Http\Requests\Brand\ViewRequest;
+use App\Http\Requests\Wheel\FollowRequest;
+use App\Http\Requests\Wheel\LikeRequest;
+use App\Http\Requests\Wheel\UnfollowRequest;
 use App\Http\Resources\WheelResource;
 use App\Http\Resources\Wheels;
+use App\Models\User;
 use App\Models\Wheel;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Response;
 use Spatie\QueryBuilder\Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class WheelsController extends Controller
 {
+
+    /**
+     * @var string
+     */
+    protected $defaultSort = '-popular';
 
     /**
      * @OA\Get(
@@ -109,11 +119,102 @@ class WheelsController extends Controller
     }
 
     /**
+     * @param LikeRequest $request
+     * @param int $id
+     * @return Response
+     */
+    public function like(LikeRequest $request, int $id): Response
+    {
+        /**
+         * @var $user User
+         * @var $wheel Wheel
+         */
+        $user = $request->user();
+        $wheel = $this->query()->findOrFail($id);
+
+        if ($user->like($wheel)) {
+            $result = ['count' => $wheel->likes()->count()];
+            return response($result, 201);
+        }
+
+        abort(422);
+    }
+
+    /**
+     * @param LikeRequest $request
+     * @param int $id
+     * @return Response
+     */
+    public function unlike(LikeRequest $request, int $id): Response
+    {
+        /**
+         * @var $user User
+         * @var $wheel Wheel
+         */
+        $user = $request->user();
+        $wheel = $this->query()->findOrFail($id);
+
+        if ($user->unlike($wheel)) {
+            return response()->noContent();
+        }
+
+        abort(422);
+    }
+
+    /**
+     * @param FollowRequest $request
+     * @param int $id
+     * @return Response
+     */
+    public function favorite(FollowRequest $request, int $id): Response
+    {
+        /**
+         * @var $user User
+         * @var $wheel Wheel
+         */
+        $user = $request->user();
+        $wheel = $this->query()->findOrFail($id);
+
+        if ($user->follow($wheel)) {
+            $result = ['count' => $wheel->favorites()->count()];
+            return response($result, 201);
+        }
+
+        abort(422);
+    }
+
+    /**
+     * @param UnfollowRequest $request
+     * @param int $id
+     * @return Response
+     */
+    public function unfavorite(UnfollowRequest $request, int $id): Response
+    {
+        /**
+         * @var $user User
+         * @var $wheel Wheel
+         */
+        $user = $request->user();
+        $wheel = $this->query()->findOrFail($id);
+
+        if ($user->unfollow($wheel)) {
+            return response()->noContent();
+        }
+
+        abort(422);
+    }
+
+    /**
      * @return Builder
      */
     protected function query(): Builder
     {
-        return Wheel::whereEnabled(true);
+        return Wheel::whereEnabled(true)
+            ->when(auth()->user(), function (Builder $query) {
+                return $query
+                    ->hasFavorited()
+                    ->hasLiked();
+            });
     }
 
     /**
