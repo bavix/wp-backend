@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             $this->call(WheelsTableSeeder::class);
             $this->call(LikesTableSeeder::class);
             $this->call(FollowersTableSeeder::class);
+        } else {
+            $this->call(TransferTableSeeder::class);
         }
     }
 }

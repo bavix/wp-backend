@@ -15,8 +15,42 @@ class TransferTableSeeder extends Seeder
 
     /**
      * @var string
+     *
+     * /{bucket}/{name}/default.png
+     */
+    protected $oldCdn = 'https://cdn.wheelpro.ru/%s/%s/default.png';
+
+    /**
+     * @var string
+     *
+     * /{bucket}/{uuid}.png
+     */
+    protected $newCdn = 'https://cdn.babichev.net/%s/%s.png';
+
+    /**
+     * @var string
      */
     protected $token = '25ac31ca9bad062c841e42f7716e71d00a71da82';
+
+    /**
+     * @var array
+     */
+    protected $brands = [];
+
+    /**
+     * @var array
+     */
+    protected $collections = [];
+
+    /**
+     * @var array
+     */
+    protected $styles = [];
+
+    /**
+     * @var array
+     */
+    protected $users = [];
 
     /**
      * TransferTableSeeder constructor.
@@ -31,7 +65,7 @@ class TransferTableSeeder extends Seeder
      * @param array $query
      * @return array
      */
-    protected function lazyLoad(string $url, array $query)
+    protected function lazyLoad(string $url, array $query): array
     {
         $headers = [
             'Authorization' => 'Bearer ' . $this->token,
@@ -49,56 +83,137 @@ class TransferTableSeeder extends Seeder
         );
     }
 
-    protected function image(string $name, array $data)
+    /**
+     * @param array $data
+     * @return \App\Models\Style
+     */
+    protected function style(array $data): \App\Models\Style
     {
-        // download + send to cdn
+        $style = \App\Models\Style::firstOrCreate([
+            'type' => $data['type'],
+            'tuple' => $data['number'] === 'Simple' ? 'Single' : $data['number'],
+            'spoke' => $data['spoke'],
+            'rotated' => (bool)$data['isTurned'],
+        ]);
 
-        $image = new \App\Models\Image();
-        $image->uuid = $data['hash'];
-//        $image->save();
-
-        return $image;
+        $this->styles[$data['id']] = $style->id;
+        return $style;
     }
 
-    protected function brand(array $data)
+    protected function image(string $name, array $data): \App\Models\Image
     {
-        $brand = new \App\Models\Brand();
-        $brand->name = $data['name'];
-        $brand->enabled = (bool)$data['active'];
-//        $brand->save();
+        // todo: download + send to cdn
 
-        $image = $this->image(__FUNCTION__, $data['image']);
-        $image->imageable()->associate($brand);
+        return \App\Models\Image::firstOrCreate([
+            'uuid' => $data['hash']
+        ]);
+    }
+
+    protected function brand(array $data): void
+    {
+        $brand = \App\Models\Brand::firstOrCreate([
+            'name' => \trim($data['name'])
+        ], [
+            'enabled' => (bool)$data['active']
+        ]);
+
+        // loading brand
+        $this->brands[$data['id']] = $brand->id;
+
+        if (!$brand->image_id && $data['image']) {
+            $image = $this->image('brand', $data['image']);
+            $image->imageable()->associate($brand);
+        }
 
         // collections
         foreach ($data['collections'] as $collection) {
-            var_dump($collection['name']);
+            $model = \App\Models\Collection::firstOrCreate([
+                'brand_id' => $brand->id,
+                'name' => trim($collection['name'])
+            ], [
+                'enabled' => (bool)$collection['active']
+            ]);
+
+            $this->collections[$collection['id']] = $model->id;
+            $model->brand()->associate($brand);
+            $model->save();
         }
 
         // addresses
         foreach ($data['addresses'] as $address) {
-            var_dump($address['country']);
+            $brand->addresses()->firstOrCreate([
+                'latitude' => $address['latitude'],
+                'longitude' => $address['longitude'],
+            ], [
+                'label' => trim($address['description']),
+                'given_name' => $brand->name,
+                'family_name' => $brand->name,
+                'organization' => $brand->name,
+                'street' => trim($address['street']),
+                'state' => trim($address['state']),
+                'city' => trim($address['city']),
+                'postal_code' => trim($address['zipCode']),
+                'is_primary' => false,
+                'is_billing' => false,
+                'is_shipping' => false,
+            ]);
         }
 
-        // social
+        // links
         $lazyData = $this->lazyLoad(
             \sprintf('soc/brand/%d/social', $data['id']),
             ['limit' => 200]
         );
 
-        $socials = $lazyData['data'];
-        foreach ($socials as $social) {
-            var_dump($social['url']);
+        $links = $lazyData['data'];
+        foreach ($links as $link) {
+            try {
+                $brand->links()->firstOrCreate([
+                    'url' => trim($link['url'])
+                ], [
+                    'enabled' => true
+                ]);
+            } catch (\Throwable $throwable) {
+
+            }
         }
-
-        die;
-
     }
 
     /**
      * @param \Illuminate\Console\OutputStyle $output
      */
-    protected function brands(\Illuminate\Console\OutputStyle $output)
+    protected function styles(\Illuminate\Console\OutputStyle $output): void
+    {
+        $query = [
+            'page' => 1,
+            'sort' => ['id' => 'asc']
+        ];
+
+        $body = $this->lazyLoad('sow/style', $query);
+        $progressBar = $output->createProgressBar($body['itemCount']);
+
+        foreach (range($body['currentPage'], $body['pageCount']) as $page) {
+
+            foreach ($body['data'] as $datum) {
+                $this->style($datum);
+                $progressBar->advance();
+            }
+
+            if ($body['currentPage'] === $body['pageCount']) {
+                break;
+            }
+
+            $query['page'] = $page + 1;
+            $body = $this->lazyLoad('sow/style', $query);
+        }
+
+        $output->newLine();
+    }
+
+    /**
+     * @param \Illuminate\Console\OutputStyle $output
+     */
+    protected function brands(\Illuminate\Console\OutputStyle $output): void
     {
         $query = [
             'page' => 1,
@@ -110,7 +225,7 @@ class TransferTableSeeder extends Seeder
 
         $progressBar = $output->createProgressBar($body['itemCount']);
 
-        for (; $body['currentPage'] <= $body['pageCount'];) {
+        foreach (range($body['currentPage'], $body['pageCount']) as $page) {
 
             foreach ($body['data'] as $datum) {
                 $this->brand($datum);
@@ -122,8 +237,123 @@ class TransferTableSeeder extends Seeder
                 break;
             }
 
-            $query['page']++;
+            $query['page'] = $page + 1;
             $body = $this->lazyLoad('soc/brand', $query);
+        }
+
+        $output->newLine();
+    }
+
+    /**
+     * @param \Illuminate\Console\OutputStyle $output
+     */
+    protected function users(\Illuminate\Console\OutputStyle $output): void
+    {
+        $query = [
+            'page' => 1,
+            'sort' => ['id' => 'asc'],
+            'preload' => ['image']
+        ];
+
+        $body = $this->lazyLoad('sou/user', $query);
+
+        $progressBar = $output->createProgressBar($body['itemCount']);
+
+        foreach (range($body['currentPage'], $body['pageCount']) as $page) {
+
+            foreach ($body['data'] as $datum) {
+
+                $user = \App\Models\User::firstOrCreate([
+                    'email' => $datum['email']
+                ], [
+                    'login' => $datum['login'],
+                    'name' => $datum['name'],
+                    'passwordHash' => $datum['passwordHash'],
+                    'enabled' => $datum['active'],
+                ]);
+
+                $this->users[$datum['id']] = $user->id;
+
+                if (!$user->image_id && $datum['image']) {
+                    $image = $this->image('avatar', $datum['image']);
+                    $image->imageable()->associate($user);
+                }
+
+                $progressBar->advance();
+                \usleep(10);
+            }
+
+            if ($body['currentPage'] === $body['pageCount']) {
+                break;
+            }
+
+            $query['page'] = $page + 1;
+            $body = $this->lazyLoad('sou/user', $query);
+        }
+
+        $output->newLine();
+    }
+
+    /**
+     * @param \Illuminate\Console\OutputStyle $output
+     */
+    protected function wheels(\Illuminate\Console\OutputStyle $output): void
+    {
+        $query = [
+            'page' => 1,
+            'sort' => ['id' => 'asc'],
+            'preload' => ['image', 'likes', 'favourites']
+        ];
+
+        $body = $this->lazyLoad('sow/wheel', $query);
+
+        $progressBar = $output->createProgressBar($body['itemCount']);
+
+        foreach (range($body['currentPage'], $body['pageCount']) as $page) {
+
+            foreach ($body['data'] as $datum) {
+
+                $wheel = \App\Models\Wheel::firstOrCreate([
+                    'name' => $datum['name'],
+                    'brand_id' => $this->brands[$datum['brandId']]
+                ], [
+                    'collection_id' => $datum['collectionId'] ?
+                        $this->collections[$datum['collectionId']] : null,
+
+                    'style_id' => $datum['styleId'] ?
+                        $this->styles[$datum['styleId']] : null,
+
+                    'customized' => $datum['isCustom'],
+                    'retired' => $datum['isRetired'],
+
+                    'enabled' => $datum['active'] && \App\Models\Brand::whereEnabled(true)
+                        ->find($this->brands[$datum['brandId']]),
+
+                ]);
+
+                if (!$wheel->image_id && $datum['image']) {
+                    $image = $this->image('wheel', $datum['image']);
+                    $image->imageable()->associate($wheel);
+                }
+
+                $wheel->likes()->sync(array_map(function ($data) {
+                    return $this->users[$data['id']];
+                }, $datum['likes']));
+
+                $wheel->favorites()->sync(array_map(function ($data) {
+                    return $this->users[$data['id']];
+                }, $datum['favourites']));
+
+                $progressBar->advance();
+                \usleep(10);
+            }
+
+            if ($body['currentPage'] === $body['pageCount']) {
+                break;
+            }
+
+            $query['page'] = $page + 1;
+            $body = $this->lazyLoad('sow/wheel', $query);
         }
 
         $output->newLine();
@@ -134,16 +364,19 @@ class TransferTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $output = $this->command->getOutput();
+        $this->users($output);
+        $this->styles($output);
         $this->brands($output);
+        $this->wheels($output);
     }
 
     /**
      * @return \GuzzleHttp\Client
      */
-    protected function guzzle()
+    protected function guzzle(): GuzzleHttp\Client
     {
         if (!$this->guzzle) {
             $this->guzzle = new GuzzleHttp\Client(['base_uri' => self::API_URL]);
@@ -155,7 +388,7 @@ class TransferTableSeeder extends Seeder
     /**
      * @return void
      */
-    protected function client_credentials()
+    protected function client_credentials(): void
     {
         $response = $this->guzzle()->post('auth/token', [
             'form_params' => [

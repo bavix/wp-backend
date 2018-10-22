@@ -96,6 +96,14 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
     }
 
     /**
+     * @param string $hash
+     */
+    public function setPasswordHashAttribute(string $hash)
+    {
+        $this->attributes['password'] = $hash;
+    }
+
+    /**
      * @param string $username
      * @return User|null
      */
