@@ -24,28 +24,4 @@ class ApiController extends Controller
             ->paginate(null, ['id', 'name as text']);
     }
 
-    /**
-     * @param Request $request
-     * @return LengthAwarePaginator
-     */
-    public function collections(Request $request): LengthAwarePaginator
-    {
-        $query = '%' . $request->get('q') . '%';
-
-        return Collection::where('name', 'like', $query)
-            ->paginate(null, ['id', 'name as text']);
-    }
-
-    /**
-     * @param Request $request
-     * @return LengthAwarePaginator
-     */
-    public function wheels(Request $request): LengthAwarePaginator
-    {
-        $query = '%' . $request->get('q') . '%';
-
-        return Wheel::where('name', 'like', $query)
-            ->paginate(null, ['id', 'name as text']);
-    }
-
 }
