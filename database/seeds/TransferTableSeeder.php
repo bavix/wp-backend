@@ -122,16 +122,17 @@ class TransferTableSeeder extends Seeder
 
         if (!$brand->image_id && $data['image']) {
             $image = $this->image('brand', $data['image']);
-            $image->imageable()->associate($brand);
+            $brand->image_id = $image->id;
+            $brand->save();
         }
 
         // collections
         foreach ($data['collections'] as $collection) {
             $model = \App\Models\Collection::firstOrCreate([
                 'brand_id' => $brand->id,
-                'name' => trim($collection['name'])
+                'name' => trim($collection['name']),
             ], [
-                'enabled' => (bool)$collection['active']
+                'enabled' => $collection['active'] && $brand->enabled,
             ]);
 
             $this->collections[$collection['id']] = $model->id;
@@ -276,7 +277,8 @@ class TransferTableSeeder extends Seeder
 
                 if (!$user->image_id && $datum['image']) {
                     $image = $this->image('avatar', $datum['image']);
-                    $image->imageable()->associate($user);
+                    $user->image_id = $image->id;
+                    $user->save();
                 }
 
                 $progressBar->advance();
@@ -314,26 +316,25 @@ class TransferTableSeeder extends Seeder
             foreach ($body['data'] as $datum) {
 
                 $wheel = \App\Models\Wheel::firstOrCreate([
-                    'name' => $datum['name'],
-                    'brand_id' => $this->brands[$datum['brandId']]
-                ], [
+                    'name' => trim($datum['name']),
+                    'brand_id' => $this->brands[$datum['brandId']],
                     'collection_id' => $datum['collectionId'] ?
                         $this->collections[$datum['collectionId']] : null,
 
-                    'style_id' => $datum['styleId'] ?
-                        $this->styles[$datum['styleId']] : null,
-
                     'customized' => $datum['isCustom'],
                     'retired' => $datum['isRetired'],
-
+                ], [
                     'enabled' => $datum['active'] && \App\Models\Brand::whereEnabled(true)
                         ->find($this->brands[$datum['brandId']]),
 
+                    'style_id' => $datum['styleId'] ?
+                        $this->styles[$datum['styleId']] : null,
                 ]);
 
                 if (!$wheel->image_id && $datum['image']) {
                     $image = $this->image('wheel', $datum['image']);
-                    $image->imageable()->associate($wheel);
+                    $wheel->image_id = $image->id;
+                    $wheel->save();
                 }
 
                 $wheel->likes()->sync(array_map(function ($data) {
