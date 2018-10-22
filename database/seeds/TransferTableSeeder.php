@@ -346,6 +346,8 @@ class TransferTableSeeder extends Seeder
                     return $this->users[$data['id']];
                 }, $datum['favourites']));
 
+                // todo images, videos, comments
+
                 $progressBar->advance();
                 \usleep(10);
             }
