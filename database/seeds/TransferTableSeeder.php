@@ -303,6 +303,7 @@ class TransferTableSeeder extends Seeder
     {
         $query = [
             'page' => 1,
+            'transfer' => 1,
             'sort' => ['id' => 'asc'],
             'preload' => ['image', 'likes', 'favourites']
         ];
