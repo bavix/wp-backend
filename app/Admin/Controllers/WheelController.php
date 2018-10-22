@@ -53,27 +53,21 @@ class WheelController extends Controller
         });
 
         $grid->filter(function (Grid\Filter $filter) {
-//            $filter->equal('brand_id', 'Brand')
-//                ->select($this->ajaxSelect(Brand::class))
-//                ->ajax(route('cp.api.brands'));
 
-            $filter->group('brand_id', 'Brand', function (Grid\Filter\Group $group) use ($filter) {
-                $group->select($this->ajaxSelect(Brand::class))
-                    ->ajax(route('cp.api.brands'));
+            $brandFilter = $filter->equal('brand_id', 'Brand')
+                ->select($this->ajaxSelect(Brand::class));
 
-                $options = Collection::where('brand_id', $group->getValue())
-                    ->get()
-                    ->pluck('name', 'id')
-                    ->toArray();
+            $brandFilter->load('collection_id', route('cp.api.collections'));
+            $brandFilter->ajax(route('cp.api.brands'));
 
-                $filter->equal('collection_id', 'Collection')
-                    ->select($options);
-            });
+            $filter->equal('collection_id', 'Collection')
+                ->select($this->ajaxSelect(Collection::class));
 
             $filter->equal('style_id', 'Style')
                 ->select(Style::options());
 
             $filter->like('name');
+
         });
 
         $grid->column('id', 'ID')

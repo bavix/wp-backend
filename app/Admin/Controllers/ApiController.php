@@ -21,7 +21,17 @@ class ApiController extends Controller
         $query = '%' . $request->get('q') . '%';
 
         return Brand::where('name', 'like', $query)
-            ->paginate(null, ['id', 'name as text']);
+            ->paginate(100, ['id', 'name as text']);
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function collections(Request $request)
+    {
+        return Collection::whereBrandId((int)$request->get('q'))
+            ->get(['id', 'name as text']);
     }
 
 }

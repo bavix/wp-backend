@@ -41,4 +41,7 @@ Route::group([
     $router->get('api/brands', 'ApiController@brands')
         ->name('cp.api.brands');
 
+    $router->get('api/collections', 'ApiController@collections')
+        ->name('cp.api.collections');
+
 });
