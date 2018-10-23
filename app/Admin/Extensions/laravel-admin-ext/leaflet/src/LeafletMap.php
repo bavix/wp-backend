@@ -63,11 +63,9 @@ class LeafletMap extends Field
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    
-    var provider = new GeoSearch.OpenStreetMapProvider();
-    
+
     var searchControl = new GeoSearch.GeoSearchControl({
-      provider: provider,
+      provider: new GeoSearch.OpenStreetMapProvider(),
     });
 
     map.addControl(searchControl);
