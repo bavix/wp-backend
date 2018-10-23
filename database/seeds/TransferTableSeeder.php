@@ -268,7 +268,10 @@ class TransferTableSeeder extends Seeder
                     'email' => $datum['email']
                 ], [
                     'login' => $datum['login'],
-                    'name' => $datum['name'],
+                    'name' => !empty($datum['lastname']) ?
+                        trim(trim($datum['lastname']) . ' ' . $datum['name']) :
+                        trim($datum['name']),
+
                     'passwordHash' => $datum['passwordHash'],
                     'enabled' => $datum['active'],
                     'email_verified_at' => $datum['roleId'] !== 3 ?

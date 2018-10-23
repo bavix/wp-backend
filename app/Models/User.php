@@ -104,6 +104,14 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
     }
 
     /**
+     * @param string $value
+     */
+    public function setNameAttribute(string $value)
+    {
+        $this->attributes['name'] = \title_case($value);
+    }
+
+    /**
      * @param string $username
      * @return User|null
      */
