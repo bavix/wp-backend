@@ -2,6 +2,8 @@
 
 namespace Encore\Leaflet\Tiles;
 
+use Encore\Leaflet\Tile;
+
 class OpenStreetMapBlackAndWhite extends Tile
 {
 

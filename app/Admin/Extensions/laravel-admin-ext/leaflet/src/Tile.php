@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Leaflet\Tiles;
+namespace Encore\Leaflet;
 
 abstract class Tile
 {

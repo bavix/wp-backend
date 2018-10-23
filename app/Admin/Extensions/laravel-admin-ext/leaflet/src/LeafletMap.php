@@ -4,7 +4,6 @@ namespace Encore\Leaflet;
 
 use Encore\Admin\Form\Field;
 use Encore\Leaflet\Tiles\Sputnik;
-use Encore\Leaflet\Tiles\Tile;
 use Illuminate\Support\Str;
 
 class LeafletMap extends Field
@@ -62,7 +61,8 @@ class LeafletMap extends Field
     protected function getTile(): Tile
     {
         if (!$this->tile) {
-            $this->tile = $this->options['tile'] ?? new Sputnik();
+            $class = $this->options['tile'] ?? Sputnik::class;
+            $this->tile = new $class();
         }
 
         return $this->tile;
@@ -84,7 +84,7 @@ class LeafletMap extends Field
      */
     protected function zoom(): int
     {
-        return $this->options['zoom'] ?? 13;
+        return $this->options['zoom'] ?? ($this->getTile()->maxZoom() - 1);
     }
 
     /**
@@ -93,6 +93,40 @@ class LeafletMap extends Field
     protected function style(): string
     {
         return $this->options['style'] ?? 'bar';
+    }
+
+    /**
+     * @return string
+     */
+    protected function provider(): string
+    {
+        switch ($this->options['geoProvider'] ?? '') {
+            case 'bing': return 'BingProvider';
+            case 'esri': return 'EsriProvider';
+            case 'google': return 'GoogleProvider';
+            case 'locationIQ': return 'LocationIQProvider';
+        }
+
+        return 'OpenStreetMapProvider';
+    }
+
+    /**
+     * @return string
+     */
+    protected function providerParams(): string
+    {
+        switch ($this->options['geoProvider'] ?? '') {
+            case 'bing':
+            case 'google':
+            case 'locationIQ':
+                return json_encode([
+                    'params' => [
+                        'key' => config('admin.extensions.leaflet.keys.' . $this->options['geoProvider'])
+                    ]
+                ]);
+        }
+
+        return '';
     }
 
     /**
@@ -112,7 +146,7 @@ class LeafletMap extends Field
     L.tileLayer('{$this->getTile()->layer()}', {$this->tileOptions()}).addTo(map);
 
     var searchControl = new GeoSearch.GeoSearchControl({
-      provider: new GeoSearch.OpenStreetMapProvider(),
+      provider: new GeoSearch.{$this->provider()}({$this->providerParams()}),
       style: '{$this->style()}',
     });
 

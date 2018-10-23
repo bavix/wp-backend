@@ -291,6 +291,9 @@ return [
     'extensions' => [
         'leaflet' => [
             'enable' => true,
+            'config' => [
+                'tile' => \Encore\Leaflet\Tiles\OpenStreetMapMapnik::class,
+            ],
         ],
     ],
 ];
