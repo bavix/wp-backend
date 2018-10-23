@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Leaflet\Tiles;
+namespace Bavix\Leaflet\Tiles;
 
-use Encore\Leaflet\Tile;
+use Bavix\Leaflet\Tile;
 
 class Sputnik extends Tile
 {

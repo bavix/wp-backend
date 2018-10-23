@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Leaflet;
+namespace Bavix\Leaflet;
 
 abstract class Tile
 {

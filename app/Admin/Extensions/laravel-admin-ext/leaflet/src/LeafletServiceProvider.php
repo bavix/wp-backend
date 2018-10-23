@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Leaflet;
+namespace Bavix\Leaflet;
 
 use Encore\Admin\Form;
 use Illuminate\Support\ServiceProvider;

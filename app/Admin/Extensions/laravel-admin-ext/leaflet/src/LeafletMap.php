@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Leaflet;
+namespace Bavix\Leaflet;
 
 use Encore\Admin\Form\Field;
-use Encore\Leaflet\Tiles\Sputnik;
+use Bavix\Leaflet\Tiles\Sputnik;
 use Illuminate\Support\Str;
 
 class LeafletMap extends Field

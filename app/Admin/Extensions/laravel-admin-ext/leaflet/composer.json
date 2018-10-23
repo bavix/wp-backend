@@ -1,8 +1,8 @@
 {
     "name": "laravel-admin-ext/leaflet",
-    "description": "description...",
+    "description": "OpenStreetMap map for laravel-admin",
     "type": "library",
-    "keywords": ["laravel-admin", "extension"],
+    "keywords": ["laravel-admin", "extension", "open-street-map", "leaflet"],
     "homepage": "https://github.com/laravel-admin-ext/leaflet",
     "license": "MIT",
     "authors": [
@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.2.0",
         "encore/laravel-admin": "~1.6"
     },
     "require-dev": {
@@ -20,15 +20,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Encore\\Leaflet\\": "src/"
+            "Bavix\\Leaflet\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Encore\\Leaflet\\LeafletServiceProvider"
+                "Bavix\\Leaflet\\LeafletServiceProvider"
             ]
-
         }
     }
 }
