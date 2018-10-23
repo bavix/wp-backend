@@ -135,18 +135,6 @@ class BrandController extends Controller
         $form->text('name');
         $form->switch('enabled');
 
-//        $form->hasMany('addresses', function (Form\NestedForm $nestedForm) {
-//            $nestedForm->text('label', 'Address');
-//            $nestedForm->hidden('latitude');
-//            $nestedForm->hidden('longitude');
-//            $nestedForm->map('latitude', 'longitude', 'Map');
-//        });
-
-        $form->hasMany('links', function (Form\NestedForm $nestedForm) {
-            $nestedForm->url('url');
-            $nestedForm->switch('enabled');
-        });
-
         $form->display('created_at', 'Created At');
         $form->display('updated_at', 'Updated At');
 

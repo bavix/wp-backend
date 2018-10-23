@@ -1,0 +1,34 @@
+{
+    "name": "laravel-admin-ext/leaflet",
+    "description": "description...",
+    "type": "library",
+    "keywords": ["laravel-admin", "extension"],
+    "homepage": "https://github.com/laravel-admin-ext/leaflet",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Babichev Maxim",
+            "email": "info@babichev.net"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "encore/laravel-admin": "~1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Encore\\Leaflet\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Encore\\Leaflet\\LeafletServiceProvider"
+            ]
+
+        }
+    }
+}

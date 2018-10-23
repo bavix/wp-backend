@@ -289,6 +289,8 @@ return [
     |
     */
     'extensions' => [
-
+        'leaflet' => [
+            'enable' => true,
+        ],
     ],
 ];

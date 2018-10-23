@@ -4,6 +4,12 @@
     "keywords": ["wheelpro", "wheels"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "app/Admin/Extensions/laravel-admin-ext/leaflet"
+        }
+    ],
     "require": {
         "php": "^7.2",
         "ext-json": "*",
@@ -15,6 +21,7 @@
         "intervention/image": "^2.4",
         "laravel-admin-ext/config": "^1.0",
         "laravel-admin-ext/helpers": "^1.1",
+        "laravel-admin-ext/leaflet": "*",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
         "laravel/socialite": "^3.1",
