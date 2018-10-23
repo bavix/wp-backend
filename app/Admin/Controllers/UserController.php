@@ -40,9 +40,9 @@ class UserController extends Controller
         $grid->with(['roles']);
 
         $grid->filter(function (Grid\Filter $filter) {
-            $filter->equal('login');
+            $filter->like('login');
             $filter->like('name');
-            $filter->equal('email');
+            $filter->like('email');
         });
 
         $grid->column('id', 'ID')
