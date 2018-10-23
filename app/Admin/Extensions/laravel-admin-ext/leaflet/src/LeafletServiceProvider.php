@@ -20,13 +20,6 @@ class LeafletServiceProvider extends ServiceProvider
             $this->loadViewsFrom($views, 'laravel-admin-leaflet');
         }
 
-        if ($this->app->runningInConsole() && $assets = $extension->assets()) {
-            $this->publishes(
-                [$assets => public_path('vendor/laravel-admin-ext/leaflet')],
-                'leaflet'
-            );
-        }
-
         $this->app->booted(function () {
             Form::extend('leaflet', LeafletMap::class);
         });

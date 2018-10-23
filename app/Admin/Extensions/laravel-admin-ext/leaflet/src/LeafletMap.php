@@ -3,10 +3,17 @@
 namespace Encore\Leaflet;
 
 use Encore\Admin\Form\Field;
+use Encore\Leaflet\Tiles\Sputnik;
+use Encore\Leaflet\Tiles\Tile;
 use Illuminate\Support\Str;
 
 class LeafletMap extends Field
 {
+
+    /**
+     * @var Tile
+     */
+    protected $tile;
 
     /**
      * @var string
@@ -41,7 +48,51 @@ class LeafletMap extends Field
             'lng' => \array_shift($arguments),
         ];
 
+        if (empty($arguments)) {
+            $arguments = ['Leaflet'];
+        }
+
+        $this->options((array)\config('admin.extensions.leaflet.config'));
         parent::__construct($column, $arguments);
+    }
+
+    /**
+     * @return Tile
+     */
+    protected function getTile(): Tile
+    {
+        if (!$this->tile) {
+            $this->tile = $this->options['tile'] ?? new Sputnik();
+        }
+
+        return $this->tile;
+    }
+
+    /**
+     * @return string
+     */
+    protected function tileOptions(): string
+    {
+        return \json_encode([
+            'attribution' => $this->getTile()->attribution(),
+            'maxZoom' => $this->getTile()->maxZoom(),
+        ]);
+    }
+
+    /**
+     * @return int
+     */
+    protected function zoom(): int
+    {
+        return $this->options['zoom'] ?? 13;
+    }
+
+    /**
+     * @return string
+     */
+    protected function style(): string
+    {
+        return $this->options['style'] ?? 'bar';
     }
 
     /**
@@ -53,25 +104,22 @@ class LeafletMap extends Field
         $this->variables['uuid'] = $uuid;
 
         $this->script = <<<script
-    var latEl = document.getElementById('{$uuid}{$this->id['lat']}');
-    var lngEl = document.getElementById('{$uuid}{$this->id['lng']}');
-    var lat = latEl.value;
-    var lng = lngEl.value;
-    var map = L.map('$uuid').setView([lat, lng], 4);
-    var marker = L.marker([lat, lng]).addTo(map);
+    var latitude = document.getElementById('{$uuid}{$this->id['lat']}');
+    var longitude = document.getElementById('{$uuid}{$this->id['lng']}');
+    var map = L.map('$uuid').setView([latitude.value, longitude.value], {$this->zoom()});
+    var marker = L.marker([latitude.value, longitude.value]).addTo(map);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    L.tileLayer('{$this->getTile()->layer()}', {$this->tileOptions()}).addTo(map);
 
     var searchControl = new GeoSearch.GeoSearchControl({
       provider: new GeoSearch.OpenStreetMapProvider(),
+      style: '{$this->style()}',
     });
 
     map.addControl(searchControl);
     map.on('geosearch/showlocation', function (e) {
-        latEl.value = e.location.x;
-        lngEl.value = e.location.y;
+        latitude.value = e.location.x;
+        longitude.value = e.location.y;
     });
 script;
 
