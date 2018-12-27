@@ -19,7 +19,7 @@ class BrandObserver
         /**
          * Если мы выключили бренд, то отключаем и его диски
          */
-        if (!$brand->enabled && $brand->enabled !== $brand->getOriginal('enabled')) {
+        if ($brand->getKey() && !$brand->enabled && $brand->enabled !== $brand->getOriginal('enabled')) {
             Wheel::whereEnabled(true)
                 ->where('brand_id', $brand->id)
                 ->update(['enabled' => false]);
