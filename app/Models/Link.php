@@ -23,6 +23,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Link whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Link whereUrl($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Link newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Link newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Link query()
  */
 class Link extends Model
 {

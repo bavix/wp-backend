@@ -43,6 +43,17 @@ use Rinvex\Attributes\Traits\Attributable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereStyleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property mixed $entity
+ * @property-read \App\Models\Image|null $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
+ * @property-read \App\Models\Style|null $style
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Video[] $videos
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel hasAttribute($key, $value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel hasFavorited()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel hasLiked()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel query()
  */
 class Wheel extends Model implements Followable, Likeable
 {

@@ -337,7 +337,7 @@ class TransferTableSeeder extends Seeder
                     'enabled' => $datum['active'] && \App\Models\Brand::whereEnabled(true)
                         ->find($this->brands[$datum['brandId']]),
 
-                    'popular' => $datum['popular'] * 10000,
+                    'popular' => \round($datum['popular'] * 10000),
 
                     'style_id' => $datum['styleId'] ?
                         $this->styles[$datum['styleId']] : null,

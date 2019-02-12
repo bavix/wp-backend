@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Collection whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Collection whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Collection newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Collection newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Collection query()
  */
 class Collection extends Model
 {

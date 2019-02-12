@@ -30,6 +30,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $name
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style whereTuple($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style query()
  */
 class Style extends Model
 {

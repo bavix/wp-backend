@@ -49,6 +49,14 @@ use Rinvex\Addresses\Traits\Addressable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Image|null $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Link[] $links
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wheel[] $wheels
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand hasFavorited()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand hasLiked()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand query()
  */
 class Brand extends Model implements Followable, Likeable
 {
