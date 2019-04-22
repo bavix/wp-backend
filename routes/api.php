@@ -11,51 +11,7 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
-
-// auth
-Route::post('auth/register', 'AuthController@register')
-    ->name('auth.register');
-
-Route::post('auth/forgot', 'AuthController@forgot')
-    ->name('auth.forgot');
-
-Route::post('auth/social/{provider}', 'AuthController@social')
-    ->name('auth.social');
-
-// profile
-Route::middleware('auth:api')
-    ->get('profile', 'ProfileController@show')
-    ->name('profile');
-
-Route::middleware('auth:api')
-    ->post('profile/verified-email', 'ProfileController@verifiedEmail')
-    ->name('auth.verified_email');
-
-Route::middleware('auth:api')
-    ->post('profile/change-password', 'ProfileController@changePassword')
-    ->name('profile.change_password');
-
-// brands
-Route::apiResource('brands', 'BrandsController');
-
-// wheels
-Route::apiResource('wheels', 'WheelsController');
-Route::get('wheels/{id}/similar', 'WheelsController@similar')
-    ->name('wheels.similar');
-
-Route::middleware('auth:api')
-    ->post('wheels/{id}/favorite', 'WheelsController@favorite')
-    ->name('wheels.favorite');
-
-Route::middleware('auth:api')
-    ->delete('wheels/{id}/favorite', 'WheelsController@unfavorite')
-    ->name('wheels.unfavorite');
-
-Route::middleware('auth:api')
-    ->post('wheels/{id}/like', 'WheelsController@like')
-    ->name('wheels.like');
-
-Route::middleware('auth:api')
-    ->delete('wheels/{id}/favorite', 'WheelsController@unlike')
-    ->name('wheels.unlike');
+include __DIR__ . '/api/auth.php';
+include __DIR__ . '/api/profile.php';
+include __DIR__ . '/api/brands.php';
+include __DIR__ . '/api/wheels.php';
