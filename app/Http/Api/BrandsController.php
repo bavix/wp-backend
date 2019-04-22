@@ -23,10 +23,7 @@ class BrandsController extends Controller
      */
     public function index(ViewRequest $request): Brands
     {
-        return new Brands(
-            $this->resource()
-                ->paginate()
-        );
+        return new Brands($this->resource()->paginate());
     }
 
     /**
@@ -37,7 +34,8 @@ class BrandsController extends Controller
     public function show(ViewRequest $request, int $id): BrandResource
     {
         return new BrandResource(
-            $this->query()
+            $this->queryBuilder()
+                ->allowedIncludes('image', 'collections')
                 ->findOrFail($id)
         );
     }

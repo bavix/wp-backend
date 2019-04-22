@@ -82,6 +82,9 @@ class Video extends Model
         'provider_name' => 'string',
     ];
 
+    /**
+     * @var array
+     */
     protected $appends = [
         'identifier'
     ];

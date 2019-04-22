@@ -223,8 +223,11 @@ class WheelsController extends Controller
     protected function resource(): QueryBuilder
     {
         return $this->queryBuilder()
-            ->allowedFilters(Filter::exact('brand_id'))
-            ->allowedIncludes('image', 'brand');
+            ->allowedFilters(
+                Filter::exact('brand_id'),
+                Filter::exact('collection_id')
+            )
+            ->allowedIncludes('image', 'brand', 'collection');
     }
 
 }
