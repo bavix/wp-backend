@@ -99,7 +99,7 @@ class WheelsController extends Controller
         return new Wheels(
             $this->resource()
                 ->where('style_id', $wheel->style_id)
-                ->where('id', '!=', $id)
+                ->whereKeyNot($id)
                 ->paginate()
         );
     }
@@ -132,7 +132,7 @@ class WheelsController extends Controller
         $user = $request->user();
         $wheel = $this->query()->findOrFail($id);
 
-        abort_if(!$user->like($wheel), 409);
+        abort_unless($user->like($wheel), 409);
 
         $result = ['count' => $wheel->likes()->count()];
         return response($result, 201);
@@ -152,7 +152,7 @@ class WheelsController extends Controller
         $user = $request->user();
         $wheel = $this->query()->findOrFail($id);
 
-        abort_if(!$user->unlike($wheel), 409);
+        abort_unless($user->unlike($wheel), 409);
 
         return response()->noContent();
     }
@@ -171,7 +171,7 @@ class WheelsController extends Controller
         $user = $request->user();
         $wheel = $this->query()->findOrFail($id);
 
-        abort_if(!$user->follow($wheel), 409);
+        abort_unless($user->follow($wheel), 409);
 
         $result = ['count' => $wheel->favorites()->count()];
         return response($result, 201);
@@ -191,7 +191,7 @@ class WheelsController extends Controller
         $user = $request->user();
         $wheel = $this->query()->findOrFail($id);
 
-        abort_if(!$user->unfollow($wheel), 409);
+        abort_unless($user->unfollow($wheel), 409);
 
         return response()->noContent();
     }
