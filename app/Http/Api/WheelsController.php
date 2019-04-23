@@ -219,7 +219,8 @@ class WheelsController extends Controller
                 Filter::exact('brand_id'),
                 Filter::exact('collection_id')
             )
-            ->allowedIncludes('image', 'brand', 'collection');
+            ->allowedIncludes('image', 'brand', 'collection')
+            ->allowedSorts('popular', 'name');
     }
 
 }

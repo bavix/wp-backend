@@ -54,7 +54,8 @@ class BrandsController extends Controller
     protected function resource(): QueryBuilder
     {
         return $this->queryBuilder()
-            ->allowedIncludes('image');
+            ->allowedIncludes('image')
+            ->defaultSort('name');
     }
 
 }
