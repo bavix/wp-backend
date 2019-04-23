@@ -20,5 +20,5 @@ Route::middleware('auth:api')
     ->name('wheels.like');
 
 Route::middleware('auth:api')
-    ->delete('wheels/{id}/favorite', 'WheelsController@unlike')
+    ->delete('wheels/{id}/like', 'WheelsController@unlike')
     ->name('wheels.unlike');
