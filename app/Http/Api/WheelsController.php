@@ -132,12 +132,10 @@ class WheelsController extends Controller
         $user = $request->user();
         $wheel = $this->query()->findOrFail($id);
 
-        if ($user->like($wheel)) {
-            $result = ['count' => $wheel->likes()->count()];
-            return response($result, 201);
-        }
+        abort_if(!$user->like($wheel), 409);
 
-        abort(422);
+        $result = ['count' => $wheel->likes()->count()];
+        return response($result, 201);
     }
 
     /**
@@ -154,11 +152,9 @@ class WheelsController extends Controller
         $user = $request->user();
         $wheel = $this->query()->findOrFail($id);
 
-        if ($user->unlike($wheel)) {
-            return response()->noContent();
-        }
+        abort_if(!$user->unlike($wheel), 409);
 
-        abort(422);
+        return response()->noContent();
     }
 
     /**
@@ -175,12 +171,10 @@ class WheelsController extends Controller
         $user = $request->user();
         $wheel = $this->query()->findOrFail($id);
 
-        if ($user->follow($wheel)) {
-            $result = ['count' => $wheel->favorites()->count()];
-            return response($result, 201);
-        }
+        abort_if(!$user->follow($wheel), 409);
 
-        abort(422);
+        $result = ['count' => $wheel->favorites()->count()];
+        return response($result, 201);
     }
 
     /**
@@ -197,11 +191,9 @@ class WheelsController extends Controller
         $user = $request->user();
         $wheel = $this->query()->findOrFail($id);
 
-        if ($user->unfollow($wheel)) {
-            return response()->noContent();
-        }
+        abort_if(!$user->unfollow($wheel), 409);
 
-        abort(422);
+        return response()->noContent();
     }
 
     /**
