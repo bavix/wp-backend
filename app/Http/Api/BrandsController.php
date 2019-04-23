@@ -55,7 +55,7 @@ class BrandsController extends Controller
     {
         return $this->queryBuilder()
             ->allowedIncludes('image')
-            ->defaultSort('name');
+            ->allowedSorts('name');
     }
 
 }
