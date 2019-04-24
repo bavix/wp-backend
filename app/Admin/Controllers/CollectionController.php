@@ -45,7 +45,7 @@ class CollectionController extends Controller
         $grid->filter(function (Grid\Filter $filter) {
             $filter->equal('brand_id', 'Brand')
                 ->select($this->ajaxSelect(Brand::class))
-                ->ajax(route('cp.api.brands'));
+                ->ajax(route('cpold.api.brands'));
 
             $filter->like('name');
         });
@@ -137,7 +137,7 @@ class CollectionController extends Controller
                     ->pluck('name', 'id')
                     ->toArray();
             })
-            ->ajax(route('cp.api.brands'));
+            ->ajax(route('cpold.api.brands'));
 
         $form->text('name');
         $form->switch('enabled');

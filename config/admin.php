@@ -48,7 +48,7 @@ return [
     */
     'route' => [
 
-        'prefix' => 'cp',
+        'prefix' => 'cpold',
 
         'namespace' => 'App\\Admin\\Controllers',
 

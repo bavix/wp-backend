@@ -27,7 +27,7 @@ class WheelSimilarAction extends AbstractTool
      */
     public function render(): string
     {
-        $route = route('cp.wheels.index') . '?style_id=' . $this->styleId;
+        $route = route('cpold.wheels.index') . '?style_id=' . $this->styleId;
 
         return <<<button
 <a href="$route">

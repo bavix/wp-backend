@@ -57,8 +57,8 @@ class WheelController extends Controller
             $brandFilter = $filter->equal('brand_id', 'Brand')
                 ->select($this->ajaxSelect(Brand::class));
 
-            $brandFilter->load('collection_id', route('cp.api.collections'));
-            $brandFilter->ajax(route('cp.api.brands'));
+            $brandFilter->load('collection_id', route('cpold.api.collections'));
+            $brandFilter->ajax(route('cpold.api.brands'));
 
             $filter->equal('collection_id', 'Collection')
                 ->select($this->ajaxSelect(Collection::class));
@@ -163,7 +163,7 @@ class WheelController extends Controller
                     ->pluck('name', 'id')
                     ->toArray();
             })
-            ->ajax(route('cp.api.brands'));
+            ->ajax(route('cpold.api.brands'));
 
         $form->select('collection_id', 'Collection')
             ->options(function ($id) {
@@ -173,7 +173,7 @@ class WheelController extends Controller
                     return $model->pluck('name', 'id')->toArray();
                 }
             })
-            ->ajax(route('cp.api.collections'));
+            ->ajax(route('cpold.api.collections'));
 
         $form->select('style_id', 'Style')
             ->options(Style::options());

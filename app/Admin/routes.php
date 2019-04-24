@@ -11,37 +11,37 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'DashController@index')
-        ->name('cp.dashboard');
+        ->name('cpold.dashboard');
 
     $router->resource('oauth-client', 'OAuthClientController')
-        ->names('cp.oauth');
+        ->names('cpold.oauth');
 
     $router->resource('brands', 'BrandController')
-        ->names('cp.brands');
+        ->names('cpold.brands');
 
     $router->resource('collections', 'CollectionController')
-        ->names('cp.collections');
+        ->names('cpold.collections');
 
     $router->resource('wheels', 'WheelController')
-        ->names('cp.wheels');
+        ->names('cpold.wheels');
 
     $router->resource('styles', 'StyleController')
-        ->names('cp.styles');
+        ->names('cpold.styles');
 
     $router->resource('users', 'UserController')
-        ->names('cp.users');
+        ->names('cpold.users');
 
     $router->resource('roles', 'RoleController')
-        ->names('cp.roles');
+        ->names('cpold.roles');
 
     $router->resource('permissions', 'PermissionController')
-        ->names('cp.permissions');
+        ->names('cpold.permissions');
 
     // api
     $router->get('api/brands', 'ApiController@brands')
-        ->name('cp.api.brands');
+        ->name('cpold.api.brands');
 
     $router->get('api/collections', 'ApiController@collections')
-        ->name('cp.api.collections');
+        ->name('cpold.api.collections');
 
 });

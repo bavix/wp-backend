@@ -130,7 +130,7 @@ class BrandController extends Controller
                     return [$brand->id => $brand->name];
                 }
             })
-            ->ajax(route('cp.api.brands'));
+            ->ajax(route('cpold.api.brands'));
 
         $form->text('name');
         $form->switch('enabled');

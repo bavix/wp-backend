@@ -31,7 +31,7 @@ class DashController extends Controller
                     'Users',
                     'users',
                     'aqua',
-                    route('cp.users.index'),
+                    route('cpold.users.index'),
                     $this->info(User::class)
                 )
             );
@@ -42,7 +42,7 @@ class DashController extends Controller
                     'Wheels',
                     'circle-thin',
                     'green',
-                    route('cp.wheels.index'),
+                    route('cpold.wheels.index'),
                     $this->info(Wheel::class)
                 )
             );
@@ -53,7 +53,7 @@ class DashController extends Controller
                     'Brands',
                     'building-o',
                     'red',
-                    route('cp.brands.index'),
+                    route('cpold.brands.index'),
                     $this->info(Brand::class)
                 )
             );
@@ -64,7 +64,7 @@ class DashController extends Controller
                     'Collections',
                     'object-group',
                     'blue',
-                    route('cp.collections.index'),
+                    route('cpold.collections.index'),
                     $this->info(Collection::class)
                 )
             );
@@ -75,7 +75,7 @@ class DashController extends Controller
                     'Styles',
                     'star-o',
                     'yellow',
-                    route('cp.styles.index'),
+                    route('cpold.styles.index'),
                     $this->info(Style::class)
                 )
             );
@@ -86,7 +86,7 @@ class DashController extends Controller
                     'Roles',
                     'user',
                     'info',
-                    route('cp.roles.index'),
+                    route('cpold.roles.index'),
                     $this->info(Role::class)
                 )
             );
@@ -97,7 +97,7 @@ class DashController extends Controller
                     'Permissions',
                     'ban',
                     'aqua',
-                    route('cp.permissions.index'),
+                    route('cpold.permissions.index'),
                     $this->info(Permission::class)
                 )
             );
