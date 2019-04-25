@@ -72,6 +72,7 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
+            "@php artisan nova:publish",
             "@php artisan nova-lang:publish ru --force"
         ],
         "post-root-package-install": [
