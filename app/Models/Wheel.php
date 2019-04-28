@@ -65,7 +65,7 @@ class Wheel extends Model implements Followable, Likeable
     /**
      * @var array
      */
-    protected $with = ['eav'];
+    protected $with = [];
 
     /**
      * @var array
