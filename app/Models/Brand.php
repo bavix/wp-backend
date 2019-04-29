@@ -73,6 +73,10 @@ class Brand extends Model implements Followable, Likeable
         'image_id',
         'name',
         'enabled',
+
+        // fixme: remove
+        'created_at',
+        'updated_at',
     ];
 
     /**

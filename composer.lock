@@ -1937,12 +1937,12 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:bavix/laravel-nova.git",
-                "reference": "1b92e1c9dcc69313a5fe6bb7cac85a912cd4dd1c"
+                "reference": "7d2b8999d89e45ef9d1826f6935a712bc2a41b64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/bavix%2Flaravel-nova/repository/archive.zip?sha=1b92e1c9dcc69313a5fe6bb7cac85a912cd4dd1c",
-                "reference": "1b92e1c9dcc69313a5fe6bb7cac85a912cd4dd1c",
+                "url": "https://gitlab.com/api/v4/projects/bavix%2Flaravel-nova/repository/archive.zip?sha=7d2b8999d89e45ef9d1826f6935a712bc2a41b64",
+                "reference": "7d2b8999d89e45ef9d1826f6935a712bc2a41b64",
                 "shasum": ""
             },
             "require": {
@@ -1998,7 +1998,7 @@
                 "admin",
                 "laravel"
             ],
-            "time": "2019-04-22T07:54:14+00:00"
+            "time": "2019-04-29T07:36:10+00:00"
         },
         {
             "name": "laravel/passport",

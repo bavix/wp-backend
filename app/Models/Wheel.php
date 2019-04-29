@@ -65,16 +65,6 @@ class Wheel extends Model implements Followable, Likeable
     /**
      * @var array
      */
-    protected $with = [];
-
-    /**
-     * @var array
-     */
-    protected $withCount = ['likes', 'favorites'];
-
-    /**
-     * @var array
-     */
     protected $fillable = [
         'name',
         'brand_id',
@@ -84,6 +74,10 @@ class Wheel extends Model implements Followable, Likeable
         'customized',
         'enabled',
         'retired',
+
+        // fixme: remove
+        'created_at',
+        'updated_at',
     ];
 
     /**

@@ -202,6 +202,7 @@ class WheelsController extends Controller
     protected function query(): Builder
     {
         return Wheel::whereEnabled(true)
+            ->withCount(['likes', 'favorites'])
             ->when(auth()->user(), function (Builder $query) {
                 return $query
                     ->hasFavorited()

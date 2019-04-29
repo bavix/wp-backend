@@ -2,6 +2,9 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\UserSwitch;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -68,6 +71,20 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:6')
                 ->updateRules('nullable', 'string', 'min:6'),
+
+            Boolean::make('Enabled')
+                ->rules('required'),
+
+            DateTime::make('Created At')
+                ->hideFromIndex()
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->readonly(true),
+
+            DateTime::make('Updated At')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->readonly(true),
         ];
     }
 
@@ -90,7 +107,9 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new UserSwitch(),
+        ];
     }
 
     /**

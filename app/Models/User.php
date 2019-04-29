@@ -72,6 +72,10 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
         'email',
         'password',
         'email_verified_at',
+
+        // fixme: remove
+        'created_at',
+        'updated_at',
     ];
 
     /**

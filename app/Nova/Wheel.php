@@ -2,7 +2,10 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\WheelSwitch;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -72,12 +75,35 @@ class Wheel extends Resource
                 ->dependsOn('Brand')
                 ->nullable(),
 
-            BelongsTo::make('Style')
-                ->nullable(),
-
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            NovaBelongsToDepend::make('Style')
+                ->options(\App\Models\Style::all())
+                ->nullable(),
+
+            Boolean::make('Enabled')
+                ->rules('required'),
+
+            Boolean::make('Customized')
+                ->hideFromIndex()
+                ->rules('required'),
+
+            Boolean::make('Retired')
+                ->hideFromIndex()
+                ->rules('required'),
+
+            DateTime::make('Created At')
+                ->hideFromIndex()
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->readonly(true),
+
+            DateTime::make('Updated At')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->readonly(true),
         ];
     }
 
@@ -100,7 +126,9 @@ class Wheel extends Resource
      */
     public function filters(Request $request): array
     {
-        return [];
+        return [
+            new WheelSwitch(),
+        ];
     }
 
     /**

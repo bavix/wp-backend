@@ -4,6 +4,18 @@ namespace App\Providers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Nova\Metrics\BrandsPerDay;
+use App\Nova\Metrics\BrandsPerEnabled;
+use App\Nova\Metrics\CollectionsPerDay;
+use App\Nova\Metrics\CollectionsPerEnabled;
+use App\Nova\Metrics\NewBrands;
+use App\Nova\Metrics\NewCollections;
+use App\Nova\Metrics\NewUsers;
+use App\Nova\Metrics\NewWheels;
+use App\Nova\Metrics\UsersPerDay;
+use App\Nova\Metrics\UsersPerEnabled;
+use App\Nova\Metrics\WheelsPerDay;
+use App\Nova\Metrics\WheelsPerEnabled;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
@@ -56,7 +68,21 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-//            new Help,
+            new UsersPerEnabled(),
+            new UsersPerDay(),
+            new NewUsers(),
+
+            new BrandsPerEnabled(),
+            new BrandsPerDay(),
+            new NewBrands(),
+
+            new CollectionsPerEnabled(),
+            new CollectionsPerDay(),
+            new NewCollections(),
+
+            new WheelsPerEnabled(),
+            new WheelsPerDay(),
+            new NewWheels(),
         ];
     }
 

@@ -63,6 +63,10 @@ class Video extends Model
         'author_name',
         'author_url',
         'provider_name',
+
+        // fixme: remove
+        'created_at',
+        'updated_at',
     ];
 
     /**

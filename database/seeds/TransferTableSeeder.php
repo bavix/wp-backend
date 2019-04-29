@@ -94,6 +94,9 @@ class TransferTableSeeder extends Seeder
             'tuple' => $data['number'] === 'Simple' ? 'Single' : $data['number'],
             'spoke' => $data['spoke'],
             'rotated' => (bool)$data['isTurned'],
+        ], [
+            'created_at' => $data['createdAt'],
+            'updated_at' => $data['updatedAt'],
         ]);
 
         $this->styles[$data['id']] = $style->id;
@@ -114,7 +117,9 @@ class TransferTableSeeder extends Seeder
         $brand = \App\Models\Brand::firstOrCreate([
             'name' => \trim($data['name'])
         ], [
-            'enabled' => (bool)$data['active']
+            'enabled' => (bool)$data['active'],
+            'created_at' => $data['createdAt'],
+            'updated_at' => $data['updatedAt'],
         ]);
 
         // loading brand
@@ -133,6 +138,9 @@ class TransferTableSeeder extends Seeder
                 'name' => trim($collection['name']),
             ], [
                 'enabled' => $collection['active'] && $brand->enabled,
+
+                'created_at' => $collection['createdAt'],
+                'updated_at' => $collection['updatedAt'],
             ]);
 
             $this->collections[$collection['id']] = $model->id;
@@ -157,6 +165,9 @@ class TransferTableSeeder extends Seeder
                 'is_primary' => false,
                 'is_billing' => false,
                 'is_shipping' => false,
+
+                'created_at' => $address['createdAt'],
+                'updated_at' => $address['updatedAt'],
             ]);
         }
 
@@ -276,6 +287,9 @@ class TransferTableSeeder extends Seeder
                     'enabled' => $datum['active'],
                     'email_verified_at' => $datum['roleId'] !== 3 ?
                         \Carbon\Carbon::now() : null,
+
+                    'created_at' => $datum['createdAt'],
+                    'updated_at' => $datum['updatedAt'],
                 ]);
 
                 $this->users[$datum['id']] = $user->id;
@@ -341,6 +355,9 @@ class TransferTableSeeder extends Seeder
 
                     'style_id' => $datum['styleId'] ?
                         $this->styles[$datum['styleId']] : null,
+
+                    'created_at' => $datum['createdAt'],
+                    'updated_at' => $datum['updatedAt'],
                 ]);
 
                 if (!$wheel->image_id && $datum['image']) {

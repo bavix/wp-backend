@@ -2,6 +2,9 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\BrandSwitch;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -52,6 +55,20 @@ class Brand extends Resource
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            Boolean::make('Enabled')
+                ->rules('required'),
+
+            DateTime::make('Created At')
+                ->hideFromIndex()
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->readonly(true),
+
+            DateTime::make('Updated At')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->readonly(true),
         ];
     }
 
@@ -74,7 +91,9 @@ class Brand extends Resource
      */
     public function filters(Request $request): array
     {
-        return [];
+        return [
+            new BrandSwitch(),
+        ];
     }
 
     /**

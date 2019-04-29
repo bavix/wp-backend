@@ -39,6 +39,10 @@ class Collection extends Model
         'brand_id',
         'name',
         'enabled',
+
+        // fixme: remove
+        'created_at',
+        'updated_at',
     ];
 
     /**

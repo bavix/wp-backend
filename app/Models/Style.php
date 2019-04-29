@@ -55,6 +55,10 @@ class Style extends Model
         'number',
         'spoke',
         'rotated',
+
+        // fixme: remove
+        'created_at',
+        'updated_at',
     ];
 
     /**

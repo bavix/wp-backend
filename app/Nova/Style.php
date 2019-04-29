@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Number;
@@ -53,18 +54,36 @@ class Style extends Resource
 
             Select::make('Type')
                 ->options(\App\Models\Style::types())
-                ->sortable(),
+                ->sortable()
+                ->rules('required'),
 
             Select::make('Tuple')
                 ->options(\App\Models\Style::tuples())
-                ->sortable(),
+                ->sortable()
+                ->rules('required'),
 
             Number::make('Spoke')
                 ->min(1)
                 ->max(100)
-                ->sortable(),
+                ->sortable()
+                ->rules('required'),
 
-            Boolean::make('Rotated'),
+            Boolean::make('Rotated')
+                ->rules('required'),
+
+            Boolean::make('Enabled')
+                ->rules('required'),
+
+            DateTime::make('Created At')
+                ->hideFromIndex()
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->readonly(true),
+
+            DateTime::make('Updated At')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->readonly(true),
         ];
     }
 
