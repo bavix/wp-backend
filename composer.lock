@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5621a4fcf18ac13aea20454c17f767af",
+    "content-hash": "af516a142847f37528c9ee19177cbf7c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -119,6 +119,44 @@
                 "laravel"
             ],
             "time": "2019-02-26T18:08:30+00:00"
+        },
+        {
+            "name": "bavix/cupkit",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bavix/cupkit.git",
+                "reference": "b04da41946cd241d738267b182d0ccb6d30efd1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bavix/cupkit/zipball/b04da41946cd241d738267b182d0ccb6d30efd1d",
+                "reference": "b04da41946cd241d738267b182d0ccb6d30efd1d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.3",
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bavix\\CupKit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Babichev Maxim",
+                    "email": "info@babichev.net"
+                }
+            ],
+            "description": "A tool for fast loading cdn corundum.",
+            "time": "2018-10-26T13:53:30+00:00"
         },
         {
             "name": "bavix/laravel-admin-leaflet",

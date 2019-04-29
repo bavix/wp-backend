@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
+use App\Helpers\Cup;
 use App\Models\Brand;
 use App\Models\Style;
 use App\Models\User;
 use App\Observers\BrandObserver;
 use App\Observers\StyleObserver;
 use App\Observers\UserObserver;
+use Bavix\CupKit\Client;
 use Encore\Admin\Config\Config;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(Client::class, function () {
+            return new Client(Cup::identity());
+        });
     }
 }
