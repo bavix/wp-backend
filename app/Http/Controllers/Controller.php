@@ -15,6 +15,7 @@ class Controller extends BaseController
      * @param string $class
      * @param string $field
      * @return callable
+     * @deprecated
      */
     protected function ajaxSelect(string $class, string $field = 'name'): callable
     {

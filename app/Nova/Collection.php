@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\BrandFilter;
 use App\Nova\Filters\CollectionSwitch;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -108,6 +109,7 @@ class Collection extends Resource
     public function filters(Request $request): array
     {
         return [
+            new BrandFilter(),
             new CollectionSwitch(),
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\BrandFilter;
 use App\Nova\Filters\WheelSwitch;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -127,6 +128,7 @@ class Wheel extends Resource
     public function filters(Request $request): array
     {
         return [
+            new BrandFilter(),
             new WheelSwitch(),
         ];
     }

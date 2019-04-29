@@ -37,6 +37,11 @@ class User extends Resource
     ];
 
     /**
+     * @var string
+     */
+    public static $group = 'User management';
+
+    /**
      * @return string|null
      */
     public function subtitle(): ?string
@@ -61,9 +66,15 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Text::make('Login')
+                ->sortable()
+                ->rules('required', 'max:255')
+                ->creationRules('unique:users,login')
+                ->updateRules('unique:users,login,{{resourceId}}'),
+
             Text::make('Email')
                 ->sortable()
-                ->rules('required', 'email', 'max:254')
+                ->rules('required', 'email', 'max:255')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 

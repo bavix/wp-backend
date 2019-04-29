@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 use Rennokki\Befriended\Contracts\Follower;
 use Rennokki\Befriended\Contracts\Liker;
@@ -123,7 +124,7 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
      */
     public function setNameAttribute(string $value)
     {
-        $this->attributes['name'] = \title_case($value);
+        $this->attributes['name'] = Str::title($value);
     }
 
     /**

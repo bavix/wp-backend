@@ -55,4 +55,12 @@ class Image extends Model
         return $this->morphTo();
     }
 
+    /**
+     * @return array
+     */
+    public function t(): array
+    {
+
+    }
+
 }
