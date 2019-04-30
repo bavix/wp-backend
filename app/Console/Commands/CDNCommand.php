@@ -25,9 +25,9 @@ class CDNCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         /**
          * @var Client $cup

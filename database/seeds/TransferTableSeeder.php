@@ -35,6 +35,15 @@ class TransferTableSeeder extends Seeder
     /**
      * @var array
      */
+    protected $cdnNames = [
+        'wheel' => 'wheels',
+        'brand' => 'brands',
+        'avatar' => 'users',
+    ];
+
+    /**
+     * @var array
+     */
     protected $brands = [];
 
     /**
@@ -53,11 +62,17 @@ class TransferTableSeeder extends Seeder
     protected $users = [];
 
     /**
+     * @var \Bavix\CupKit\Client
+     */
+    protected $cup;
+
+    /**
      * TransferTableSeeder constructor.
      */
     public function __construct()
     {
         $this->token OR $this->client_credentials();
+        $this->cup = app(\Bavix\CupKit\Client::class);
     }
 
     /**
@@ -105,10 +120,22 @@ class TransferTableSeeder extends Seeder
 
     protected function image(string $name, array $data): \App\Models\Image
     {
-        // todo: download + send to cdn
+        $attempts = 5;
+        while ($attempts > 0) {
+            try {
+                $image = $this->cup->createImage(
+                    $this->cdnNames[$name],
+                    \sprintf($this->oldCdn, $name, $data['hash'])
+                );
+            } catch (\Throwable $throwable) {
+                \usleep(60000000); // 60sec
+            } finally {
+                $attempts--;
+            }
+        }
 
         return \App\Models\Image::firstOrCreate([
-            'uuid' => $data['hash']
+            'uuid' => $image['name'],
         ]);
     }
 
