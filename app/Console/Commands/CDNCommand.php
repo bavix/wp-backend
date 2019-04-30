@@ -33,12 +33,23 @@ class CDNCommand extends Command
          * @var Client $cup
          */
         $cup = app(Client::class);
-        foreach ($cup->getBuckets() as $bucket) {
-            var_dump($bucket);
+        foreach (config('cdn.buckets', []) as $bucketName => $views) {
+            try {
+                $cup->createBucket($bucketName);
+                $this->info("Bucket $bucketName create");
+            } catch (\Throwable $throwable) {
+                $this->warn("Bucket $bucketName exists");
+            } finally {
+                foreach ($views as $view) {
+                    try {
+                        $cup->createView($bucketName, $view);
+                        $this->info("View $bucketName.{$view['name']} create");
+                    } catch (\Throwable $throwable) {
+                        $this->warn("View $bucketName.{$view['name']} exists");
+                    }
+                }
+            }
         }
-        var_dump($cup);
-        die;
-        var_dump($cup->createBucket('test'));
     }
 
 }

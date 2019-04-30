@@ -2,32 +2,35 @@
 
 return [
 
-    'base_url' => 'http//localhost:8000',
+    'base_url' => env('CDN_BASE_URL'),
 
-    'client_id' => 1,
-    'client_secret' => 'k9McVVFPhlL2JywqyicSJvv5VrFGuOSfkUF6biiy',
+    'client_id' => env('CDN_CLIENT_ID'),
+    'client_secret' => env('CDN_SECRET'),
 
-    'username' => 'maksim.babichev95@gmail.com',
-    'password' => 'tugQweZd',
+    'username' => env('CDN_USERNAME'),
+    'password' => env('CDN_PASSWORD'),
 
     'buckets' => [
 
         'wheels' => [
-            'xs' => [
+            [
+                'name' => 'xs',
                 'type' => 'fit',
                 'width' => 250,
                 'height' => 250,
                 'quality' => 75,
                 'color' => 'rgba(0,0,0,0)',
             ],
-            'm' => [
+            [
+                'name' => 'm',
                 'type' => 'fit',
                 'width' => 500,
                 'height' => 500,
                 'quality' => 75,
                 'color' => 'rgba(0,0,0,0)',
             ],
-            'xl' => [
+            [
+                'name' => 'xl',
                 'type' => 'fit',
                 'width' => 1000,
                 'height' => 1000,
@@ -37,21 +40,24 @@ return [
         ],
 
         'brands' => [
-            'xs' => [
+            [
+                'name' => 'xs',
                 'type' => 'contain',
                 'width' => 250,
                 'height' => 250,
                 'quality' => 75,
                 'color' => 'rgba(0,0,0,0)',
             ],
-            'm' => [
+            [
+                'name' => 'm',
                 'type' => 'contain',
                 'width' => 500,
                 'height' => 500,
                 'quality' => 75,
                 'color' => 'rgba(0,0,0,0)',
             ],
-            'xl' => [
+            [
+                'name' => 'xl',
                 'type' => 'contain',
                 'width' => 1000,
                 'height' => 1000,
@@ -61,21 +67,24 @@ return [
         ],
 
         'users' => [
-            'xs' => [
+            [
+                'name' => 'xs',
                 'type' => 'cover',
                 'width' => 150,
                 'height' => 150,
                 'quality' => 75,
                 'color' => 'rgba(0,0,0,0)',
             ],
-            'm' => [
+            [
+                'name' => 'm',
                 'type' => 'cover',
                 'width' => 300,
                 'height' => 300,
                 'quality' => 75,
                 'color' => 'rgba(0,0,0,0)',
             ],
-            'xl' => [
+            [
+                'name' => 'xl',
                 'type' => 'cover',
                 'width' => 600,
                 'height' => 600,
