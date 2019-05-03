@@ -52,7 +52,7 @@ class Image extends Model
      * @param string $format
      * @return array
      */
-    public function thumbnails($format = 'png'): array
+    public function getThumbnailsAttribute($format = 'png'): array
     {
         return Provider::thumbnails($this, $format);
     }
