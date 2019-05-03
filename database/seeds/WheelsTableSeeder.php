@@ -6,23 +6,28 @@ class WheelsTableSeeder extends Seeder
 {
 
     /**
+     * @var array
+     */
+    protected $buckets = [
+        \App\Models\Brand::class => 'brands',
+        \App\Models\Wheel::class => 'wheels',
+        \App\Models\User::class => 'users',
+    ];
+
+    /**
      * @param \Illuminate\Database\Eloquent\Model $model
      *
      * @return \App\Models\Image
      */
     protected function image(\Illuminate\Database\Eloquent\Model $model, $uuid): \App\Models\Image
     {
-        $image = \App\Models\Image::query()
-            ->where('imageable_type', get_class($model))
-            ->where('imageable_id', $model->id)
-            ->where('uuid', $uuid)
-            ->first();
+        $image = $model->image;
+        $bucket = \get_class($model);
 
         if (!$image) {
             $image = new \App\Models\Image();
-            $image->imageable_type = get_class($model);
-            $image->imageable_id = $model->id;
             $image->uuid = $uuid;
+            $image->bucket = $bucket;
             $image->save();
         }
 
@@ -156,7 +161,7 @@ class WheelsTableSeeder extends Seeder
                 $wheel->save();
 
                 if ($wheelData['imageId']) {
-                    $image = $this->image($brand, $wheelData['image']['hash']);
+                    $image = $this->image($wheel, $wheelData['image']['hash']);
                     $wheel->image_id = $image->id;
                     $wheel->save();
                 }

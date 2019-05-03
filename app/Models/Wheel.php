@@ -53,6 +53,8 @@ use Rinvex\Attributes\Traits\Attributable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $likes
  */
 class Wheel extends Model implements Followable, Likeable
 {

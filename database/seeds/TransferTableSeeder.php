@@ -134,8 +134,10 @@ class TransferTableSeeder extends Seeder
             }
         }
 
+        $uuid = $image['uuid'] ?? $image['name'] ?? $image['id'];
         return \App\Models\Image::firstOrCreate([
-            'uuid' => $image['name'],
+            'bucket' => $this->cdnNames[$name],
+            'uuid' => $uuid,
         ]);
     }
 

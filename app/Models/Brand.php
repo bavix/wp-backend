@@ -57,6 +57,8 @@ use Rinvex\Addresses\Traits\Addressable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $likes
  */
 class Brand extends Model implements Followable, Likeable
 {

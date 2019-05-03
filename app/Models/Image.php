@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Helpers\CDN\Provider;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * App\Models\Image
@@ -11,8 +11,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @OA\Schema (schema="Image")
  * @property int $id
  * @property string $uuid
- * @property string|null $imageable_type
- * @property int|null $imageable_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereCreatedAt($value)
@@ -26,6 +24,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image query()
+ * @property string|null $bucket
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBucket($value)
  */
 class Image extends Model
 {
@@ -33,34 +33,28 @@ class Image extends Model
     /**
      * @var array
      */
-    protected $fillable = [
-        'uuid',
+    protected $casts = [
+        'id' => 'integer',
+        'uuid' => 'string',
     ];
 
     /**
      * @var array
      */
-    protected $casts = [
-        'id' => 'integer',
-        'uuid' => 'string',
-        'imageable_type' => 'string',
-        'imageable_id' => 'integer',
-    ];
+    protected $fillable = ['uuid'];
 
     /**
-     * @return MorphTo
+     * @var array
      */
-    public function imageable(): MorphTo
-    {
-        return $this->morphTo();
-    }
+    protected $appends = ['thumbnails'];
 
     /**
+     * @param string $format
      * @return array
      */
-    public function t(): array
+    public function thumbnails($format = 'png'): array
     {
-
+        return Provider::thumbnails($this, $format);
     }
 
 }
