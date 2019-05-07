@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8bb2bac256b274612056131445728b4",
+    "content-hash": "6678267174bbef136c8b3868be5ab139",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -122,16 +122,16 @@
         },
         {
             "name": "bavix/cupkit",
-            "version": "0.1.4",
+            "version": "0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bavix/cupkit.git",
-                "reference": "3193b0957615a3b019c9ed97fe3c2ab9809c83e6"
+                "reference": "89a42b963441858d14fbb41555d8d5de3397c65d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bavix/cupkit/zipball/3193b0957615a3b019c9ed97fe3c2ab9809c83e6",
-                "reference": "3193b0957615a3b019c9ed97fe3c2ab9809c83e6",
+                "url": "https://api.github.com/repos/bavix/cupkit/zipball/89a42b963441858d14fbb41555d8d5de3397c65d",
+                "reference": "89a42b963441858d14fbb41555d8d5de3397c65d",
                 "shasum": ""
             },
             "require": {
@@ -156,7 +156,7 @@
                 }
             ],
             "description": "A tool for fast loading cdn corundum.",
-            "time": "2019-05-07T07:57:53+00:00"
+            "time": "2019-05-07T10:24:33+00:00"
         },
         {
             "name": "bavix/laravel-admin-leaflet",
@@ -218,12 +218,12 @@
             "version": "0.1.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:rez1dent3/laravel-cupkit.git",
+                "url": "https://github.com/bavix/laravel-cupkit.git",
                 "reference": "fefd0ffda7f7acb4596c923952fd13f3d8087cf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rez1dent3/laravel-cupkit/zipball/fefd0ffda7f7acb4596c923952fd13f3d8087cf0",
+                "url": "https://api.github.com/repos/bavix/laravel-cupkit/zipball/fefd0ffda7f7acb4596c923952fd13f3d8087cf0",
                 "reference": "fefd0ffda7f7acb4596c923952fd13f3d8087cf0",
                 "shasum": ""
             },
@@ -245,6 +245,7 @@
                     "Bavix\\CupKit\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -256,16 +257,12 @@
             ],
             "description": "CupKit for Laravel 5",
             "keywords": [
+                "CUP",
                 "corundum",
-                "cup",
                 "cupkit",
                 "kit",
                 "laravel"
             ],
-            "support": {
-                "source": "https://github.com/rez1dent3/laravel-cupkit/tree/0.1.1",
-                "issues": "https://github.com/rez1dent3/laravel-cupkit/issues"
-            },
             "time": "2019-05-07T09:16:35+00:00"
         },
         {
@@ -1879,16 +1876,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.15",
+            "version": "v5.8.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8a34004aed6ff0aa4072360e3e5bd875edebc223"
+                "reference": "83d57f9f9162ab476c43b9ec00d463ff12c578fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8a34004aed6ff0aa4072360e3e5bd875edebc223",
-                "reference": "8a34004aed6ff0aa4072360e3e5bd875edebc223",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/83d57f9f9162ab476c43b9ec00d463ff12c578fd",
+                "reference": "83d57f9f9162ab476c43b9ec00d463ff12c578fd",
                 "shasum": ""
             },
             "require": {
@@ -2022,7 +2019,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-04-30T14:05:03+00:00"
+            "time": "2019-05-07T14:37:11+00:00"
         },
         {
             "name": "laravel/nova",
@@ -2091,7 +2088,7 @@
                 "admin",
                 "laravel"
             ],
-            "time": "2019-04-29T07:36:10+00:00"
+            "time": "2019-04-22T07:54:14+00:00"
         },
         {
             "name": "laravel/passport",

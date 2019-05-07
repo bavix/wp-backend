@@ -8,10 +8,6 @@
         {
             "type": "vcs",
             "url": "git@gitlab.com:bavix/laravel-nova.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:rez1dent3/laravel-cupkit.git"
         }
     ],
     "require": {
