@@ -1,5 +1,6 @@
 <?php
 
+use Bavix\CupKit\CupKitServiceProvider;
 use Illuminate\Database\Seeder;
 
 class TransferTableSeeder extends Seeder
@@ -72,7 +73,7 @@ class TransferTableSeeder extends Seeder
     public function __construct()
     {
         $this->token OR $this->client_credentials();
-        $this->cup = app(\Bavix\CupKit\Client::class);
+        $this->cup = app(CupKitServiceProvider::SINGLETON_CLIENT);
     }
 
     /**
