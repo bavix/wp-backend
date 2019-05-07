@@ -17,7 +17,7 @@ trait HasImage
      */
     public function getPictureAttribute(): ?string
     {
-        return $this->image->thumbnails['xs'] ?? null;
+        return $this->image->thumbnails['m'] ?? null;
     }
 
 }
