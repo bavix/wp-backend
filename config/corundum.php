@@ -3,7 +3,7 @@
 return [
 
     'client_credentials' => \Bavix\CupKit\ClientCredentials::class,
-    'identity' => \Bavix\CupKit\Identity::class,
+    'identity' => \App\Helpers\CDN\Identity::class,
     'client' => \Bavix\CupKit\Client::class,
 
     'base_url' => env('CDN_BASE_URL'),
