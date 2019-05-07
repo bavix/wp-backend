@@ -79,7 +79,7 @@ class CupAdapter extends AbstractAdapter
      */
     public function write($path, $contents, Config $config)
     {
-        return $this->cup()->createImage($path, \stream_context_create($contents));
+        return $this->writeStream($path, \stream_context_create($contents), $config);
     }
 
     /**
@@ -90,7 +90,8 @@ class CupAdapter extends AbstractAdapter
      */
     public function writeStream($path, $resource, Config $config)
     {
-        return $this->cup()->createImage($path, $resource);
+        [$bucket, $uuid] = $this->parse($path);
+        return $this->cup()->createImage($bucket, $resource, $uuid);
     }
 
     /**

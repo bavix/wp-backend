@@ -122,16 +122,16 @@
         },
         {
             "name": "bavix/cupkit",
-            "version": "0.1.0",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bavix/cupkit.git",
-                "reference": "b04da41946cd241d738267b182d0ccb6d30efd1d"
+                "reference": "3193b0957615a3b019c9ed97fe3c2ab9809c83e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bavix/cupkit/zipball/b04da41946cd241d738267b182d0ccb6d30efd1d",
-                "reference": "b04da41946cd241d738267b182d0ccb6d30efd1d",
+                "url": "https://api.github.com/repos/bavix/cupkit/zipball/3193b0957615a3b019c9ed97fe3c2ab9809c83e6",
+                "reference": "3193b0957615a3b019c9ed97fe3c2ab9809c83e6",
                 "shasum": ""
             },
             "require": {
@@ -156,7 +156,7 @@
                 }
             ],
             "description": "A tool for fast loading cdn corundum.",
-            "time": "2018-10-26T13:53:30+00:00"
+            "time": "2019-05-07T07:57:53+00:00"
         },
         {
             "name": "bavix/laravel-admin-leaflet",
