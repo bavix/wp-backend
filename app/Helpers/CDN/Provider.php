@@ -14,7 +14,7 @@ class Provider
     {
         static $cdnUri;
         if (!$cdnUri) {
-            $cdnUri = \config('cdn.base_url', '');
+            $cdnUri = \config('corundum.base_url', '');
             $cdnUri = \rtrim($cdnUri, '/');
         }
         return $cdnUri;
@@ -29,7 +29,7 @@ class Provider
         static $views = [];
 
         if (empty($views[$bucket])) {
-            $views[$bucket] = \config('cdn.buckets.' . $bucket, []);
+            $views[$bucket] = \config('corundum.buckets.' . $bucket, []);
         }
 
         return $views[$bucket];

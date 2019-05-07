@@ -2,6 +2,10 @@
 
 return [
 
+    'client_credentials' => \Bavix\CupKit\ClientCredentials::class,
+    'identity' => \Bavix\CupKit\Identity::class,
+    'client' => \Bavix\CupKit\Client::class,
+
     'base_url' => env('CDN_BASE_URL'),
 
     'client_id' => env('CDN_CLIENT_ID'),

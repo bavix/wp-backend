@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af516a142847f37528c9ee19177cbf7c",
+    "content-hash": "e8bb2bac256b274612056131445728b4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -212,6 +212,61 @@
                 "open-street-map"
             ],
             "time": "2018-10-23T13:51:58+00:00"
+        },
+        {
+            "name": "bavix/laravel-cupkit",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:rez1dent3/laravel-cupkit.git",
+                "reference": "fefd0ffda7f7acb4596c923952fd13f3d8087cf0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rez1dent3/laravel-cupkit/zipball/fefd0ffda7f7acb4596c923952fd13f3d8087cf0",
+                "reference": "fefd0ffda7f7acb4596c923952fd13f3d8087cf0",
+                "shasum": ""
+            },
+            "require": {
+                "bavix/cupkit": "^0.1",
+                "laravel/framework": "5.4.*|5.5.*|5.6.*|5.7.*|5.8.*",
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bavix\\CupKit\\CupKitServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bavix\\CupKit\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Babichev Maxim",
+                    "email": "info@babichev.net"
+                }
+            ],
+            "description": "CupKit for Laravel 5",
+            "keywords": [
+                "corundum",
+                "cup",
+                "cupkit",
+                "kit",
+                "laravel"
+            ],
+            "support": {
+                "source": "https://github.com/rez1dent3/laravel-cupkit/tree/0.1.1",
+                "issues": "https://github.com/rez1dent3/laravel-cupkit/issues"
+            },
+            "time": "2019-05-07T09:16:35+00:00"
         },
         {
             "name": "cakephp/chronos",
