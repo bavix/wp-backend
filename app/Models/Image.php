@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image query()
  * @property string|null $bucket
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBucket($value)
+ * @property array $thumbnails
  */
 class Image extends Model
 {

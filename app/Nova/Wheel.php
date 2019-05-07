@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Filters\BrandFilter;
 use App\Nova\Filters\WheelSwitch;
+use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -63,6 +64,8 @@ class Wheel extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            Avatar::make('Picture', null, 'cdn'),
 
             NovaBelongsToDepend::make('Brand')
                 ->options(\App\Models\Brand::all())

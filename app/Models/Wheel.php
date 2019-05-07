@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
 use Illuminate\Database\Eloquent\Model;
@@ -62,6 +63,7 @@ class Wheel extends Model implements Followable, Likeable
     use UserCanBeFollowed;
     use UserCanBeLiked;
     use Attributable;
+    use HasImage;
 
     /**
      * @var array

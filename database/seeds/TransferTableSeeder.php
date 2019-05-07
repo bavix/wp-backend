@@ -147,7 +147,7 @@ class TransferTableSeeder extends Seeder
         $brand = \App\Models\Brand::firstOrCreate([
             'name' => \trim($data['name'])
         ], [
-            'enabled' => (bool)$data['active'],
+            'enabled' => $data['active'] && ($data['image']['hash'] ?? false),
             'created_at' => $data['createdAt'],
             'updated_at' => $data['updatedAt'],
         ]);
@@ -160,6 +160,9 @@ class TransferTableSeeder extends Seeder
             $brand->image_id = $image->id;
             $brand->save();
         }
+
+        $brand->enabled = $brand->enabled && $brand->image_id;
+        $brand->save();
 
         // collections
         foreach ($data['collections'] as $collection) {

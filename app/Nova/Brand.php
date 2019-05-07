@@ -54,6 +54,8 @@ class Brand extends Resource
         return [
             ID::make()->sortable(),
 
+            Avatar::make('Picture', null, 'cdn'),
+
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),

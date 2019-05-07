@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
 use Illuminate\Database\Eloquent\Model;
@@ -66,6 +67,7 @@ class Brand extends Model implements Followable, Likeable
     use UserCanBeFollowed;
     use UserCanBeLiked;
     use Addressable;
+    use HasImage;
 
     /**
      * @var array

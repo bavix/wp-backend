@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -57,6 +58,7 @@ use Yajra\Acl\Traits\HasRole;
 class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
 {
 
+    use HasImage;
     use HasApiTokens;
     use Notifiable;
     use CanFollow;
