@@ -65,7 +65,7 @@ class Wheel extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Picture', null, 'cdn'),
+            Avatar::make('Image', 'Picture', 'cdn'),
 
             NovaBelongsToDepend::make('Brand')
                 ->options(\App\Models\Brand::all())

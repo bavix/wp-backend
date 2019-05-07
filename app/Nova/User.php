@@ -61,7 +61,9 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Picture', null, 'cdn'),
+            Avatar::make('Image', 'Picture', 'cdn')
+                ->hideWhenUpdating()
+                ->hideWhenCreating(),
 
             Text::make('Name')
                 ->sortable()
