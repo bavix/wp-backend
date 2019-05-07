@@ -72,7 +72,7 @@ class TransferTableSeeder extends Seeder
      */
     public function __construct()
     {
-        $this->token OR $this->client_credentials();
+        $this->token OR $this->initToken();
         $this->cup = app(CupKitServiceProvider::SINGLETON_CLIENT);
     }
 
@@ -208,6 +208,9 @@ class TransferTableSeeder extends Seeder
         );
 
         $links = $lazyData['data'];
+        if (!empty($data['web'])) {
+            $links[] = ['url' => $data['web']];
+        }
         foreach ($links as $link) {
             try {
                 $brand->links()->firstOrCreate([
@@ -452,11 +455,11 @@ class TransferTableSeeder extends Seeder
     /**
      * @return void
      */
-    protected function client_credentials(): void
+    protected function initToken(): void
     {
         $response = $this->guzzle()->post('auth/token', [
             'form_params' => [
-                'grant_type' => __FUNCTION__,
+                'grant_type' => 'client_credentials',
                 'client_id' => self::CLIENT_ID,
                 'client_secret' => self::CLIENT_SECRET,
             ]
