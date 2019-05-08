@@ -13,9 +13,10 @@
     "require": {
         "php": "^7.3",
         "ext-json": "*",
-        "barryvdh/laravel-cors": "^0.11.3",
-        "bavix/laravel-cupkit": "^0.1.0",
+        "barryvdh/laravel-cors": "^0.11",
         "bavix/laravel-admin-leaflet": "^1.0",
+        "bavix/laravel-cupkit": "^0.1",
+        "bavix/laravel-middleware-ifindex": "^1.0",
         "coderello/laravel-nova-lang": "^1.0",
         "doctrine/dbal": "^2.9",
         "embed/embed": "^3.3",
