@@ -117,7 +117,10 @@ class Style extends Resource
      */
     public function filters(Request $request): array
     {
-        return [];
+        return [
+            new Filters\Style\TypeFilter(),
+            new Filters\Style\TupleFilter(),
+        ];
     }
 
     /**
