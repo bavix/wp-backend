@@ -42,6 +42,17 @@ class Style extends Resource
     public static $title = 'name';
 
     /**
+     * Get the URI key for the resource.
+     *
+     * @see https://github.com/laravel/nova-issues/issues/1553
+     * @return string
+     */
+    public static function uriKey(): string
+    {
+        return 'custom-styles';
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
