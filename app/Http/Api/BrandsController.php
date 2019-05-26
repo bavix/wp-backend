@@ -35,7 +35,7 @@ class BrandsController extends Controller
     {
         return new BrandResource(
             $this->queryBuilder()
-                ->allowedIncludes('image', 'collections')
+                ->allowedIncludes('links', 'image', 'collections')
                 ->findOrFail($id)
         );
     }
