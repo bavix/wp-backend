@@ -418,13 +418,13 @@ class TransferTableSeeder extends Seeder
                         ->follow($wheel);
                 }
 
-                foreach ($datum['comments'] as $comment) {
+                foreach ($datum['comments'] as $data) {
                     $user = \App\Models\User::find($this->users[$data['userId']]);
                     Comment::firstOrCreate([
                         'user_id' => $user->getKey(),
                         'commentable_id' => $wheel->getKey(),
                         'commentable_type' => \get_class($wheel),
-                        'markdown' => $comment['text'],
+                        'markdown' => $data['text'],
                         'confirmed' => true,
                     ]);
                 }
