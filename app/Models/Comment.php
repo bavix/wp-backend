@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Comment\HasComments;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Mail\Markdown;
 
@@ -71,7 +72,10 @@ class Comment extends Model
      */
     public function getHtmlAttribute(): string
     {
-        return Markdown::parse($this->markdown);
+        return (new \Parsedown())
+            ->setSafeMode(true)
+            ->setMarkupEscaped(true)
+            ->parse($this->markdown);
     }
 
     /**
@@ -80,6 +84,14 @@ class Comment extends Model
     public function commentable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

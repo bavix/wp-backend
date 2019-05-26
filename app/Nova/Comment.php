@@ -2,20 +2,18 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\BrandFilter;
-use App\Nova\Filters\WheelSwitch;
+use App\Nova\Filters\BrandSwitch;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\Markdown;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
-class Wheel extends Resource
+class Comment extends Resource
 {
 
     /**
@@ -23,28 +21,19 @@ class Wheel extends Resource
      *
      * @var string
      */
-    public static $model = \App\Models\Wheel::class;
-
-    /**
-     * @var array
-     */
-    public static $with = [
-        'brand',
-        'collection',
-        'style'
-    ];
-
-    /**
-     * @var string
-     */
-    public static $group = 'Catalogue';
+    public static $model = \App\Models\Comment::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'markdown';
+
+    /**
+     * @var string
+     */
+    public static $group = 'Social Network';
 
     /**
      * The columns that should be searched.
@@ -52,7 +41,7 @@ class Wheel extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name',
+        'markdown',
     ];
 
     /**
@@ -66,38 +55,17 @@ class Wheel extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Image', 'Picture', 'cdn'),
-
-            NovaBelongsToDepend::make('Brand')
-                ->options(\App\Models\Brand::all())
+            MorphTo::make('Commentable')
+                ->types([Wheel::class])
                 ->rules('required'),
 
-            NovaBelongsToDepend::make('Collection')
-                ->optionsResolve(function (\App\Models\Brand $brand) {
-                    // Reduce the amount of unnecessary data sent
-                    return $brand->collections()->get(['id', 'name']);
-                })
-                ->dependsOn('Brand')
-                ->nullable(),
-
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            NovaBelongsToDepend::make('Style')
-                ->options(\App\Models\Style::all())
-                ->nullable(),
-
-            Boolean::make('Enabled')
+            BelongsTo::make('User')
                 ->rules('required'),
 
-            Boolean::make('Customized')
-                ->hideFromIndex()
+            Markdown::make('Markdown')
                 ->rules('required'),
 
-            Boolean::make('Retired')
-                ->hideFromIndex()
-                ->rules('required'),
+            Boolean::make('Confirmed'),
 
             DateTime::make('Created At')
                 ->hideFromIndex()
@@ -109,8 +77,6 @@ class Wheel extends Resource
                 ->hideWhenCreating()
                 ->hideWhenUpdating()
                 ->readonly(true),
-
-            MorphMany::make('Comments'),
         ];
     }
 
@@ -134,8 +100,7 @@ class Wheel extends Resource
     public function filters(Request $request): array
     {
         return [
-            new BrandFilter(),
-            new WheelSwitch(),
+            new BrandSwitch(),
         ];
     }
 

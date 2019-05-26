@@ -15,7 +15,7 @@ use Illuminate\Http\Response;
 use Spatie\QueryBuilder\Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class WheelsController extends Controller
+class WheelsController extends Commentable
 {
 
     /**
@@ -199,9 +199,17 @@ class WheelsController extends Controller
     /**
      * @return Builder
      */
+    protected function simpleQuery(): Builder
+    {
+        return Wheel::whereEnabled(true);
+    }
+
+    /**
+     * @return Builder
+     */
     protected function query(): Builder
     {
-        return Wheel::whereEnabled(true)
+        return $this->simpleQuery()
             ->withCount(['likes', 'favorites'])
             ->when(auth()->user(), function (Builder $query) {
                 return $query
