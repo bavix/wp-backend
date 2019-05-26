@@ -1,7 +1,8 @@
 <dropdown-trigger class="h-9 flex items-center" slot-scope="{toggle}" :handle-click="toggle">
     @isset($user->email)
         <img
-            src="https://secure.gravatar.com/avatar/{{ md5($user->email) }}?size=512"
+            src="{{ $user->picture }}"
+            onerror="this.src='https://secure.gravatar.com/avatar/{{ md5($user->email) }}?size=512'"
             class="rounded-full w-8 h-8 mr-3"
         />
     @endisset
