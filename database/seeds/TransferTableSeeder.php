@@ -426,6 +426,9 @@ class TransferTableSeeder extends Seeder
                         'commentable_type' => \get_class($wheel),
                         'markdown' => $data['text'],
                         'confirmed' => true,
+                    ], [
+                        'created_at' => $data['createdAt'],
+                        'updated_at' => $data['updatedAt'],
                     ]);
                 }
 
