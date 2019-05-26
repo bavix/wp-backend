@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
+use Ramsey\Uuid\Uuid;
 
 class User extends Resource
 {
@@ -62,9 +63,9 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Image', 'Picture', 'cdn')
-                ->hideWhenUpdating()
-                ->hideWhenCreating(),
+            Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
+                return 'users.' . Uuid::uuid4()->toString();
+            }),
 
             Text::make('Name')
                 ->sortable()

@@ -35,15 +35,18 @@ class Image extends Model
     /**
      * @var array
      */
-    protected $casts = [
-        'id' => 'integer',
-        'uuid' => 'string',
+    protected $fillable = [
+        'uuid',
+        'bucket'
     ];
 
     /**
      * @var array
      */
-    protected $fillable = ['uuid'];
+    protected $casts = [
+        'id' => 'integer',
+        'uuid' => 'string',
+    ];
 
     /**
      * @var array

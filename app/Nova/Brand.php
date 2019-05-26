@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Ramsey\Uuid\Uuid;
 
 class Brand extends Resource
 {
@@ -56,11 +57,13 @@ class Brand extends Resource
         return [
             ID::make()->sortable(),
 
+            Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
+                return 'brands.' . Uuid::uuid4()->toString();
+            }),
+
             HasMany::make('Collections'),
             MorphMany::make('Links'),
             HasMany::make('Wheels'),
-
-            Avatar::make('Image', 'Picture', 'cdn'),
 
             Text::make('Name')
                 ->sortable()

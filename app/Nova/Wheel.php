@@ -14,6 +14,7 @@ use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
+use Ramsey\Uuid\Uuid;
 
 class Wheel extends Resource
 {
@@ -66,7 +67,9 @@ class Wheel extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Image', 'Picture', 'cdn'),
+            Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
+                return 'wheels.' . Uuid::uuid4()->toString();
+            }),
 
             NovaBelongsToDepend::make('Brand')
                 ->options(\App\Models\Brand::all())
