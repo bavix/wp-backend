@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Comment\HasComments;
 use App\Traits\HasImage;
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
@@ -60,6 +61,7 @@ use Rinvex\Addresses\Traits\Addressable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Brand query()
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $likes
+ * @property-read string|null $picture
  */
 class Brand extends Model implements Followable, Likeable
 {

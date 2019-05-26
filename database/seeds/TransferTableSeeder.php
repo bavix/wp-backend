@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Comment;
 use Bavix\CupKit\CupKitServiceProvider;
 use Illuminate\Database\Seeder;
 
@@ -364,7 +365,12 @@ class TransferTableSeeder extends Seeder
             'page' => 1,
             'transfer' => 1,
             'sort' => ['id' => 'asc'],
-            'preload' => ['image', 'likes', 'favourites']
+            'preload' => [
+                'image',
+                'likes',
+                'favourites',
+                'comments',
+            ]
         ];
 
         $body = $this->lazyLoad('sow/wheel', $query);
@@ -412,7 +418,18 @@ class TransferTableSeeder extends Seeder
                         ->follow($wheel);
                 }
 
-                // todo images, videos, comments
+                foreach ($datum['comments'] as $comment) {
+                    $user = \App\Models\User::find($this->users[$data['userId']]);
+                    Comment::firstOrCreate([
+                        'user_id' => $user->getKey(),
+                        'commentable_id' => $wheel->getKey(),
+                        'commentable_type' => \get_class($wheel),
+                        'markdown' => $comment['text'],
+                        'confirmed' => true,
+                    ]);
+                }
+
+                // todo images, videos
 
                 $progressBar->advance();
                 \usleep(10);

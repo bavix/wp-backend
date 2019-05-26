@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Comment\HasComments;
 use Embed\Embed;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;

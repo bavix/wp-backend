@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\CDN\Provider;
+use App\Traits\Comment\HasComments;
 use Illuminate\Database\Eloquent\Model;
 
 /**

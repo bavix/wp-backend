@@ -54,6 +54,8 @@ use Yajra\Acl\Traits\HasRole;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereImageId($value)
+ * @property-read string|null $picture
+ * @property-read \App\Models\Image|null $image
  */
 class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
 {
