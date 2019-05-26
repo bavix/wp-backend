@@ -71,9 +71,18 @@ class Wheel extends Resource
             Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
                 return 'wheels.' . Uuid::uuid4()->toString();
             }),
-            
-            MorphToMany::make('Favorites'),
-            MorphToMany::make('Likes'),
+
+            MorphToMany::make(
+                'Favorites',
+                'favorites',
+                User::class,
+            ),
+
+            MorphToMany::make(
+                'Likes',
+                'likes',
+                User::class,
+            ),
 
             NovaBelongsToDepend::make('Brand')
                 ->options(\App\Models\Brand::all())
