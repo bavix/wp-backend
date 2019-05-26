@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
@@ -70,6 +71,9 @@ class Wheel extends Resource
             Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
                 return 'wheels.' . Uuid::uuid4()->toString();
             }),
+            
+            MorphToMany::make('Favorites'),
+            MorphToMany::make('Likes'),
 
             NovaBelongsToDepend::make('Brand')
                 ->options(\App\Models\Brand::all())
