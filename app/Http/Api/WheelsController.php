@@ -210,7 +210,7 @@ class WheelsController extends Commentable
     protected function query(): Builder
     {
         return $this->simpleQuery()
-            ->withCount(['likes', 'favorites'])
+            ->withCount(['comments', 'likes', 'favorites'])
             ->when(auth()->user(), function (Builder $query) {
                 return $query
                     ->hasFavorited()
