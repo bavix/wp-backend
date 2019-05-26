@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * App\Models\Link
@@ -48,5 +49,13 @@ class Link extends Model
         'linkable_id' => 'integer',
         'enabled' => 'boolean',
     ];
+
+    /**
+     * @return MorphTo
+     */
+    public function linkable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 
 }

@@ -6,6 +6,7 @@ use App\Nova\Filters\UserSwitch;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;

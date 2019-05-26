@@ -6,9 +6,11 @@ use App\Nova\Filters\BrandSwitch;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -53,6 +55,10 @@ class Brand extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            HasMany::make('Collections'),
+            MorphMany::make('Links'),
+            HasMany::make('Wheels'),
 
             Avatar::make('Image', 'Picture', 'cdn'),
 

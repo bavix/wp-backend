@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\Comment\HasComments;
 use App\Traits\HasImage;
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;

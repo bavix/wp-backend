@@ -2,15 +2,14 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\MorphTo;
+use Laravel\Nova\Fields\Text;
 
-class Comment extends Resource
+class Link extends Resource
 {
 
     /**
@@ -18,14 +17,14 @@ class Comment extends Resource
      *
      * @var string
      */
-    public static $model = \App\Models\Comment::class;
+    public static $model = \App\Models\Link::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'markdown';
+    public static $title = 'url';
 
     /**
      * @var string
@@ -38,7 +37,7 @@ class Comment extends Resource
      * @var array
      */
     public static $search = [
-        'markdown',
+        'url',
     ];
 
     /**
@@ -52,17 +51,14 @@ class Comment extends Resource
         return [
             ID::make()->sortable(),
 
-            MorphTo::make('Commentable')
-                ->types([Wheel::class])
+            MorphTo::make('Linkable')
+                ->types([Brand::class])
                 ->rules('required'),
 
-            BelongsTo::make('User')
+            Text::make('Url')
                 ->rules('required'),
 
-            Markdown::make('Markdown')
-                ->rules('required'),
-
-            Boolean::make('Confirmed'),
+            Boolean::make('Enabled'),
 
             DateTime::make('Created At')
                 ->hideFromIndex()
