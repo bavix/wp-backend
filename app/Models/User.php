@@ -6,6 +6,7 @@ use App\Traits\HasImage;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -159,6 +160,22 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
     public function image(): BelongsTo
     {
         return $this->belongsTo(Image::class);
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function brands(): MorphToMany
+    {
+        return $this->following(Brand::class);
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function wheels(): MorphToMany
+    {
+        return $this->following(Wheel::class);
     }
 
 }
