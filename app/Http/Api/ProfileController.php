@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -35,7 +36,7 @@ class ProfileController extends Controller
          * @var User $user
          */
         $user = $request->user();
-        $user->password = $request->input('password');
+        $user->password = Hash::make($request->input('password'));
 
         if ($user->save()) {
             return response(['message' => trans('profile.changePassword')]);
