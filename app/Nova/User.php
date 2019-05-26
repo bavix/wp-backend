@@ -68,8 +68,29 @@ class User extends Resource
                 return 'users.' . Uuid::uuid4()->toString();
             }),
 
-            MorphToMany::make('Brands'),
-            MorphToMany::make('Wheels'),
+            MorphToMany::make(
+                'Following Brands',
+                'followingBrands',
+                Brand::class,
+            ),
+
+            MorphToMany::make(
+                'Liking Brands',
+                'likingBrands',
+                Brand::class,
+            ),
+
+            MorphToMany::make(
+                'Following Wheels',
+                'followingWheels',
+                Wheel::class,
+            ),
+
+            MorphToMany::make(
+                'Liking Wheels',
+                'likingWheels',
+                Wheel::class,
+            ),
 
             Text::make('Name')
                 ->sortable()

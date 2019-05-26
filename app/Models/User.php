@@ -165,7 +165,7 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
     /**
      * @return MorphToMany
      */
-    public function brands(): MorphToMany
+    public function followingBrands(): MorphToMany
     {
         return $this->following(Brand::class);
     }
@@ -173,9 +173,25 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
     /**
      * @return MorphToMany
      */
-    public function wheels(): MorphToMany
+    public function likingBrands(): MorphToMany
+    {
+        return $this->liking(Brand::class);
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function followingWheels(): MorphToMany
     {
         return $this->following(Wheel::class);
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function likingWheels(): MorphToMany
+    {
+        return $this->liking(Wheel::class);
     }
 
 }
