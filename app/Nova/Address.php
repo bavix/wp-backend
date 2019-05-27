@@ -73,15 +73,6 @@ class Address extends Resource
             Text::make('Organization')
                 ->rules('max:255'),
 
-            Place::make('Address', 'street')
-                ->city('city')
-                ->state('state')
-                ->postalCode('postal_code')
-                ->country('country_code')
-                ->latitude('latitude')
-                ->longitude('longitude')
-                ->rules('required'),
-
             Country::make('Country Code')
                 ->hideFromIndex(),
 
@@ -91,8 +82,14 @@ class Address extends Resource
             Text::make('City')
                 ->hideFromIndex(),
 
-            Text::make('Street')
-                ->hideFromIndex(),
+            Place::make('Address', 'street')
+                ->city('city')
+                ->state('state')
+                ->postalCode('postal_code')
+                ->country('country_code')
+                ->latitude('latitude')
+                ->longitude('longitude')
+                ->rules('required'),
 
             Text::make('Postal Code'),
 
