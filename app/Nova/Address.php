@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\MorphTo;
+use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\Text;
 use Davidpiesse\Map\Map;
 
@@ -72,23 +73,20 @@ class Address extends Resource
             Text::make('Organization')
                 ->rules('max:255'),
 
-            Country::make('Country Code'),
-
-            Text::make('Street')
-                ->rules('max:255'),
-
-            Text::make('State')
-                ->rules('max:255'),
-
-            Text::make('City')
-                ->rules('max:255'),
+            Place::make('Address', 'street')
+                ->city('city')
+                ->state('state')
+                ->postalCode('postal_code')
+                ->country('country_code')
+                ->latitude('latitude')
+                ->longitude('longitude')
+                ->rules('required'),
 
             Map::make('Point Location')
                 ->spatialType('LatLon')
                 ->latitude('latitude')
-                ->longitude('longitude'),
-
-            Text::make('Postal Code'),
+                ->longitude('longitude')
+                ->onlyOnDetail(),
 
             Boolean::make('Is Primary')
                 ->rules('required'),
