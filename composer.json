@@ -18,6 +18,7 @@
         "bavix/laravel-cupkit": "^0.1",
         "bavix/laravel-middleware-ifindex": "^1.0",
         "coderello/laravel-nova-lang": "^1.0",
+        "davidpiesse/nova-map": "^0.0.5",
         "doctrine/dbal": "^2.9",
         "embed/embed": "^3.3",
         "encore/laravel-admin": "^1.6",

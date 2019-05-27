@@ -2,20 +2,16 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\BrandSwitch;
-use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Ramsey\Uuid\Uuid;
+use Davidpiesse\Map\Map;
 
-class Brand extends Resource
+class Address extends Resource
 {
 
     /**
@@ -23,14 +19,14 @@ class Brand extends Resource
      *
      * @var string
      */
-    public static $model = \App\Models\Brand::class;
+    public static $model = \Rinvex\Addresses\Models\Address::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'label';
 
     /**
      * @var string
@@ -43,7 +39,7 @@ class Brand extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name',
+        'id',
     ];
 
     /**
@@ -57,20 +53,50 @@ class Brand extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
-                return 'brands.' . Uuid::uuid4()->toString();
-            }),
+            MorphTo::make('Addressable')
+                ->types([Brand::class])
+                ->rules('required'),
 
-            MorphMany::make('Addresses'),
-            HasMany::make('Collections'),
-            MorphMany::make('Links'),
-            HasMany::make('Wheels'),
-
-            Text::make('Name')
+            Text::make('Given Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Boolean::make('Enabled')
+            Text::make('Family Name')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Label')
+                ->sortable()
+                ->rules('max:255'),
+
+            Text::make('Organization')
+                ->rules('max:255'),
+
+            Country::make('Country Code'),
+
+            Text::make('Street')
+                ->rules('max:255'),
+
+            Text::make('State')
+                ->rules('max:255'),
+
+            Text::make('City')
+                ->rules('max:255'),
+
+            Map::make('Point Location')
+                ->spatialType('LatLon')
+                ->latitude('latitude')
+                ->longitude('longitude'),
+
+            Text::make('Postal Code'),
+
+            Boolean::make('Is Primary')
+                ->rules('required'),
+
+            Boolean::make('Is Billing')
+                ->rules('required'),
+
+            Boolean::make('Is Shipping')
                 ->rules('required'),
 
             DateTime::make('Created At')
@@ -105,9 +131,7 @@ class Brand extends Resource
      */
     public function filters(Request $request): array
     {
-        return [
-            new BrandSwitch(),
-        ];
+        return [];
     }
 
     /**
