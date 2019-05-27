@@ -82,6 +82,26 @@ class Address extends Resource
                 ->longitude('longitude')
                 ->rules('required'),
 
+            Country::make('Country Code')
+                ->hideFromIndex(),
+
+            Text::make('State')
+                ->hideFromIndex(),
+
+            Text::make('City')
+                ->hideFromIndex(),
+
+            Text::make('Street')
+                ->hideFromIndex(),
+
+            Text::make('Postal Code'),
+
+            Text::make('Latitude')
+                ->hideFromIndex(),
+
+            Text::make('Longitude')
+                ->hideFromIndex(),
+
             Map::make('Point Location')
                 ->spatialType('LatLon')
                 ->latitude('latitude')
