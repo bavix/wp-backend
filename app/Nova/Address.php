@@ -60,26 +60,35 @@ class Address extends Resource
 
             Text::make('Given Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->hideFromIndex(),
 
             Text::make('Family Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->hideFromIndex(),
 
             Text::make('Label')
                 ->sortable()
-                ->rules('max:255'),
+                ->rules('max:255')
+                ->hideFromIndex(),
 
             Text::make('Organization')
-                ->rules('max:255'),
+                ->sortable()
+                ->rules('max:255')
+                ->hideFromIndex(),
 
             Country::make('Country Code')
+                ->sortable()
+                ->hideFromIndex()
                 ->hideFromIndex(),
 
             Text::make('State')
+                ->sortable()
                 ->hideFromIndex(),
 
             Text::make('City')
+                ->sortable()
                 ->hideFromIndex(),
 
             Place::make('Address', 'street')
@@ -91,7 +100,9 @@ class Address extends Resource
                 ->longitude('longitude')
                 ->rules('required'),
 
-            Text::make('Postal Code'),
+            Text::make('Postal Code')
+                ->sortable()
+                ->hideFromIndex(),
 
             Text::make('Latitude')
                 ->hideFromIndex(),
@@ -106,13 +117,16 @@ class Address extends Resource
                 ->onlyOnDetail(),
 
             Boolean::make('Is Primary')
-                ->rules('required'),
+                ->rules('required')
+                ->hideFromIndex(),
 
             Boolean::make('Is Billing')
-                ->rules('required'),
+                ->rules('required')
+                ->hideFromIndex(),
 
             Boolean::make('Is Shipping')
-                ->rules('required'),
+                ->rules('required')
+                ->hideFromIndex(),
 
             DateTime::make('Created At')
                 ->hideFromIndex()
