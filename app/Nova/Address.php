@@ -88,8 +88,7 @@ class Address extends Resource
                 ->hideFromIndex(),
 
             Text::make('City')
-                ->sortable()
-                ->hideFromIndex(),
+                ->sortable(),
 
             Place::make('Address', 'street')
                 ->city('city')
@@ -98,7 +97,8 @@ class Address extends Resource
                 ->country('country_code')
                 ->latitude('latitude')
                 ->longitude('longitude')
-                ->rules('required'),
+                ->rules('required')
+                ->hideFromIndex(),
 
             Text::make('Postal Code')
                 ->sortable()
