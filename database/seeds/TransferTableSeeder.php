@@ -320,7 +320,7 @@ class TransferTableSeeder extends Seeder
                         trim(trim($datum['lastname']) . ' ' . $datum['name']) :
                         trim($datum['name']),
 
-                    'passwordHash' => $datum['passwordHash'],
+                    'password' => $datum['passwordHash'],
                     'enabled' => $datum['active'],
                     'email_verified_at' => $datum['roleId'] !== 3 ?
                         \Carbon\Carbon::now() : null,

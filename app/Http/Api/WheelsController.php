@@ -115,7 +115,7 @@ class WheelsController extends Commentable
             $this->queryBuilder()
                 ->allowedIncludes(
                     'image',
-                    'images', // fixme: remove 
+                    'images', // fixme: remove
                     'videos', // fixme: remove
                     'brand',
                     'collection',
