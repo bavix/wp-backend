@@ -7,6 +7,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Collections;
 use App\Models\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\QueryBuilder\Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 /**
@@ -54,6 +55,9 @@ class CollectionsController extends Controller
     protected function resource(): QueryBuilder
     {
         return $this->queryBuilder()
+            ->allowedFilters(
+                Filter::exact('brand_id')
+            )
             ->allowedIncludes('brand')
             ->allowedSorts('name');
     }
