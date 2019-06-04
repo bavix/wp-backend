@@ -14,4 +14,5 @@
 include __DIR__ . '/api/auth.php';
 include __DIR__ . '/api/profile.php';
 include __DIR__ . '/api/brands.php';
+include __DIR__ . '/api/collections.php';
 include __DIR__ . '/api/wheels.php';
