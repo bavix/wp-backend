@@ -94,12 +94,9 @@ class WheelsController extends Commentable
      */
     public function similar(ViewRequest $request, int $id): Wheels
     {
-        $wheel = $this->query()->findOrFail($id);
-
         return new Wheels(
             $this->resource()
-                ->where('style_id', $wheel->style_id)
-                ->whereKeyNot($id)
+                ->bySimilar($id)
                 ->paginate()
         );
     }

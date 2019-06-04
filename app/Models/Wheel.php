@@ -6,9 +6,11 @@ use App\Traits\Comment\HasComments;
 use App\Traits\HasImage;
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Auth;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Contracts\Likeable;
 use Rinvex\Attributes\Traits\Attributable;
@@ -150,6 +152,20 @@ class Wheel extends Model implements Followable, Likeable
     public function videos(): MorphMany
     {
         return $this->morphMany(Video::class, 'videoable');
+    }
+
+    /**
+     * @param Builder $query
+     * @param int $wheelId
+     * @return Builder
+     */
+    public function scopeBySimilar(Builder $query, int $wheelId): Builder
+    {
+        $wheel = static::findOrFail($wheelId);
+        $query->whereKeyNot($wheelId);
+        $query->whereNotNull('style_id');
+        $query->where('style_id', $wheel->style_id);
+        return $query;
     }
 
 }
