@@ -160,16 +160,16 @@
         },
         {
             "name": "bavix/laravel-admin-leaflet",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bavix/laravel-admin-leaflet.git",
-                "reference": "a422342d5dc0c3e80f88e5cf6284d84fb9deb640"
+                "reference": "3ea7baae86099cd14319adfdc53dcc0ea5e8b119"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bavix/laravel-admin-leaflet/zipball/a422342d5dc0c3e80f88e5cf6284d84fb9deb640",
-                "reference": "a422342d5dc0c3e80f88e5cf6284d84fb9deb640",
+                "url": "https://api.github.com/repos/bavix/laravel-admin-leaflet/zipball/3ea7baae86099cd14319adfdc53dcc0ea5e8b119",
+                "reference": "3ea7baae86099cd14319adfdc53dcc0ea5e8b119",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +178,7 @@
                 "php": ">=7.1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~6.0"
+                "phpunit/phpunit": "~6.0 || ~8.0"
             },
             "type": "library",
             "extra": {
@@ -206,12 +206,14 @@
             "description": "OpenStreetMap for laravel-admin",
             "homepage": "https://github.com/bavix/laravel-admin-leaflet",
             "keywords": [
+                "OpenStreetMap",
                 "extension",
+                "laravel",
                 "laravel-admin",
                 "leaflet",
-                "open-street-map"
+                "map"
             ],
-            "time": "2018-10-23T13:51:58+00:00"
+            "time": "2019-06-03T08:42:08+00:00"
         },
         {
             "name": "bavix/laravel-cupkit",
@@ -245,6 +247,7 @@
                     "Bavix\\CupKit\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -256,16 +259,12 @@
             ],
             "description": "CupKit for Laravel 5",
             "keywords": [
+                "CUP",
                 "corundum",
-                "cup",
                 "cupkit",
                 "kit",
                 "laravel"
             ],
-            "support": {
-                "source": "https://github.com/rez1dent3/laravel-cupkit/tree/0.1.1",
-                "issues": "https://github.com/rez1dent3/laravel-cupkit/issues"
-            },
             "time": "2019-05-07T09:16:35+00:00"
         },
         {
@@ -2181,16 +2180,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "47bb1471b727a0c1497143dccf46aacf73c0ce6b"
+                "reference": "6c29b6fd3aa6991c7b610607d86db53aaadf165c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/47bb1471b727a0c1497143dccf46aacf73c0ce6b",
-                "reference": "47bb1471b727a0c1497143dccf46aacf73c0ce6b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6c29b6fd3aa6991c7b610607d86db53aaadf165c",
+                "reference": "6c29b6fd3aa6991c7b610607d86db53aaadf165c",
                 "shasum": ""
             },
             "require": {
@@ -2324,7 +2323,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-05-28T13:19:37+00:00"
+            "time": "2019-06-04T13:08:34+00:00"
         },
         {
             "name": "laravel/nova",
@@ -4139,16 +4138,16 @@
         },
         {
             "name": "rinvex/laravel-addresses",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rinvex/laravel-addresses.git",
-                "reference": "84a1642a75a2862d6e62274dc999a409f8620fc5"
+                "reference": "c71013c2e54cc80a91a8401338a6a199da4ed213"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rinvex/laravel-addresses/zipball/84a1642a75a2862d6e62274dc999a409f8620fc5",
-                "reference": "84a1642a75a2862d6e62274dc999a409f8620fc5",
+                "url": "https://api.github.com/repos/rinvex/laravel-addresses/zipball/c71013c2e54cc80a91a8401338a6a199da4ed213",
+                "reference": "c71013c2e54cc80a91a8401338a6a199da4ed213",
                 "shasum": ""
             },
             "require": {
@@ -4158,8 +4157,8 @@
                 "jackpopp/geodistance": "^1.2.0",
                 "php": "^7.2.0",
                 "rinvex/countries": "^6.0.0",
-                "rinvex/laravel-cacheable": "^2.0.0",
-                "rinvex/laravel-support": "^2.0.0"
+                "rinvex/laravel-cacheable": "^2.1.0",
+                "rinvex/laravel-support": "^2.1.0"
             },
             "require-dev": {
                 "codedungeon/phpunit-result-printer": "^0.26.0",
@@ -4224,20 +4223,20 @@
                 "state",
                 "street"
             ],
-            "time": "2019-06-02T04:39:26+00:00"
+            "time": "2019-06-03T14:46:31+00:00"
         },
         {
             "name": "rinvex/laravel-attributes",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rinvex/laravel-attributes.git",
-                "reference": "638831993605d7328c9fb5b0d40d0620ce9a5cc5"
+                "reference": "d12b981c429cd48e78122f49d25b781fdd74c29f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rinvex/laravel-attributes/zipball/638831993605d7328c9fb5b0d40d0620ce9a5cc5",
-                "reference": "638831993605d7328c9fb5b0d40d0620ce9a5cc5",
+                "url": "https://api.github.com/repos/rinvex/laravel-attributes/zipball/d12b981c429cd48e78122f49d25b781fdd74c29f",
+                "reference": "d12b981c429cd48e78122f49d25b781fdd74c29f",
                 "shasum": ""
             },
             "require": {
@@ -4246,8 +4245,8 @@
                 "illuminate/support": "~5.8.0",
                 "jeremeamia/superclosure": "^2.4.0",
                 "php": "^7.2.0",
-                "rinvex/laravel-cacheable": "^2.0.0",
-                "rinvex/laravel-support": "^2.0.0",
+                "rinvex/laravel-cacheable": "^2.1.0",
+                "rinvex/laravel-support": "^2.1.0",
                 "spatie/eloquent-sortable": "^3.6.0",
                 "spatie/laravel-sluggable": "^2.1.0",
                 "spatie/laravel-translatable": "^4.1.0",
@@ -4318,7 +4317,7 @@
                 "schema",
                 "value"
             ],
-            "time": "2019-06-02T04:47:38+00:00"
+            "time": "2019-06-03T14:46:42+00:00"
         },
         {
             "name": "rinvex/laravel-cacheable",
@@ -4391,16 +4390,16 @@
         },
         {
             "name": "rinvex/laravel-support",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rinvex/laravel-support.git",
-                "reference": "868a4e5036026eccd78eb2fd59fc624f0ea5d933"
+                "reference": "82eeee6fc360c655e66273c12def547742f98f2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rinvex/laravel-support/zipball/868a4e5036026eccd78eb2fd59fc624f0ea5d933",
-                "reference": "868a4e5036026eccd78eb2fd59fc624f0ea5d933",
+                "url": "https://api.github.com/repos/rinvex/laravel-support/zipball/82eeee6fc360c655e66273c12def547742f98f2e",
+                "reference": "82eeee6fc360c655e66273c12def547742f98f2e",
                 "shasum": ""
             },
             "require": {
@@ -4462,7 +4461,7 @@
                 "trait",
                 "validator"
             ],
-            "time": "2019-06-02T04:44:53+00:00"
+            "time": "2019-06-03T14:47:46+00:00"
         },
         {
             "name": "spatie/eloquent-sortable",

@@ -113,7 +113,13 @@ class WheelsController extends Commentable
     {
         return new WheelResource(
             $this->queryBuilder()
-                ->allowedIncludes('image', 'images', 'brand')
+                ->allowedIncludes(
+                    'image',
+                    'images', // fixme: remove 
+                    'videos', // fixme: remove
+                    'brand',
+                    'collection',
+                )
                 ->findOrFail($id)
         );
     }

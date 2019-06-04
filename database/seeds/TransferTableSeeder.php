@@ -370,6 +370,7 @@ class TransferTableSeeder extends Seeder
                 'likes',
                 'favourites',
                 'comments',
+                'videos',
             ]
         ];
 
@@ -432,7 +433,12 @@ class TransferTableSeeder extends Seeder
                     ]);
                 }
 
-                // todo images, videos
+                foreach ($datum['videos'] as $data) {
+                    $video = \App\Models\Video::fromUrl($data['url']);
+                    $wheel->videos()->save($video);
+                }
+
+                // todo images
 
                 $progressBar->advance();
                 \usleep(10);
