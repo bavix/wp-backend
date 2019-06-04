@@ -434,8 +434,12 @@ class TransferTableSeeder extends Seeder
                 }
 
                 foreach ($datum['videos'] as $data) {
-                    $video = \App\Models\Video::fromUrl($data['url']);
-                    $wheel->videos()->save($video);
+                    try {
+                        $video = \App\Models\Video::fromUrl($data['url']);
+                        $wheel->videos()->save($video);
+                    } catch (\Throwable $throwable) {
+                        // continue
+                    }
                 }
 
                 // todo images
