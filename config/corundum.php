@@ -19,6 +19,7 @@ return [
         'wheels' => [
             [
                 'name' => 'xs',
+                'format' => 'jpg',
                 'type' => 'fit',
                 'width' => 250,
                 'height' => 250,
@@ -27,6 +28,7 @@ return [
             ],
             [
                 'name' => 'm',
+                'format' => 'jpg',
                 'type' => 'fit',
                 'width' => 500,
                 'height' => 500,
@@ -35,6 +37,7 @@ return [
             ],
             [
                 'name' => 'xl',
+                'format' => 'jpg',
                 'type' => 'fit',
                 'width' => 1000,
                 'height' => 1000,
@@ -46,6 +49,7 @@ return [
         'brands' => [
             [
                 'name' => 'xs',
+                'format' => 'jpg',
                 'type' => 'contain',
                 'width' => 250,
                 'height' => 250,
@@ -54,6 +58,7 @@ return [
             ],
             [
                 'name' => 'm',
+                'format' => 'jpg',
                 'type' => 'contain',
                 'width' => 500,
                 'height' => 500,
@@ -62,6 +67,7 @@ return [
             ],
             [
                 'name' => 'xl',
+                'format' => 'jpg',
                 'type' => 'contain',
                 'width' => 1000,
                 'height' => 1000,
@@ -73,6 +79,7 @@ return [
         'users' => [
             [
                 'name' => 'xs',
+                'format' => 'jpg',
                 'type' => 'cover',
                 'width' => 150,
                 'height' => 150,
@@ -81,6 +88,7 @@ return [
             ],
             [
                 'name' => 'm',
+                'format' => 'jpg',
                 'type' => 'cover',
                 'width' => 300,
                 'height' => 300,
@@ -89,6 +97,7 @@ return [
             ],
             [
                 'name' => 'xl',
+                'format' => 'jpg',
                 'type' => 'cover',
                 'width' => 600,
                 'height' => 600,
