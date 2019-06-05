@@ -15,6 +15,16 @@ class ProfileController extends Controller
 
     /**
      * @param Request $request
+     * @return Response
+     */
+    public function logout(Request $request): Response
+    {
+        $request->user()->token()->revoke();
+        return response()->noContent();
+    }
+
+    /**
+     * @param Request $request
      * @return UserResource
      */
     public function show(Request $request): UserResource
