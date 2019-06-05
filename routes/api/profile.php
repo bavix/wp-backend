@@ -14,3 +14,7 @@ Route::middleware('auth:api')
 Route::middleware('auth:api')
     ->post('profile/change-password', 'ProfileController@changePassword')
     ->name('profile.change_password');
+
+Route::middleware('auth:api')
+    ->delete('profile/logout', 'ProfileController@logout')
+    ->name('profile.logout');
