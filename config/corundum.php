@@ -25,7 +25,7 @@ return [
                 'height' => 250,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
             [
                 'name' => 'm',
@@ -35,7 +35,7 @@ return [
                 'height' => 500,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
             [
                 'name' => 'xl',
@@ -45,7 +45,7 @@ return [
                 'height' => 1000,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
         ],
 
@@ -58,7 +58,7 @@ return [
                 'height' => 250,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
             [
                 'name' => 'm',
@@ -68,7 +68,7 @@ return [
                 'height' => 500,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
             [
                 'name' => 'xl',
@@ -78,7 +78,7 @@ return [
                 'height' => 1000,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
         ],
 
@@ -91,7 +91,7 @@ return [
                 'height' => 150,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
             [
                 'name' => 'm',
@@ -101,7 +101,7 @@ return [
                 'height' => 300,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
             [
                 'name' => 'xl',
@@ -111,7 +111,7 @@ return [
                 'height' => 600,
                 'quality' => 75,
                 'optimize' => 1,
-                'color' => 'rgba(0,0,0,0)',
+                'color' => '#fff',
             ],
         ],
 
