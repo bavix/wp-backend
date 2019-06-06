@@ -84,11 +84,7 @@ class Wheel extends Resource
                 User::class,
             ),
 
-            MorphToMany::make(
-                'Videos',
-                'videos',
-                Video::class,
-            ),
+            MorphMany::make('Videos'),
 
             NovaBelongsToDepend::make('Brand')
                 ->options(\App\Models\Brand::all())
