@@ -24,6 +24,7 @@ return [
                 'width' => 250,
                 'height' => 250,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
             [
@@ -33,6 +34,7 @@ return [
                 'width' => 500,
                 'height' => 500,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
             [
@@ -42,6 +44,7 @@ return [
                 'width' => 1000,
                 'height' => 1000,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
         ],
@@ -54,6 +57,7 @@ return [
                 'width' => 250,
                 'height' => 250,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
             [
@@ -63,6 +67,7 @@ return [
                 'width' => 500,
                 'height' => 500,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
             [
@@ -72,6 +77,7 @@ return [
                 'width' => 1000,
                 'height' => 1000,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
         ],
@@ -84,6 +90,7 @@ return [
                 'width' => 150,
                 'height' => 150,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
             [
@@ -93,6 +100,7 @@ return [
                 'width' => 300,
                 'height' => 300,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
             [
@@ -102,6 +110,7 @@ return [
                 'width' => 600,
                 'height' => 600,
                 'quality' => 75,
+                'optimize' => 1,
                 'color' => 'rgba(0,0,0,0)',
             ],
         ],
