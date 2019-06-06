@@ -59,7 +59,7 @@ class Image extends Model
      */
     public function getThumbnailsAttribute(): array
     {
-        return Provider::thumbnails($this, 'png');
+        return Provider::thumbnails($this, 'jpg');
     }
 
 }

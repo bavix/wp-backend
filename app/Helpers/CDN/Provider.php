@@ -37,6 +37,7 @@ class Provider
 
     /**
      * @param Image $image
+     * @param string $format
      * @return array
      */
     public static function thumbnails(Image $image, string $format): array
