@@ -4,15 +4,14 @@ namespace App\Nova;
 
 use App\Nova\Filters\UserSwitch;
 use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Ramsey\Uuid\Uuid;
 
@@ -69,6 +68,7 @@ class User extends Resource
                 return 'users.' . Uuid::uuid4()->toString();
             }),
 
+            BelongsToMany::make('Roles'),
             MorphMany::make('Settings'),
 
             MorphToMany::make(
