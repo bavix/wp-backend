@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasImage;
+use App\Traits\HasSettings;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -69,6 +70,7 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
     use CanFollow;
     use CanLike;
     use HasRole;
+    use HasSettings;
 
     /**
      * @var array
