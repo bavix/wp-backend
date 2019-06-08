@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Observers\BrandObserver;
 use App\Observers\StyleObserver;
 use App\Observers\UserObserver;
-use Encore\Admin\Config\Config;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,12 +22,6 @@ class AppServiceProvider extends ServiceProvider
         Brand::observe(BrandObserver::class);
         User::observe(UserObserver::class);
         Style::observe(StyleObserver::class);
-
-        try {
-            Config::load();
-        } catch (\Throwable $throwable) {
-
-        }
     }
 
     /**
@@ -36,8 +29,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
+
 }
