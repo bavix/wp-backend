@@ -26,6 +26,11 @@ class Brand extends Resource
     public static $model = \App\Models\Brand::class;
 
     /**
+     * @var array
+     */
+    public static $with = ['image'];
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string

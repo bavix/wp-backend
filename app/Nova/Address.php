@@ -23,6 +23,11 @@ class Address extends Resource
     public static $model = \Rinvex\Addresses\Models\Address::class;
 
     /**
+     * @var array
+     */
+    public static $with = ['addressable'];
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string

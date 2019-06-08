@@ -21,6 +21,14 @@ class Comment extends Resource
     public static $model = \App\Models\Comment::class;
 
     /**
+     * @var array
+     */
+    public static $with = [
+        'user',
+        'commentable',
+    ];
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string

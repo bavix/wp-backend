@@ -11,8 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(AdminTableSeeder::class);
-
         if (app()->isLocal()) {
             $this->call(UsersTableSeeder::class);
             $this->call(WheelsTableSeeder::class);

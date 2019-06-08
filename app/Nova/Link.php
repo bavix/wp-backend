@@ -20,6 +20,11 @@ class Link extends Resource
     public static $model = \App\Models\Link::class;
 
     /**
+     * @var array
+     */
+    public static $with = ['linkable'];
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string

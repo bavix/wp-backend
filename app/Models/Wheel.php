@@ -10,10 +10,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Facades\Auth;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Contracts\Likeable;
-use Rinvex\Attributes\Traits\Attributable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
@@ -69,7 +67,6 @@ class Wheel extends Model implements Followable, Likeable
     use UserCanBeFollowed;
     use UserCanBeLiked;
     use HasComments;
-    use Attributable;
     use HasImage;
 
     /**

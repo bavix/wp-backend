@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Filters\BrandFilter;
 use App\Nova\Filters\WheelSwitch;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -13,7 +14,6 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 use Ramsey\Uuid\Uuid;
 
@@ -31,6 +31,7 @@ class Wheel extends Resource
      * @var array
      */
     public static $with = [
+        'image',
         'brand',
         'collection',
         'style'
@@ -56,6 +57,30 @@ class Wheel extends Resource
     public static $search = [
         'id', 'name',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getBrands(): \Illuminate\Database\Eloquent\Collection
+    {
+        static $data;
+        if (!$data) {
+            $data = \App\Models\Brand::all();
+        }
+        return $data;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getStyles(): \Illuminate\Database\Eloquent\Collection
+    {
+        static $data;
+        if (!$data) {
+            $data = \App\Models\Style::all();
+        }
+        return $data;
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -86,11 +111,19 @@ class Wheel extends Resource
 
             MorphMany::make('Videos'),
 
-            NovaBelongsToDepend::make('Brand')
-                ->options(\App\Models\Brand::all())
+            BelongsTo::make('Brand')
+                ->onlyOnIndex(),
+
+            NovaBelongsToDepend::make('Brand', 'brand')
+                ->hideFromIndex()
+                ->optionsResolve([static::class, 'getBrands'])
                 ->rules('required'),
 
-            NovaBelongsToDepend::make('Collection')
+            BelongsTo::make('Collection')
+                ->onlyOnIndex(),
+
+            NovaBelongsToDepend::make('Collection', 'collection')
+                ->hideFromIndex()
                 ->optionsResolve(function (\App\Models\Brand $brand) {
                     // Reduce the amount of unnecessary data sent
                     return $brand->collections()->get(['id', 'name']);
@@ -102,8 +135,12 @@ class Wheel extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            NovaBelongsToDepend::make('Style')
-                ->options(\App\Models\Style::all())
+            BelongsTo::make('Style')
+                ->onlyOnIndex(),
+
+            NovaBelongsToDepend::make('Style', 'style')
+                ->hideFromIndex()
+                ->optionsResolve([static::class, 'getStyles'])
                 ->nullable(),
 
             Boolean::make('Enabled')

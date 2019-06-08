@@ -21,6 +21,11 @@ class PassportClient extends Resource
     public static $model = \Laravel\Passport\Client::class;
 
     /**
+     * @var array
+     */
+    public static $with = ['user'];
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string

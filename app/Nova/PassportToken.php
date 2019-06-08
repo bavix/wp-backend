@@ -22,6 +22,14 @@ class PassportToken extends Resource
     public static $model = \Laravel\Passport\Token::class;
 
     /**
+     * @var array
+     */
+    public static $with = [
+        'client',
+        'user',
+    ];
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
@@ -55,7 +63,7 @@ class PassportToken extends Resource
                 ->hideFromIndex()
                 ->sortable(),
 
-            BelongsTo::make('Passport Client', 'Client'),
+            BelongsTo::make('Passport Client', 'client'),
             BelongsTo::make('User'),
 
             Text::make('Name')

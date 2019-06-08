@@ -22,6 +22,11 @@ class Video extends Resource
     public static $model = \App\Models\Video::class;
 
     /**
+     * @var array
+     */
+    public static $with = ['videoable'];
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
