@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
@@ -67,6 +68,8 @@ class User extends Resource
             Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
                 return 'users.' . Uuid::uuid4()->toString();
             }),
+
+            MorphMany::make('Settings'),
 
             MorphToMany::make(
                 'Following Brands',
