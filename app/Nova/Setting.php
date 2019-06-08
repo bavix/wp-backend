@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -55,6 +56,13 @@ class Setting extends Resource
      */
     public function fields(Request $request): array
     {
+        $code = Code::make('Value')
+            ->rules('required');
+
+        if (\is_array($this->value)) {
+            $code->json();
+        }
+
         return [
             ID::make()->sortable(),
 
@@ -67,8 +75,7 @@ class Setting extends Resource
             Text::make('Cast')
                 ->rules('required'),
 
-            Text::make('Value')
-                ->rules('required'),
+            $code,
 
             DateTime::make('Created At')
                 ->hideFromIndex()
