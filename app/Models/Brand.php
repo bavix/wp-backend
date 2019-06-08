@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Contracts\Likeable;
 use Rinvex\Addresses\Traits\Addressable;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Brand
@@ -65,10 +66,21 @@ use Rinvex\Addresses\Traits\Addressable;
 class Brand extends Model implements Followable, Likeable
 {
 
+    use LogsActivity;
     use UserCanBeFollowed;
     use UserCanBeLiked;
     use Addressable;
     use HasImage;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'parent_id',
+        'image_id',
+        'name',
+        'enabled',
+    ];
 
     /**
      * @var array

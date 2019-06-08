@@ -16,6 +16,7 @@ use Rennokki\Befriended\Contracts\Follower;
 use Rennokki\Befriended\Contracts\Liker;
 use Rennokki\Befriended\Traits\CanFollow;
 use Rennokki\Befriended\Traits\CanLike;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Yajra\Acl\Traits\HasRole;
 
 /**
@@ -61,12 +62,24 @@ use Yajra\Acl\Traits\HasRole;
 class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
 {
 
+    use LogsActivity;
     use HasImage;
     use HasApiTokens;
     use Notifiable;
     use CanFollow;
     use CanLike;
     use HasRole;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'name',
+        'login',
+        'email',
+        'email_verified_at',
+        'enabled',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -78,6 +91,7 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
         'login',
         'email',
         'password',
+        'enabled',
         'email_verified_at',
 
         // fixme: remove

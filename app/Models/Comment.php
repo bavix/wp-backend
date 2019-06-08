@@ -6,6 +6,7 @@ use App\Traits\Comment\HasComments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Comment
@@ -37,7 +38,19 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Comment extends Model
 {
 
+    use LogsActivity;
     use HasComments;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'user_id',
+        'commentable_type',
+        'commentable_id',
+        'markdown',
+        'confirmed',
+    ];
 
     /**
      * @var array

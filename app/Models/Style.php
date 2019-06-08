@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Style
@@ -37,6 +38,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Style extends Model
 {
 
+    use LogsActivity;
+
     public const TYPE_I = 'I';
     public const TYPE_X = 'X';
     public const TYPE_Y = 'Y';
@@ -46,6 +49,17 @@ class Style extends Model
     public const TUPLE_SINGLE = 'Single';
     public const TUPLE_DOUBLE = 'Double';
     public const TUPLE_TRIPLE = 'Triple';
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'type',
+        'number',
+        'spoke',
+        'rotated',
+        'enabled',
+    ];
 
     /**
      * @var array

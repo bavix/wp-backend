@@ -16,6 +16,7 @@ use App\Nova\Metrics\UsersPerDay;
 use App\Nova\Metrics\UsersPerEnabled;
 use App\Nova\Metrics\WheelsPerDay;
 use App\Nova\Metrics\WheelsPerEnabled;
+use Bolechen\NovaActivitylog\NovaActivitylog;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
@@ -93,7 +94,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools(): array
     {
-        return [];
+        return [
+            new NovaActivitylog(),
+        ];
     }
 
     /**

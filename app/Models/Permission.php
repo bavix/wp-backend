@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+
 /**
  * App\Models\Permission
  *
@@ -29,6 +31,9 @@ namespace App\Models;
  */
 class Permission extends \Yajra\Acl\Models\Permission
 {
+
+    use LogsActivity;
+
     // resources
     public const RESOURCE_COLLECTIONS = 'collections';
     public const RESOURCE_ADDRESSES = 'addresses';
@@ -74,4 +79,14 @@ class Permission extends \Yajra\Acl\Models\Permission
     public const PROFILE_PHOTO = 'profile.photo';
     // swagger
     public const SWAGGER_VIEW = 'swagger.view';
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'name',
+        'slug',
+        'resource',
+        'system',
+    ];
 }

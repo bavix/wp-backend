@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\CDN\Provider;
 use App\Traits\Comment\HasComments;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Image
@@ -31,6 +32,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Image extends Model
 {
+
+    use LogsActivity;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'uuid',
+        'bucket',
+    ];
 
     /**
      * @var array

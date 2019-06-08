@@ -17,6 +17,7 @@
         "bavix/laravel-admin-leaflet": "^1.0",
         "bavix/laravel-cupkit": "^0.1",
         "bavix/laravel-middleware-ifindex": "^1.0",
+        "bolechen/nova-activitylog": "^0.1.4",
         "coderello/laravel-nova-lang": "^1.0",
         "davidpiesse/nova-map": "^0.0.5",
         "doctrine/dbal": "^2.9",

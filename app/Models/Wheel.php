@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Contracts\Likeable;
 use Rinvex\Attributes\Traits\Attributable;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Wheel
@@ -64,11 +65,26 @@ use Rinvex\Attributes\Traits\Attributable;
 class Wheel extends Model implements Followable, Likeable
 {
 
+    use LogsActivity;
     use UserCanBeFollowed;
     use UserCanBeLiked;
     use HasComments;
     use Attributable;
     use HasImage;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'name',
+        'brand_id',
+        'collection_id',
+        'style_id',
+        'image_id',
+        'customized',
+        'enabled',
+        'retired',
+    ];
 
     /**
      * @var array

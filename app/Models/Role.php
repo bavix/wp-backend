@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+
 /**
  * App\Models\Role
  *
@@ -29,7 +31,20 @@ namespace App\Models;
  */
 class Role extends \Yajra\Acl\Models\Role
 {
+
+    use LogsActivity;
+
     public const REGISTERED = 'registered';
     public const USER = 'user';
     public const DEVELOPER = 'developer';
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'name',
+        'slug',
+        'description',
+        'system',
+    ];
 }

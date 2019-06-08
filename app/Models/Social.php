@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Social
@@ -28,6 +29,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Social extends Model
 {
+
+    use LogsActivity;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'provider',
+        'provider_id',
+        'user_id',
+    ];
 
     /**
      * The attributes that are mass assignable.

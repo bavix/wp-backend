@@ -6,6 +6,7 @@ use App\Traits\Comment\HasComments;
 use Embed\Embed;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Video
@@ -49,6 +50,26 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Video extends Model
 {
+
+    use LogsActivity;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'title',
+        'description',
+        'url',
+        'tags',
+        'image',
+        'image_width',
+        'image_height',
+        'author_name',
+        'author_url',
+        'provider_name',
+        'videoable_type',
+        'videoable_id',
+    ];
 
     /**
      * @var array

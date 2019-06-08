@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Link
@@ -30,6 +31,18 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Link extends Model
 {
+
+    use LogsActivity;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'linkable_type',
+        'linkable_id',
+        'url',
+        'enabled',
+    ];
 
     /**
      * @var array

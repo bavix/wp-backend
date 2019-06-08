@@ -6,6 +6,7 @@ use App\Traits\Comment\HasComments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\Collection
@@ -32,6 +33,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Collection extends Model
 {
+
+    use LogsActivity;
+
+    /**
+     * @var array
+     */
+    protected static $logAttributes = [
+        'brand_id',
+        'name',
+        'enabled',
+    ];
 
     /**
      * @var array
