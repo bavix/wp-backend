@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\BrandSwitch;
+use App\Nova\Filters\BrandActive;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -111,7 +111,7 @@ class Brand extends Resource
     public function filters(Request $request): array
     {
         return [
-            new BrandSwitch(),
+            new BrandActive(),
         ];
     }
 

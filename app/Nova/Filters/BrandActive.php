@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Nova\Filters\Style;
+namespace App\Nova\Filters;
 
-use App\Models\Style;
 use Illuminate\Http\Request;
 use rcknr\Nova\Filters\MultiselectFilter;
 
-class TupleFilter extends MultiselectFilter
+class BrandActive extends MultiselectFilter
 {
 
     /**
@@ -19,7 +18,7 @@ class TupleFilter extends MultiselectFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->whereIn('tuple', $value);
+        return $query->whereIn('enabled', $value);
     }
 
     /**
@@ -30,7 +29,10 @@ class TupleFilter extends MultiselectFilter
      */
     public function options(Request $request): array
     {
-        return Style::tuples();
+        return [
+            'Enabled' => 1,
+            'Disabled' => 0,
+        ];
     }
 
 }

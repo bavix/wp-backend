@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Nova\Filters;
+namespace App\Nova\Filters\Wheel;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Filters\BooleanFilter;
+use rcknr\Nova\Filters\MultiselectFilter;
 
-class CollectionSwitch extends BooleanFilter
+class WheelCustom extends MultiselectFilter
 {
 
     /**
@@ -18,13 +18,7 @@ class CollectionSwitch extends BooleanFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        foreach ($value as $column => $item) {
-            if ($item) {
-                $query->where($column, $item);
-            }
-        }
-
-        return $query;
+        return $query->whereIn('customized', $value);
     }
 
     /**
@@ -36,7 +30,8 @@ class CollectionSwitch extends BooleanFilter
     public function options(Request $request): array
     {
         return [
-            'Enabled' => 'enabled',
+            'Customized' => 1,
+            'OEM' => 0,
         ];
     }
 

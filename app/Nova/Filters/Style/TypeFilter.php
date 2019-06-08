@@ -4,9 +4,9 @@ namespace App\Nova\Filters\Style;
 
 use App\Models\Style;
 use Illuminate\Http\Request;
-use Laravel\Nova\Filters\Filter;
+use rcknr\Nova\Filters\MultiselectFilter;
 
-class TypeFilter extends Filter
+class TypeFilter extends MultiselectFilter
 {
 
     /**
@@ -19,7 +19,7 @@ class TypeFilter extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('type', $value);
+        return $query->whereIn('type', $value);
     }
 
     /**

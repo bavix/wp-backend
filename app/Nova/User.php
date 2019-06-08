@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\UserSwitch;
+use App\Nova\Filters\UserActive;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -157,7 +157,7 @@ class User extends Resource
     public function filters(Request $request)
     {
         return [
-            new UserSwitch(),
+            new UserActive(),
         ];
     }
 

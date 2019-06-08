@@ -3,7 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Filters\BrandFilter;
-use App\Nova\Filters\CollectionSwitch;
+use App\Nova\Filters\CollectionActive;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -112,7 +112,7 @@ class Collection extends Resource
     {
         return [
             new BrandFilter(),
-            new CollectionSwitch(),
+            new CollectionActive(),
         ];
     }
 

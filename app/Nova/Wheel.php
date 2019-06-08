@@ -3,8 +3,9 @@
 namespace App\Nova;
 
 use App\Nova\Filters\BrandFilter;
-use App\Nova\Filters\WheelSwitch;
-use Illuminate\Support\Facades\Cache;
+use App\Nova\Filters\Wheel\WheelActive;
+use App\Nova\Filters\Wheel\WheelCustom;
+use App\Nova\Filters\Wheel\WheelRetire;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -190,7 +191,9 @@ class Wheel extends Resource
     {
         return [
             new BrandFilter(),
-            new WheelSwitch(),
+            new WheelActive(),
+            new WheelCustom(),
+            new WheelRetire(),
         ];
     }
 

@@ -3,9 +3,9 @@
 namespace App\Nova\Filters;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Filters\BooleanFilter;
+use rcknr\Nova\Filters\MultiselectFilter;
 
-class WheelSwitch extends BooleanFilter
+class UserActive extends MultiselectFilter
 {
 
     /**
@@ -18,13 +18,7 @@ class WheelSwitch extends BooleanFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        foreach ($value as $column => $item) {
-            if ($item) {
-                $query->where($column, $item);
-            }
-        }
-
-        return $query;
+        return $query->whereIn('enabled', $value);
     }
 
     /**
@@ -36,9 +30,8 @@ class WheelSwitch extends BooleanFilter
     public function options(Request $request): array
     {
         return [
-            'Customized' => 'customized',
-            'Retired' => 'retired',
-            'Enabled' => 'enabled',
+            'Enabled' => 1,
+            'Disabled' => 0,
         ];
     }
 

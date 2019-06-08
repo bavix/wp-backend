@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f0a072788147abd3191b5c550b046a7",
+    "content-hash": "7f3a1b805a1c6b7a31b9e55d1ad3b570",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -3854,6 +3854,54 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "rcknr/nova-multiselect-filter",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rcknr/nova-multiselect-filter.git",
+                "reference": "ad6ed1c491f874c1fc59bfcf1cd60e0f197336df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rcknr/nova-multiselect-filter/zipball/ad6ed1c491f874c1fc59bfcf1cd60e0f197336df",
+                "reference": "ad6ed1c491f874c1fc59bfcf1cd60e0f197336df",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "rcknr\\Nova\\Filters\\FilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "rcknr\\Nova\\Filters\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergii Kauk",
+                    "email": "sergii@kauk.at",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova filter that allows multiple selection.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-03-20T09:21:36+00:00"
         },
         {
             "name": "rennokki/befriended",
