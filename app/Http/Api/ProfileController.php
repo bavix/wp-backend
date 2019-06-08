@@ -55,12 +55,11 @@ class ProfileController extends Controller
         return response(['message' => trans('profile.changePasswordFail')], 422);
     }
 
-
     /**
      * @param Request $request
-     * @return array|null
+     * @return Response
      */
-    public function verifiedEmail(Request $request)
+    public function verifiedEmail(Request $request): Response
     {
         /**
          * @var $user User
