@@ -31,7 +31,7 @@ class ProfileController extends Controller
     {
         return new UserResource(
             $this->queryBuilder()
-                ->allowedIncludes('image', 'roles')
+                ->allowedIncludes('image', 'settings')
                 ->find($request->user()->id)
         );
     }

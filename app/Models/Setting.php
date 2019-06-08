@@ -34,13 +34,22 @@ class Setting extends Model
     ];
 
     /**
+     * @var array 
+     */
+    protected $casts = [
+        'key' => 'string',
+        'cast' => 'string',
+        'value' => 'custom',
+    ];
+
+    /**
      * @param string $key
      * @return string
      */
     protected function getCastType($key): string
     {
-        if ($key === 'value' && !empty($this->cast)) {
-            return $this->cast;
+        if ($key === 'value') {
+            return $this->cast ?? 'string';
         }
 
         return parent::getCastType($key);
