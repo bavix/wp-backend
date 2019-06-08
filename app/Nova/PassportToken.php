@@ -51,7 +51,9 @@ class PassportToken extends Resource
     public function fields(Request $request): array
     {
         return [
-            ID::make()->sortable(),
+            ID::make()
+                ->hideFromIndex()
+                ->sortable(),
 
             BelongsTo::make('Passport Client', 'Client'),
             BelongsTo::make('User'),
