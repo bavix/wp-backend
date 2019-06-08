@@ -34,7 +34,7 @@ class Setting extends Model
     ];
 
     /**
-     * @var array 
+     * @var array
      */
     protected $casts = [
         'key' => 'string',
