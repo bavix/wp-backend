@@ -26,6 +26,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Social query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  */
 class Social extends Model
 {

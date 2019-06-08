@@ -28,6 +28,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  */
 class Role extends \Yajra\Acl\Models\Role
 {

@@ -34,6 +34,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Style query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  */
 class Style extends Model
 {

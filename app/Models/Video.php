@@ -47,6 +47,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Video newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Video newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Video query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  */
 class Video extends Model
 {

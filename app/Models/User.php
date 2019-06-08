@@ -59,6 +59,12 @@ use Yajra\Acl\Traits\HasRole;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereImageId($value)
  * @property-read string|null $picture
  * @property-read \App\Models\Image|null $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Brand[] $followingBrands
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wheel[] $followingWheels
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Brand[] $likingBrands
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wheel[] $likingWheels
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Setting[] $settings
  */
 class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
 {

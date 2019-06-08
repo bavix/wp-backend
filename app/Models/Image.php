@@ -29,6 +29,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string|null $bucket
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBucket($value)
  * @property array $thumbnails
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  */
 class Image extends Model
 {

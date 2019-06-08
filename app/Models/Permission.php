@@ -28,6 +28,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  */
 class Permission extends \Yajra\Acl\Models\Permission
 {

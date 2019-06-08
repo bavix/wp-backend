@@ -6,6 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+/**
+ * App\Models\Setting
+ *
+ * @property int $id
+ * @property string $model_type
+ * @property int $model_id
+ * @property string $key
+ * @property string $cast
+ * @property mixed|null $value
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Setting[] $model
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereCast($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereModelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereModelType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereValue($value)
+ * @mixin \Eloquent
+ */
 class Setting extends Model
 {
 

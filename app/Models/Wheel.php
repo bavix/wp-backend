@@ -59,6 +59,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $likes
  * @property-read string|null $picture
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wheel bySimilar($wheelId)
  */
 class Wheel extends Model implements Followable, Likeable
 {

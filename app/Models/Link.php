@@ -28,6 +28,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Link newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Link newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Link query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Link[] $linkable
  */
 class Link extends Model
 {

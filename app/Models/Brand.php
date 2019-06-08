@@ -62,6 +62,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $likes
  * @property-read string|null $picture
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  */
 class Brand extends Model implements Followable, Likeable
 {

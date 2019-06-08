@@ -30,6 +30,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Collection newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Collection newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Collection query()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  */
 class Collection extends Model
 {
