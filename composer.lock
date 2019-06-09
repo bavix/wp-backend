@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8218b2a3968814235754e923e86303e2",
+    "content-hash": "960c4b6bd144606756c7124f74536e5a",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -200,6 +200,39 @@
                 "no index.php"
             ],
             "time": "2019-03-04T12:26:37+00:00"
+        },
+        {
+            "name": "bavix/nova-file-field",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/NovaFileField",
+                "reference": "eb933d899811b21908f5a3326a4b9d310a5b7ee4"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bavix\\NovaFileField\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bavix\\NovaFileField\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova resource tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
         },
         {
             "name": "bolechen/nova-activitylog",
