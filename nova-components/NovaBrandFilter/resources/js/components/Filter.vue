@@ -10,7 +10,8 @@
                       label="name">
 
                 <template slot="option" slot-scope="option">
-                    <span class="inline-block rounded-full w-2 h-2 bg-success"></span>
+                    <span class="inline-block rounded-full w-2 h-2"
+                          :class="[option.enabled ? 'bg-success' : 'bg-danger']"></span>
                     {{ option.name }}
                     <span class="pull-right--bx">{{ option.wheels_count }}</span>
                 </template>
