@@ -9,7 +9,9 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "build-nova-file-field": "cd nova-components/NovaFileField && npm run dev",
-        "build-nova-file-field-prod": "cd nova-components/NovaFileField && npm run prod"
+        "build-nova-file-field-prod": "cd nova-components/NovaFileField && npm run prod",
+        "build-nova-brand-filter": "cd nova-components/NovaBrandFilter && npm run dev",
+        "build-nova-brand-filter-prod": "cd nova-components/NovaBrandFilter && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.19",

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Comment\HasComments;
+use App\Traits\UpperCaseName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -35,6 +36,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Collection extends Model
 {
 
+    use UpperCaseName;
     use LogsActivity;
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasImage;
+use App\Traits\UpperCaseName;
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
 use Illuminate\Database\Eloquent\Model;
@@ -67,6 +68,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Brand extends Model implements Followable, Likeable
 {
 
+    use UpperCaseName;
     use LogsActivity;
     use UserCanBeFollowed;
     use UserCanBeLiked;

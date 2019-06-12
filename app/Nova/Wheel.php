@@ -6,6 +6,7 @@ use App\Nova\Filters\BrandFilter;
 use App\Nova\Filters\Wheel\WheelActive;
 use App\Nova\Filters\Wheel\WheelCustom;
 use App\Nova\Filters\Wheel\WheelRetire;
+use Bavix\NovaBrandFilter\NovaBrandFilter;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -60,7 +61,7 @@ class Wheel extends Resource
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \App\Models\Brand[]
      */
     public static function getBrands(): \Illuminate\Database\Eloquent\Collection
     {
@@ -72,7 +73,7 @@ class Wheel extends Resource
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \App\Models\Style[]
      */
     public static function getStyles(): \Illuminate\Database\Eloquent\Collection
     {
@@ -117,7 +118,7 @@ class Wheel extends Resource
 
             NovaBelongsToDepend::make('Brand', 'brand')
                 ->hideFromIndex()
-                ->optionsResolve([static::class, 'getBrands'])
+                ->options(static::getBrands())
                 ->rules('required'),
 
             BelongsTo::make('Collection')
@@ -141,7 +142,7 @@ class Wheel extends Resource
 
             NovaBelongsToDepend::make('Style', 'style')
                 ->hideFromIndex()
-                ->optionsResolve([static::class, 'getStyles'])
+                ->options(static::getStyles())
                 ->nullable(),
 
             Boolean::make('Enabled')
@@ -190,7 +191,7 @@ class Wheel extends Resource
     public function filters(Request $request): array
     {
         return [
-            new BrandFilter(),
+            new NovaBrandFilter(),
             new WheelActive(),
             new WheelCustom(),
             new WheelRetire(),

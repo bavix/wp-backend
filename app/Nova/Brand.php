@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Filters\BrandActive;
+use Illuminate\Database\Eloquent\Builder;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -11,6 +12,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Ramsey\Uuid\Uuid;
@@ -29,6 +31,11 @@ class Brand extends Resource
      * @var array
      */
     public static $with = ['image'];
+
+    /**
+     * @var array
+     */
+    public static $withCount = ['collections', 'wheels'];
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -75,6 +82,14 @@ class Brand extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Number::make('Collections Count')
+                ->sortable()
+                ->onlyOnIndex(),
+
+            Number::make('Wheels Count')
+                ->sortable()
+                ->onlyOnIndex(),
+
             Boolean::make('Enabled')
                 ->rules('required'),
 
@@ -89,6 +104,17 @@ class Brand extends Resource
                 ->hideWhenUpdating()
                 ->readonly(true),
         ];
+    }
+
+    /**
+     * @param NovaRequest $request
+     * @param Builder $query
+     * @return Builder
+     */
+    public static function indexQuery(NovaRequest $request, $query): Builder
+    {
+        return parent::indexQuery($request, $query)
+            ->withCount(static::$withCount);
     }
 
     /**
@@ -134,7 +160,9 @@ class Brand extends Resource
      */
     public function actions(Request $request): array
     {
-        return [];
+        return [
+            new Actions\EnableWheels(),
+        ];
     }
 
 }

@@ -1,13 +1,20 @@
 <?php
 
-namespace App\Nova\Filters;
+namespace Bavix\NovaBrandFilter;
 
-use App\Models\Brand;
+use App\Nova\Wheel;
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
 
-class BrandFilter extends Filter
+class NovaBrandFilter extends Filter
 {
+
+    /**
+     * The filter's component.
+     *
+     * @var string
+     */
+    public $component = 'nova-brand-filter';
 
     /**
      * Apply the filter to the given query.
@@ -30,9 +37,19 @@ class BrandFilter extends Filter
      */
     public function options(Request $request): array
     {
-        return Brand::all()
-            ->pluck('id', 'name')
-            ->toArray();
+        $brands = Wheel::getBrands();
+        $brands->loadCount('wheels');
+
+        $results = [];
+        foreach ($brands as $brand) {
+            $results[$brand->id] = [
+                'name' => $brand->name,
+                'enabled' => $brand->enabled,
+                'wheels_count' => $brand->wheels_count,
+            ];
+        }
+
+        return $results;
     }
 
 }

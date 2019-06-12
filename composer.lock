@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "960c4b6bd144606756c7124f74536e5a",
+    "content-hash": "3a61b3673e1098053cc5be6b07eb9ab3",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -200,6 +200,39 @@
                 "no index.php"
             ],
             "time": "2019-06-09T12:39:42+00:00"
+        },
+        {
+            "name": "bavix/nova-brand-filter",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/NovaBrandFilter",
+                "reference": "60b116ccd6ceaf9d9e7f70321d5348f92f0224d4"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bavix\\NovaBrandFilter\\FilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bavix\\NovaBrandFilter\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova filter.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
         },
         {
             "name": "bavix/nova-file-field",
@@ -1887,16 +1920,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.21",
+            "version": "v5.8.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c78796cc1159c8dc63c45a2011ddc4af17059cb4"
+                "reference": "f47d1a0fe7fd9b98d86ed2d404823dfeb4938de3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c78796cc1159c8dc63c45a2011ddc4af17059cb4",
-                "reference": "c78796cc1159c8dc63c45a2011ddc4af17059cb4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f47d1a0fe7fd9b98d86ed2d404823dfeb4938de3",
+                "reference": "f47d1a0fe7fd9b98d86ed2d404823dfeb4938de3",
                 "shasum": ""
             },
             "require": {
@@ -2030,7 +2063,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-06-05T00:13:05+00:00"
+            "time": "2019-06-12T12:54:34+00:00"
         },
         {
             "name": "laravel/nova",

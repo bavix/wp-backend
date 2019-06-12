@@ -15,6 +15,10 @@
         {
             "type": "path",
             "url": "./nova-components/NovaFileField"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaBrandFilter"
         }
     ],
     "require": {
@@ -49,7 +53,8 @@
         "wapmorgan/morphos": "^3.2",
         "yajra/laravel-acl": "^3.6",
         "zircote/swagger-php": "^3.0",
-        "bavix/nova-file-field": "*"
+        "bavix/nova-file-field": "*",
+        "bavix/nova-brand-filter": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

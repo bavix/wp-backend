@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Filters\BrandFilter;
 use App\Nova\Filters\CollectionActive;
+use Bavix\NovaBrandFilter\NovaBrandFilter;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -12,6 +13,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Collection extends Resource
 {
@@ -68,7 +70,14 @@ class Collection extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Brand'),
+            NovaBelongsToDepend::make('Brand', 'brand')
+                ->hideFromIndex()
+                ->options(Wheel::getBrands())
+                ->rules('required'),
+
+            BelongsTo::make('Brand')
+                ->onlyOnIndex(),
+
             HasMany::make('Wheels'),
 
             Text::make('Name')
@@ -111,7 +120,7 @@ class Collection extends Resource
     public function filters(Request $request): array
     {
         return [
-            new BrandFilter(),
+            new NovaBrandFilter(),
             new CollectionActive(),
         ];
     }

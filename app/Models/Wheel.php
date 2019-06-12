@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Comment\HasComments;
 use App\Traits\HasImage;
+use App\Traits\UpperCaseName;
 use App\Traits\UserCanBeFollowed;
 use App\Traits\UserCanBeLiked;
 use Illuminate\Database\Eloquent\Builder;
@@ -66,6 +67,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Wheel extends Model implements Followable, Likeable
 {
 
+    use UpperCaseName;
     use LogsActivity;
     use UserCanBeFollowed;
     use UserCanBeLiked;
