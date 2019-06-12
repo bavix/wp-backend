@@ -7,6 +7,7 @@
                       :dusk="filter.name + '-filter-select'"
                       :options="filter.options"
                       :value="value"
+                      placeholder="—"
                       label="name">
 
                 <template slot="option" slot-scope="option">
