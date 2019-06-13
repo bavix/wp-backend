@@ -2,15 +2,16 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\BrandFilter;
 use App\Nova\Filters\CollectionActive;
 use Bavix\NovaBrandFilter\NovaBrandFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
@@ -29,6 +30,11 @@ class Collection extends Resource
      * @var array
      */
     public static $with = ['brand'];
+
+    /**
+     * @var array
+     */
+    public static $withCount = ['wheels'];
 
     /**
      * @var string
@@ -84,6 +90,10 @@ class Collection extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Number::make('Wheels Count')
+                ->sortable()
+                ->onlyOnIndex(),
+
             Boolean::make('Enabled')
                 ->rules('required'),
 
@@ -98,6 +108,17 @@ class Collection extends Resource
                 ->hideWhenUpdating()
                 ->readonly(true),
         ];
+    }
+
+    /**
+     * @param NovaRequest $request
+     * @param Builder $query
+     * @return Builder
+     */
+    public static function indexQuery(NovaRequest $request, $query): Builder
+    {
+        return parent::indexQuery($request, $query)
+            ->withCount(static::$withCount);
     }
 
     /**

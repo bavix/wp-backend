@@ -2,7 +2,6 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\BrandFilter;
 use App\Nova\Filters\Wheel\WheelActive;
 use App\Nova\Filters\Wheel\WheelCustom;
 use App\Nova\Filters\Wheel\WheelRetire;
