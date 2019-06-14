@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Collection;
 
-use App\Models\Permission;
+use App\Enums\PermissionEnum;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,7 +21,7 @@ class DeleteRequest extends FormRequest
          */
         $user = $this->user();
 
-        return $user && $user->can(Permission::COLLECTIONS_DELETE);
+        return $user && $user->can(PermissionEnum::COLLECTIONS_DELETE);
     }
 
     /**

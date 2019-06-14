@@ -15,7 +15,6 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int $system
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Yajra\Acl\Models\Permission[] $permissions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereDescription($value)
@@ -29,23 +28,22 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role query()
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property string $guard_name
+ * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Role permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereGuardName($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
  */
-class Role extends \Yajra\Acl\Models\Role
+class Role extends \Spatie\Permission\Models\Role
 {
 
     use LogsActivity;
-
-    public const REGISTERED = 'registered';
-    public const USER = 'user';
-    public const DEVELOPER = 'developer';
 
     /**
      * @var array
      */
     protected static $logAttributes = [
         'name',
-        'slug',
-        'description',
-        'system',
+        'guard_name',
     ];
+
 }

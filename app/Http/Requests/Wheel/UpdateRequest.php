@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Wheel;
 
+use App\Enums\PermissionEnum;
 use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
@@ -21,7 +22,7 @@ class UpdateRequest extends FormRequest
          */
         $user = $this->user();
 
-        return $user && $user->can(Permission::WHEELS_UPDATE);
+        return $user && $user->can(PermissionEnum::WHEELS_UPDATE);
     }
 
     /**

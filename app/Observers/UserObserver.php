@@ -15,16 +15,16 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $roles = Role::query()
-            ->whereIn('slug', [Role::REGISTERED])
-            ->when($user->email_verified_at, function ($query) {
-                return $query->orWhere('slug', Role::USER);
-            })
-            ->get();
-
-        foreach ($roles as $role) {
-            $user->assignRole($role);
-        }
+//        $roles = Role::query()
+//            ->whereIn('slug', [Role::REGISTERED])
+//            ->when($user->email_verified_at, function ($query) {
+//                return $query->orWhere('slug', Role::USER);
+//            })
+//            ->get();
+//
+//        foreach ($roles as $role) {
+//            $user->assignRole($role);
+//        }
     }
 
     /**

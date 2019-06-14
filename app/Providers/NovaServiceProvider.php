@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Role;
+use App\Enums\PermissionEnum;
 use App\Models\User;
 use App\Nova\Metrics\BrandsPerDay;
 use App\Nova\Metrics\BrandsPerEnabled;
@@ -18,7 +18,6 @@ use App\Nova\Metrics\WheelsPerDay;
 use App\Nova\Metrics\WheelsPerEnabled;
 use Bolechen\NovaActivitylog\NovaActivitylog;
 use Laravel\Nova\Nova;
-use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -57,7 +56,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewNova', function (User $user) {
-            return $user->hasRole(Role::DEVELOPER);
+            return $user->can(PermissionEnum::NOVA_VIEW);
         });
     }
 

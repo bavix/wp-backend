@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Swagger;
 
+use App\Enums\PermissionEnum;
 use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
@@ -21,7 +22,7 @@ class ViewRequest extends FormRequest
          */
         $user = $this->user();
 
-        return $user && $user->can(Permission::SWAGGER_VIEW);
+        return $user && $user->can(PermissionEnum::SWAGGER_VIEW);
     }
 
     /**

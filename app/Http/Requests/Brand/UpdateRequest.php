@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Brand;
 
-use App\Models\Permission;
+use App\Enums\PermissionEnum;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,7 +21,7 @@ class UpdateRequest extends FormRequest
          */
         $user = $this->user();
 
-        return $user && $user->can(Permission::BRANDS_UPDATE);
+        return $user && $user->can(PermissionEnum::BRANDS_UPDATE);
     }
 
     /**

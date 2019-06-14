@@ -26,6 +26,8 @@
         "ext-json": "*",
         "bavix/laravel-cupkit": "^0.1",
         "bavix/laravel-middleware-ifindex": "^1.0",
+        "bavix/nova-brand-filter": "*",
+        "bavix/nova-file-field": "*",
         "bolechen/nova-activitylog": "^0.1.4",
         "coderello/laravel-nova-lang": "^1.0",
         "davidpiesse/nova-map": "^0.0.5",
@@ -48,13 +50,11 @@
         "rinvex/laravel-addresses": "^2.1",
         "spatie/eloquent-sortable": "^3.6",
         "spatie/laravel-cors": "^1.5",
+        "spatie/laravel-permission": "^2.37",
         "spatie/laravel-query-builder": "^1.17",
         "spatie/nova-tags-field": "^2.2",
         "wapmorgan/morphos": "^3.2",
-        "yajra/laravel-acl": "^3.6",
-        "zircote/swagger-php": "^3.0",
-        "bavix/nova-file-field": "*",
-        "bavix/nova-brand-filter": "*"
+        "zircote/swagger-php": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

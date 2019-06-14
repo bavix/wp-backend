@@ -18,7 +18,7 @@ use Rennokki\Befriended\Contracts\Liker;
 use Rennokki\Befriended\Traits\CanFollow;
 use Rennokki\Befriended\Traits\CanLike;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Yajra\Acl\Traits\HasRole;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * App\Models\User
@@ -48,7 +48,6 @@ use Yajra\Acl\Traits\HasRole;
  * @mixin \Eloquent
  * @property int|null $image_id
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\Yajra\Acl\Models\Role[] $roles
  * @property-write mixed $password_hash
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Social[] $socials
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
@@ -65,6 +64,10 @@ use Yajra\Acl\Traits\HasRole;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Brand[] $likingBrands
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wheel[] $likingWheels
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Setting[] $settings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User role($roles, $guard = null)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
  */
 class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
 {
@@ -75,7 +78,7 @@ class User extends Authenticatable implements Follower, Liker, MustVerifyEmail
     use Notifiable;
     use CanFollow;
     use CanLike;
-    use HasRole;
+    use HasRoles;
     use HasSettings;
 
     /**
