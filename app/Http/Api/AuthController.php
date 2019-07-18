@@ -34,7 +34,7 @@ class AuthController extends BaseController
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']); // fix
-        $user = User::create($request->validated());
+        $user = User::create($data);
         event(new Registered($user));
         return response($user, 201);
     }
