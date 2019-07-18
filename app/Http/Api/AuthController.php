@@ -2,6 +2,7 @@
 
 namespace App\Http\Api;
 
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\ForgetRequest;
 use App\Models\Social;
 use Carbon\Carbon;
@@ -31,6 +32,8 @@ class AuthController extends BaseController
      */
     public function register(CreateRequest $request): Response
     {
+        $data = $request->validated();
+        $data['password'] = Hash::make($data['password']); // fix
         $user = User::create($request->validated());
         event(new Registered($user));
         return response($user, 201);
@@ -82,7 +85,7 @@ class AuthController extends BaseController
         return [
             'login' => $this->loginUnique($providerUser),
             'name' => $providerUser->name,
-            'password' => Str::random(),
+            'password' => Hash::make(Str::random()),
             'email_verified_at' => $providerUser->email ?
                 Carbon::now() : null,
         ];
