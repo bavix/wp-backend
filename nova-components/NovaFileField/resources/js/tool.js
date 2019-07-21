@@ -1,3 +1,5 @@
+import Tool from './components/Tool'
+
 Nova.booting((Vue, router, store) => {
-    Vue.component('index-file-field', require('./components/Tool'));
+    Vue.component('index-file-field', Tool);
 })
