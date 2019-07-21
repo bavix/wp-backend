@@ -1,6 +1,6 @@
 {
     "name": "bavix/wheelpro",
-    "description": "Easy disk search.",
+    "description": "Easy wheels search.",
     "keywords": [
         "wheelpro",
         "wheels"
@@ -27,10 +27,10 @@
         "bavix/laravel-cupkit": "^0.1",
         "bavix/laravel-middleware-ifindex": "^1.0",
         "bolechen/nova-activitylog": "^0.1.4",
-        "coderello/laravel-nova-lang": "^1.0",
+        "coderello/laravel-nova-lang": "^1.1",
         "davidpiesse/nova-map": "^0.0.5",
         "doctrine/dbal": "^2.9",
-        "embed/embed": "^3.3",
+        "embed/embed": "^3.4",
         "fideloper/proxy": "^4.1",
         "gregoriohc/laravel-nova-theme-responsive": "^0.6.2",
         "guzzlehttp/guzzle": "^6.3",
@@ -64,7 +64,7 @@
         "fzaninotto/faker": "^1.8",
         "mockery/mockery": "^1.2",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.1"
+        "phpunit/phpunit": "^8.2"
     },
     "autoload": {
         "classmap": [

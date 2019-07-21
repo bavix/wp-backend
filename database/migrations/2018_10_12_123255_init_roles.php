@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Str;
 use App\Models\Permission;
 use App\Models\Role;
 
@@ -122,8 +123,8 @@ class InitRoles extends Migration
          * @var Role $registered
          */
         $registered = Role::query()->create([
-            'name' => \Illuminate\Support\Str::title(Role::REGISTERED),
-            'slug' => str_slug(Role::REGISTERED),
+            'name' => Str::title(Role::REGISTERED),
+            'slug' => Str::slug(Role::REGISTERED),
             'system' => true,
             'description' => 'Registered role.',
         ]);
@@ -131,8 +132,8 @@ class InitRoles extends Migration
         $this->registered($registered);
 
         $user = Role::query()->create([
-            'name' => \Illuminate\Support\Str::title(Role::USER),
-            'slug' => str_slug(Role::USER),
+            'name' => Str::title(Role::USER),
+            'slug' => Str::slug(Role::USER),
             'system' => true,
             'description' => 'User role.',
         ]);
@@ -140,8 +141,8 @@ class InitRoles extends Migration
         $this->user($user);
 
         $developer = Role::query()->create([
-            'name' => \Illuminate\Support\Str::title(Role::DEVELOPER),
-            'slug' => str_slug(Role::DEVELOPER),
+            'name' => Str::title(Role::DEVELOPER),
+            'slug' => Str::slug(Role::DEVELOPER),
             'system' => true,
             'description' => 'Developer role.',
         ]);
