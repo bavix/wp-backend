@@ -15,6 +15,7 @@ use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use R64\NovaImageCropper\ImageCropper;
 use Ramsey\Uuid\Uuid;
 
 class Brand extends Resource
@@ -69,7 +70,10 @@ class Brand extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
+            Avatar::make('Image', 'Picture', 'cdn')
+                ->exceptOnForms(),
+
+            ImageCropper::make('Photo', 'Picture', 'cdn')->onlyOnForms()->aspectRatio(1)->storeAs(function (Request $request) {
                 return 'brands.' . Uuid::uuid4()->toString();
             }),
 

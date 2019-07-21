@@ -16,6 +16,7 @@ use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
+use R64\NovaImageCropper\ImageCropper;
 use Ramsey\Uuid\Uuid;
 
 class Wheel extends Resource
@@ -94,7 +95,10 @@ class Wheel extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
+            Avatar::make('Image', 'Picture', 'cdn')
+                ->exceptOnForms(),
+
+            ImageCropper::make('Photo', 'Picture', 'cdn')->onlyOnForms()->aspectRatio(1)->storeAs(function (Request $request) {
                 return 'wheels.' . Uuid::uuid4()->toString();
             }),
 

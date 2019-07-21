@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Password;
+use R64\NovaImageCropper\ImageCropper;
 use Ramsey\Uuid\Uuid;
 
 class User extends Resource
@@ -69,7 +70,10 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Avatar::make('Image', 'Picture', 'cdn')->storeAs(function (Request $request) {
+            Avatar::make('Image', 'Picture', 'cdn')
+                ->exceptOnForms(),
+
+            ImageCropper::make('Photo', 'Picture', 'cdn')->onlyOnForms()->aspectRatio(1)->storeAs(function (Request $request) {
                 return 'users.' . Uuid::uuid4()->toString();
             }),
 
