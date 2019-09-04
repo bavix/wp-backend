@@ -18,10 +18,6 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:rez1dent3/laravel-acl.git"
-        },
-        {
-            "type": "vcs",
             "url": "git@github.com:rez1dent3/laravel-addresses.git"
         },
         {
