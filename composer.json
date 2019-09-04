@@ -13,6 +13,26 @@
             "url": "git@gitlab.com:bavix/laravel-nova.git"
         },
         {
+            "type": "vcs",
+            "url": "git@github.com:rez1dent3/chat.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:rez1dent3/laravel-acl.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:rez1dent3/laravel-addresses.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:rez1dent3/laravel-support.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:rez1dent3/laravel-cacheable.git"
+        },
+        {
             "type": "path",
             "url": "./nova-components/NovaFileField"
         },
@@ -28,18 +48,18 @@
         "bavix/laravel-middleware-ifindex": "^1.0",
         "bavix/nova-brand-filter": "*",
         "bavix/nova-file-field": "*",
-        "bolechen/nova-activitylog": "^0.1.5",
+        "bolechen/nova-activitylog": "^0.1",
         "coderello/laravel-nova-lang": "^1.1",
-        "davidpiesse/nova-map": "^0.0.5",
+        "davidpiesse/nova-map": "^0.0",
         "doctrine/dbal": "^2.9",
         "embed/embed": "^3.4",
         "fideloper/proxy": "^4.2",
         "gregoriohc/laravel-nova-theme-responsive": "^0.6",
         "guzzlehttp/guzzle": "^6.3",
-        "laravel/framework": "^5.8",
+        "laravel/framework": "^6.0",
         "laravel/nova": "^2.1",
         "laravel/passport": "^7.4",
-        "laravel/socialite": "^4.1",
+        "laravel/socialite": "^4.2",
         "laravel/tinker": "^1.0",
         "musonza/chat": "^3.4",
         "orlyapps/nova-belongsto-depend": "^2.0",
@@ -50,8 +70,8 @@
         "rennokki/befriended": "^1.2",
         "rinvex/laravel-addresses": "^2.1",
         "spatie/eloquent-sortable": "^3.6",
-        "spatie/laravel-cors": "^1.5",
-        "spatie/laravel-query-builder": "^2.0",
+        "spatie/laravel-cors": "^1.6",
+        "spatie/laravel-query-builder": "^2.1",
         "spatie/nova-tags-field": "^2.2",
         "wapmorgan/morphos": "^3.2",
         "yajra/laravel-acl": "^4.0",
