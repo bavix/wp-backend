@@ -26,10 +26,6 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:rez1dent3/befriended.git"
-        },
-        {
-            "type": "vcs",
             "url": "git@github.com:rez1dent3/laravel-cacheable.git"
         },
         {
