@@ -14,10 +14,6 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:rez1dent3/chat.git"
-        },
-        {
-            "type": "vcs",
             "url": "git@github.com:rez1dent3/laravel-addresses.git"
         },
         {
