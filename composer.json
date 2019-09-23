@@ -13,18 +13,6 @@
             "url": "git@gitlab.com:bavix/laravel-nova.git"
         },
         {
-            "type": "vcs",
-            "url": "git@github.com:rez1dent3/laravel-addresses.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:rez1dent3/laravel-support.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:rez1dent3/laravel-cacheable.git"
-        },
-        {
             "type": "path",
             "url": "./nova-components/NovaFileField"
         },
