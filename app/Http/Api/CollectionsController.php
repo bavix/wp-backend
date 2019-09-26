@@ -7,7 +7,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Collections;
 use App\Models\Collection;
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\QueryBuilder\Filter;
+use Spatie\QueryBuilder\AllowedFilter as Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 /**

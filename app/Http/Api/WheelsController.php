@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Models\Wheel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Response;
-use Spatie\QueryBuilder\Filter;
+use Spatie\QueryBuilder\AllowedFilter as Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class WheelsController extends Commentable
